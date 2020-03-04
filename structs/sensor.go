@@ -1,8 +1,6 @@
 package structs
 
-import (
-	"time"
-)
+import "time"
 
 type Sensor struct {
 	ID                  string    `json:"id"`
