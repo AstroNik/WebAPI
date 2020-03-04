@@ -5,11 +5,11 @@ import (
 )
 
 type Sensor struct {
-	ID                  string    `json:"ID"`
-	DateTime            time.Time `json:"DateTime"`
-	SensorName          string    `json:"SensorName"`
-	AirValue            int       `json:"AirValue"`
-	WaterValue          int       `json:"WaterValue""`
-	SoilMoistureValue   int       `json:"SoilMoistureValue"`
-	SoilMoisturePercent int       `json:"SoilMoisturePercent"`
+	ID                  string    `json:"id"`
+	DateTime            time.Time `json:"dateTime"`
+	SensorName          string    `json:"sensorName"`
+	AirValue            int       `json:"airValue"`
+	WaterValue          int       `json:"waterValue"`
+	SoilMoistureValue   int       `json:"soilMoistureValue"`
+	SoilMoisturePercent int       `json:"soilMoisturePercent"`
 }
