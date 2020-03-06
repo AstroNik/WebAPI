@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/AstroNik/WebCommon/structs"
 	"github.com/gorilla/mux"
 	"io/ioutil"
 	"log"
@@ -23,7 +24,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 }
 
 func dataProcess(w http.ResponseWriter, r *http.Request) {
-	sensorData := Sensor{}
+	sensorData := structs.Sensor{}
 	sensorData.DateTime = time.Now()
 	reqBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
