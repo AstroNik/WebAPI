@@ -11,6 +11,6 @@ node {
                     usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']])
    {
       sh 'docker login --username=$USERNAME --password=$PASSWORD' 
-      sh 'docker push astronik/webservice:${BUILD_ID}'
+      sh 'docker push astronik/webservice:0.1'
    }
 }
