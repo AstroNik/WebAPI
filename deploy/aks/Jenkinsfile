@@ -4,7 +4,7 @@ node {
       git 'https://github.com/AstroNik/WebAPI.git'
    }
    stage('Build') {
-      sh 'docker build -t astronik/webservice:${BUILD_ID} .'
+      sh 'docker build -t astronik/webservice:0.1 .'
    }
    stage('Push') 
    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub',
