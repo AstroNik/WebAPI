@@ -1,7 +1,7 @@
 node {
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
-      git 'https://github.com/AstroNik/WebAPI.git'
+      git 'https://github.com/AstroNik/WebAPI'
    }
    stage('Build') {
       sh 'docker build -t astronik/webservice:0.1 .'
