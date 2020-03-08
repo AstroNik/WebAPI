@@ -1,3 +1,4 @@
+import groovy.json.JsonSlurper
 node {
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
