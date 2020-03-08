@@ -2,7 +2,7 @@ import groovy.json.JsonSlurper
 node {
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
-      sh 'git clone https://github.com/AstroNik/WebAPI.git'
+      git 'https://github.com/AstroNik/WebAPI.git'
    }
    stage('Build') {
       sh 'docker build -t astronik/webservice:0.1 .'
