@@ -13,8 +13,8 @@ spec:
         name: ecoders-webapi
     spec:
       containers:
-      - name: webapi
-        image: ecodershub.azurecr.io/webservice:latest
-        imagePullPolicy: IfNotPresent
-        ports:
-          - containerPort: 8080
+        - name: webapi
+          image: astronik/webservice:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
