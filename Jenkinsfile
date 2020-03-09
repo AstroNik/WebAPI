@@ -21,7 +21,7 @@ node {
     //    acrQuickTask azureCredentialsId: 'azsrvprincipal', gitPath: '', gitRefspec: '', gitRepo: '', imageNames: [[image: 'ecodershub.azurecr.io/webservice']], registryName: 'EcodersHub', resourceGroupName: 'Capstone', tarball: '', variant: ''
     //}
     stage('Remove Current Deployment'){
-        acsDeploy azureCredentialsId: 'azsrvprincipal', configFilePaths: 'k8s/aks/undeploy.sh', containerService: 'EcodersDev | AKS', dcosDockerCredentialsPath: '', resourceGroupName: 'Capstone', secretName: '', sshCredentialsId: ''
+        azureCLI commands: [[exportVariablesString: '', script: 'kubectl delete deploy ecoders-webapi']], principalCredentialId: 'azsrvprincipal'
     }
     stage('Deploy to AKS'){
         acsDeploy azureCredentialsId: 'azsrvprincipal', configFilePaths: 'k8s/aks/azure-webservice.yaml', containerService: 'EcodersDev | AKS', dcosDockerCredentialsPath: '', resourceGroupName: 'Capstone', secretName: '', sshCredentialsId: ''
