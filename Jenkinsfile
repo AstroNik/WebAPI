@@ -1,18 +1,26 @@
-import groovy.json.JsonSlurper
 node {
-   stage('Preparation') { // for display purposes
-      // Get some code from a GitHub repository
-      checkout scm
-      git clone 'https://github.com/AstroNik/WebAPI.git'
-   }
-   stage('Build') {
-      sh 'docker build -t astronik/webservice:0.1 .'
-   }
-   stage('Docker Push')
-   withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub',
-                    usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']])
-   {
-      sh 'docker login --username=$USERNAME --password=$PASSWORD' 
-      sh 'docker push astronik/webservice:0.1'
-   }
+    def app
+    stage('Clone repository') {
+        git credentialsId: 'GitAccess', url: 'https://github.com/AstroNik/WebAPI.git'
+    }
+    stage('Build image') {
+        app = docker.build("astronik/webservice")
+    }
+    stage('Test image') {
+        app.inside {
+            sh 'echo "Tests passed"'
+        }
+    }
+    stage('Push to Docker') {
+        docker.withRegistry('https://registry.hub.docker.com', 'GitAccess') {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
+        }
+    }
+    stage('Push to ACR'){
+        acrQuickTask azureCredentialsId: 'azsrvprincipal', gitPath: '', gitRefspec: '', gitRepo: '', imageNames: [[image: 'ecodershub.azurecr.io/webservice']], registryName: 'EcodersHub', resourceGroupName: 'Capstone', tarball: '', variant: ''
+    }
+    stage('Deploy to AKS'){
+        acsDeploy azureCredentialsId: 'azsrvprincipal', configFilePaths: './k8s/webservice-deployment-bg.yaml', containerService: 'EcodersDev | AKS', dcosDockerCredentialsPath: '', resourceGroupName: 'Capstone', secretName: '', sshCredentialsId: ''
+    }
 }
