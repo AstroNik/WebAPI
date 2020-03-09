@@ -17,10 +17,10 @@ node {
             app.push("latest")
         }
     }
-    stage('Push to ACR'){
-        acrQuickTask azureCredentialsId: 'azsrvprincipal', gitPath: '', gitRefspec: '', gitRepo: '', imageNames: [[image: 'ecodershub.azurecr.io/webservice']], registryName: 'EcodersHub', resourceGroupName: 'Capstone', tarball: '', variant: ''
-    }
+    //stage('Push to ACR'){
+    //    acrQuickTask azureCredentialsId: 'azsrvprincipal', gitPath: '', gitRefspec: '', gitRepo: '', imageNames: [[image: 'ecodershub.azurecr.io/webservice']], registryName: 'EcodersHub', resourceGroupName: 'Capstone', tarball: '', variant: ''
+    //}
     stage('Deploy to AKS'){
-        acsDeploy azureCredentialsId: 'azsrvprincipal', configFilePaths: './k8s/webservice-deployment-bg.yaml', containerService: 'EcodersDev | AKS', dcosDockerCredentialsPath: '', resourceGroupName: 'Capstone', secretName: '', sshCredentialsId: ''
+        acsDeploy azureCredentialsId: 'azsrvprincipal', configFilePaths: 'k8s/aks/azure-webservice.yaml', containerService: 'EcodersDev | AKS', dcosDockerCredentialsPath: '', resourceGroupName: 'Capstone', secretName: '', sshCredentialsId: ''
     }
 }
