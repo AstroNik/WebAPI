@@ -18,5 +18,3 @@ spec:
         imagePullPolicy: Always
         ports:
           - containerPort: 8080
-        labels:
-          version:
