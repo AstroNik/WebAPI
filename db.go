@@ -11,7 +11,7 @@ func connectClient() *mongo.Client {
 	if err != nil {
 		log.Fatal(err)
 	}
-	print("Connection Successful\n")
+	log.Print("Connection Successful\n")
 	return client
 }
 

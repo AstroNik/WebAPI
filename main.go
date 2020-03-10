@@ -16,27 +16,46 @@ func main() {
 	router.HandleFunc("/", homePage)
 	router.HandleFunc("/getSensorData", sendData)
 	router.HandleFunc("/dataProcess", dataProcess)
+	router.HandleFunc("/test", testDecode)
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
 func homePage(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome home!")
+	connectClient()
 }
 
 func sendData(w http.ResponseWriter, r *http.Request) {
-	data := map[string]string{
-		"DateTime":            time.Now().String(),
-		"AirValue":            "850",
-		"WaterValue":          "450",
-		"SoilMoisturePercent": "50",
-		"SoilMoistureValue":   "650",
-	}
-	b, err := json.Marshal(data)
+	sensorData := structs.Sensor{}
+	sensorData.DateTime = time.Now()
+	sensorData.AirValue = 850
+	sensorData.WaterValue = 450
+	sensorData.SoilMoistureValue = 650
+	sensorData.SoilMoisturePercent = 50
+	sensorData.SensorName = "IDK"
+	//b, err := json.Marshal(sensorData)
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	json.NewEncoder(w).Encode(sensorData)
+
+}
+
+func testDecode(w http.ResponseWriter, r *http.Request) {
+	var sensor structs.Sensor
+	resp, err := http.Get("http://localhost:8080/getSensorData")
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Fprintf(w, string(b))
-	json.NewEncoder(w).Encode(b)
+
+	fmt.Println(resp.Status)
+	dec := json.NewDecoder(resp.Body)
+	err = dec.Decode(&sensor)
+	if err != nil {
+		fmt.Println("error decoding the response to the join request")
+		log.Fatal(err)
+	}
+
+	fmt.Println(sensor)
 }
 
 func dataProcess(w http.ResponseWriter, r *http.Request) {
