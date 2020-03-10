@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: webapi
-          image: astronik/webservice:0.1
+          image: astronik/webservice:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
