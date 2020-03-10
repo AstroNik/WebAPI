@@ -14,13 +14,29 @@ import (
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", homePage)
-	router.HandleFunc("/getSensorData", dataProcess)
-	router.HandleFunc("/sendSensorData", sendData)
+	router.HandleFunc("/getSensorData", sendData)
+	router.HandleFunc("/dataProcess", dataProcess)
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
 func homePage(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome home!")
+}
+
+func sendData(w http.ResponseWriter, r *http.Request) {
+	data := map[string]string{
+		"DateTime":            time.Now().String(),
+		"AirValue":            "850",
+		"WaterValue":          "450",
+		"SoilMoisturePercent": "50",
+		"SoilMoistureValue":   "650",
+	}
+	b, err := json.Marshal(data)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Fprintf(w, string(b))
+	json.NewEncoder(w).Encode(b)
 }
 
 func dataProcess(w http.ResponseWriter, r *http.Request) {
@@ -32,8 +48,4 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 	}
 	json.Unmarshal(reqBody, &sensorData)
 	log.Println("You hit me")
-}
-
-func sendData(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Send Data")
 }

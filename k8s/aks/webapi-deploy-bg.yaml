@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecoders-webapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: ecoders-webapi
+  template:
+    metadata:
+      labels:
+        name: ecoders-webapi
+    spec:
+      containers:
+      - name: webapi
+        image: ecodershub.azurecr.io/webservice
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
