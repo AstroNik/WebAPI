@@ -11,7 +11,7 @@ ENV GO111MODULE=on \
 # Move to working directory /build
 WORKDIR /build
 
-RUN  git config --global url."https://"+$GITTOKEN+":x-oauth-basic@github.com/AstroNik".insteadOf "https://github.com/AstroNik"
+RUN  git config --global url."https://"+${GITTOKEN}+":x-oauth-basic@github.com/AstroNik".insteadOf "https://github.com/AstroNik"
 
 # Copy and download dependency using go mod
 COPY go.mod .
