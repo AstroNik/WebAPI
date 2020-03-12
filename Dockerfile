@@ -1,6 +1,6 @@
 FROM golang:alpine
 
-RUN apk add --no-cache ca-certificates git
+RUN apk add --update --no-cache ca-certificates git
 
 # Set necessary environmet variables needed for our image
 ENV GO111MODULE=on \
