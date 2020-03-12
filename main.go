@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -25,7 +26,8 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 }
 
 func sendData(w http.ResponseWriter, r *http.Request) {
-	sensorData := structs.SensorInfo{}
+	sensorData := structs.SensorData{}
+	sensorData.DateTime = time.Now().String()
 	sensorData.AirValue = 850
 	sensorData.WaterValue = 450
 	sensorData.SoilMoistureValue = 650
@@ -58,7 +60,7 @@ func testDecode(w http.ResponseWriter, r *http.Request) {
 }
 
 func dataProcess(w http.ResponseWriter, r *http.Request) {
-	sensorData := structs.SensorInfo{}
+	sensorData := structs.SensorData{}
 	reqBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		fmt.Fprintf(w, "Cannot Decode Data")
