@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/AstroNik/WebCommon/db"
 	"github.com/AstroNik/WebCommon/structs"
 	"github.com/gorilla/mux"
 	"io/ioutil"
@@ -21,7 +22,7 @@ func main() {
 }
 
 func homePage(w http.ResponseWriter, r *http.Request) {
-	connectClient()
+	db.ConnectClient()
 }
 
 func sendData(w http.ResponseWriter, r *http.Request) {
