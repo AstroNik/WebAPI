@@ -42,7 +42,7 @@ func sendData(w http.ResponseWriter, r *http.Request) {
 }
 
 func testDecode(w http.ResponseWriter, r *http.Request) {
-	var sensor structs.Sensor
+	var sensor structs.SensorData
 	resp, err := http.Get("http://localhost:8080/getSensorData")
 	if err != nil {
 		log.Fatal(err)
