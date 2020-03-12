@@ -1,4 +1,3 @@
-# syntax=docker/dockerfile:experimental
 FROM golang:alpine
 
 RUN apk add --update --no-cache ca-certificates git openssh-client
@@ -12,23 +11,12 @@ ENV GO111MODULE=on \
 # Move to working directory /build
 WORKDIR /build
 
-RUN git config --system url."ssh://git@github.com/".insteadOf "https://github.com/"
-
-RUN set -euo pipefail && \
-    mkdir -p -m 0600 ~/.ssh && \
-    ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts && \
-    ssh-keygen -F github.com -l -E sha256 \
-        | grep -q "SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8"
-
-
+RUN  git config --global url."https://534f45fde3f08def5c597e690efc0af010c858a6:x-oauth-basic@github.com/AstroNik".insteadOf "https://github.com/AstroNik"
 
 # Copy and download dependency using go mod
 COPY go.mod .
 COPY go.sum .
-
-RUN --mount=type=ssh mkdir -p /var/ssh && \
-    GIT_SSH_COMMAND="ssh -o \"ControlMaster auto\" -o \"ControlPersist 300\" -o \"ControlPath /var/ssh/%r@%h:%p\"" \
-    go mod download
+RUN go mod download
 
 # Copy the code into the container
 COPY . .
