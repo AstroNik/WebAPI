@@ -11,8 +11,6 @@ ENV GO111MODULE=on \
 # Move to working directory /build
 WORKDIR /build
 
-RUN git config --global url."https://${USERNAME}:${PASSWORD}@github.com".insteadOf "ssh://git@github.com"
-
 # Copy and download dependency using go mod
 COPY go.mod .
 COPY go.sum .
