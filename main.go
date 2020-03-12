@@ -67,5 +67,6 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Cannot Decode Data")
 	}
 	json.Unmarshal(reqBody, &sensorData)
+	log.Println(sensorData)
 	log.Println("You hit me")
 }
