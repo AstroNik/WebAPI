@@ -6,7 +6,8 @@ RUN apk add --update --no-cache ca-certificates git
 ENV GO111MODULE=on \
     CGO_ENABLED=0 \
     GOOS=linux \
-    GOARCH=amd64
+    GOARCH=amd64 \
+    GOPROXY=direct
 
 # Move to working directory /build
 WORKDIR /build
