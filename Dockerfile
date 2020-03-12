@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:experimental
 FROM golang:alpine
 
 RUN apk add --update --no-cache ca-certificates git openssh-client
