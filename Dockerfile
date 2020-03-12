@@ -7,7 +7,7 @@ ENV GO111MODULE=on \
     CGO_ENABLED=0 \
     GOOS=linux \
     GOARCH=amd64 \
-    GOPROXY=direct
+    GOPROXY="https://github.com/AstroNik/WebCommon"
 
 # Move to working directory /build
 WORKDIR /build
