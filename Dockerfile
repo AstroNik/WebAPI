@@ -7,7 +7,8 @@ ENV GO111MODULE=on \
     CGO_ENABLED=0 \
     GOOS=linux \
     GOARCH=amd64 \
-    GONOPROXY="github.com/AstroNik/*"
+    GONOPROXY="github.com/AstroNik/*" \
+    GOPRIVATE="github.com/AstroNik/*"
 
 # Move to working directory /build
 WORKDIR /build
