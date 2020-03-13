@@ -61,12 +61,13 @@ func testDecode(w http.ResponseWriter, r *http.Request) {
 }
 
 func dataProcess(w http.ResponseWriter, r *http.Request) {
-	sensorData := structs.SensorData{}
+	//sensorData := structs.SensorData{}
+	var temp = ""
 	reqBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		fmt.Fprintf(w, "Cannot Decode Data")
 	}
-	json.Unmarshal(reqBody, &sensorData)
-	log.Println(sensorData)
+	json.Unmarshal(reqBody, &temp)
+	log.Println(temp)
 	log.Println("You hit me")
 }
