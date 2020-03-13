@@ -26,13 +26,14 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 }
 
 func sendData(w http.ResponseWriter, r *http.Request) {
+	currTime := time.Now().Format(time.RFC3339)
 	sensorData := structs.SensorData{}
-	sensorData.DateTime = time.Now().String()
+	sensorData.DateTime = string(currTime)
 	sensorData.AirValue = 850
 	sensorData.WaterValue = 450
-	sensorData.SoilMoistureValue = 650
-	sensorData.SoilMoisturePercent = 50
-	sensorData.SensorName = "IDK"
+	sensorData.SoilMoistureValue = 700
+	sensorData.SoilMoisturePercent = 60
+	sensorData.SensorName = "SoilSensor"
 	//b, err := json.Marshal(sensorData)
 	//if err != nil {
 	//	log.Fatal(err)
