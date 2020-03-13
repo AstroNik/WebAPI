@@ -6,7 +6,6 @@ import (
 	"github.com/AstroNik/WebCommon/db"
 	"github.com/AstroNik/WebCommon/structs"
 	"github.com/gorilla/mux"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"time"
@@ -63,11 +62,11 @@ func testDecode(w http.ResponseWriter, r *http.Request) {
 func dataProcess(w http.ResponseWriter, r *http.Request) {
 	//sensorData := structs.SensorData{}
 	var temp = ""
-	reqBody, err := ioutil.ReadAll(r.Body)
+	dec := json.NewDecoder(r.Body)
+	err := dec.Decode(&temp)
 	if err != nil {
-		fmt.Fprintf(w, "Cannot Decode Data")
+		fmt.Println("error decoding the response to the join request")
+		log.Fatal(err)
 	}
-	json.Unmarshal(reqBody, &temp)
-	log.Println(temp)
-	log.Println("You hit me")
+	log.Print(temp)
 }
