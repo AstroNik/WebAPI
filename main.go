@@ -61,12 +61,12 @@ func testDecode(w http.ResponseWriter, r *http.Request) {
 
 func dataProcess(w http.ResponseWriter, r *http.Request) {
 	//sensorData := structs.SensorData{}
-	var temp = ""
+	var decode []interface{}
 	dec := json.NewDecoder(r.Body)
-	err := dec.Decode(&temp)
+	err := dec.Decode(&decode)
 	if err != nil {
 		fmt.Println("error decoding the response to the join request")
 		log.Fatal(err)
 	}
-	log.Print(temp)
+	log.Print(decode)
 }
