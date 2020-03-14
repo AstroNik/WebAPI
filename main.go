@@ -16,7 +16,6 @@ func main() {
 	router.HandleFunc("/", homePage)
 	router.HandleFunc("/getSensorData", sendData)
 	router.HandleFunc("/dataProcess", dataProcess)
-	router.HandleFunc("/test", testDecode)
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
@@ -33,40 +32,30 @@ func sendData(w http.ResponseWriter, r *http.Request) {
 	sensorData.SoilMoistureValue = 700
 	sensorData.SoilMoisturePercent = 60
 	sensorData.SensorName = "SoilSensor"
-	//b, err := json.Marshal(sensorData)
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
 	json.NewEncoder(w).Encode(sensorData)
 
 }
 
-func testDecode(w http.ResponseWriter, r *http.Request) {
-	var sensor structs.SensorData
-	resp, err := http.Get("http://52.152.247.223/getSensorData")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Println(resp.Status)
-	dec := json.NewDecoder(resp.Body)
-	err = dec.Decode(&sensor)
-	if err != nil {
-		fmt.Println("error decoding the response to the join request")
-		log.Fatal(err)
-	}
-
-	fmt.Println(sensor)
-}
-
 func dataProcess(w http.ResponseWriter, r *http.Request) {
-	//sensorData := structs.SensorData{}
-	var decode []interface{}
+	currTime := time.Now().Format(time.RFC3339)
+	type data struct {
+		aValue int
+		wValue int
+		mValue int
+		mPerc  int
+	}
+	decode := data{}
 	dec := json.NewDecoder(r.Body)
 	err := dec.Decode(&decode)
 	if err != nil {
 		fmt.Println("error decoding the response to the join request")
 		log.Fatal(err)
 	}
-	log.Print(decode)
+	sensorData := structs.SensorData{}
+	sensorData.DateTime = string(currTime)
+	sensorData.AirValue = decode.aValue
+	sensorData.WaterValue = decode.wValue
+	sensorData.SoilMoistureValue = decode.mValue
+	sensorData.SoilMoisturePercent = decode.mPerc
+	log.Print(sensorData)
 }
