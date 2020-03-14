@@ -8,7 +8,6 @@ import (
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
-	"time"
 )
 
 func main() {
@@ -24,38 +23,23 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 }
 
 func sendData(w http.ResponseWriter, r *http.Request) {
-	currTime := time.Now().Format(time.RFC3339)
+	//currTime := time.Now().Format(time.RFC3339)
 	sensorData := structs.SensorData{}
-	sensorData.DateTime = string(currTime)
 	sensorData.AirValue = 850
 	sensorData.WaterValue = 450
 	sensorData.SoilMoistureValue = 700
 	sensorData.SoilMoisturePercent = 60
-	sensorData.SensorName = "SoilSensor"
 	json.NewEncoder(w).Encode(sensorData)
 
 }
 
 func dataProcess(w http.ResponseWriter, r *http.Request) {
-	currTime := time.Now().Format(time.RFC3339)
-	type data struct {
-		aValue int
-		wValue int
-		mValue int
-		mPerc  int
-	}
-	decode := data{}
+	sensorData := structs.SensorData{}
 	dec := json.NewDecoder(r.Body)
-	err := dec.Decode(&decode)
+	err := dec.Decode(&sensorData)
 	if err != nil {
 		fmt.Println("error decoding the response to the join request")
 		log.Fatal(err)
 	}
-	sensorData := structs.SensorData{}
-	sensorData.DateTime = string(currTime)
-	sensorData.AirValue = decode.aValue
-	sensorData.WaterValue = decode.wValue
-	sensorData.SoilMoistureValue = decode.mValue
-	sensorData.SoilMoisturePercent = decode.mPerc
 	log.Print(sensorData)
 }
