@@ -23,6 +23,9 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 }
 
 func sendData(w http.ResponseWriter, r *http.Request) {
+	//Here we need to retrieve the most recent data for the sensor inputted in the db
+	//the struct will have to change from SensorData -> Sensor
+
 	//currTime := time.Now().Format(time.RFC3339)
 	sensorData := structs.SensorData{}
 	sensorData.AirValue = 850
@@ -38,8 +41,18 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 	dec := json.NewDecoder(r.Body)
 	err := dec.Decode(&sensorData)
 	if err != nil {
-		fmt.Println("error decoding the response to the join request")
+		fmt.Println("error decoding the response")
 		log.Fatal(err)
 	}
 	log.Print(sensorData)
+
+	//The BELOW is how the data will be Inserted into the Database
+	//currTime := time.Now().Format(time.RFC3339) //Time is in UTC Format
+	//sensor := structs.Sensor{
+	//	SensorId:   0, //will correspond with the device sending the data
+	//	SensorName: "", //will have to have somewhere we can set this data up in the app
+	//	DateTime:   currTime,
+	//	SensorData: sensorData,
+	//}
+	//db.InsertMoistureData(sensor)
 }
