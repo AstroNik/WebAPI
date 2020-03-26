@@ -3,6 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/AstroNik/WebCommon/db"
+
 	//"github.com/AstroNik/WebCommon/db"
 	"github.com/AstroNik/WebCommon/structs"
 	"github.com/gorilla/mux"
@@ -52,14 +54,17 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 	//The BELOW is how the data will be Inserted into the Database
 	currTime := time.Now() //.Format(time.RFC3339) //Time is in UTC Format
 	sensor := structs.Sensor{
-		SensorId:   0,                 //will correspond with the device sending the data
-		SensorName: "Moisture Sensor", //will have to have somewhere we can set this data up in the app
-		DateTime:   currTime,
-		SensorData: sensorData,
+		SensorId:            0,                 //will correspond with the device sending the data
+		SensorName:          "Moisture Sensor", //will have to have somewhere we can set this data up in the app
+		DateTime:            currTime,
+		AirValue:            sensorData.AirValue,
+		WaterValue:          sensorData.WaterValue,
+		SoilMoistureValue:   sensorData.SoilMoistureValue,
+		SoilMoisturePercent: sensorData.SoilMoisturePercent,
 	}
 	log.Println(sensor)
 	//temporary customerID
-	//db.InsertMoistureData("234556314", sensor)
+	db.InsertMoistureData("234556314", &sensor)
 }
 
 func signup(w http.ResponseWriter, r *http.Request) {
