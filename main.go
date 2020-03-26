@@ -57,9 +57,9 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 		DateTime:   currTime,
 		SensorData: sensorData,
 	}
-
+	log.Println(sensor)
 	//temporary customerID
-	db.InsertMoistureData("234556314", sensor)
+	//db.InsertMoistureData("234556314", sensor)
 }
 
 func signup(w http.ResponseWriter, r *http.Request) {
