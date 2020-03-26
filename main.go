@@ -47,7 +47,7 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("error decoding the response")
 		log.Fatal(err)
 	}
-	log.Print(sensorData)
+	log.Print("Data from Sensor: ", sensorData)
 
 	//The BELOW is how the data will be Inserted into the Database
 	currTime := time.Now() //Time is in UTC Format
@@ -61,7 +61,7 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 		SoilMoistureValue:   sensorData.SoilMoistureValue,
 		SoilMoisturePercent: sensorData.SoilMoisturePercent,
 	}
-	log.Println(sensor)
+	log.Println("Data to be inserted into db: ", sensor)
 	//temporary customerID
 	db.InsertMoistureData("234556314", sensor)
 }
