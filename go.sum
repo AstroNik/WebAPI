@@ -56,6 +56,8 @@ github.com/AstroNik/WebCommon v0.0.0-20200327005824-6875f73aa645 h1:Vh9Hkhth0s+u
 github.com/AstroNik/WebCommon v0.0.0-20200327005824-6875f73aa645/go.mod h1:MU5FNlv/KZxtnk1lFRRLsDnG+7y54auTKTcw848tZNA=
 github.com/AstroNik/WebCommon v0.0.0-20200327010610-533cdf624b20 h1:YbIgOiWYBHmTV7Ii0Nukod1lNdLloGRnY6I5Z2a5HFY=
 github.com/AstroNik/WebCommon v0.0.0-20200327010610-533cdf624b20/go.mod h1:MU5FNlv/KZxtnk1lFRRLsDnG+7y54auTKTcw848tZNA=
+github.com/AstroNik/WebCommon v0.0.0-20200327011307-63edb49fd462 h1:aX5QUOQg+u3+Sb1c2ly8BF33v1YPVRCbJqxDrip8SEY=
+github.com/AstroNik/WebCommon v0.0.0-20200327011307-63edb49fd462/go.mod h1:MU5FNlv/KZxtnk1lFRRLsDnG+7y54auTKTcw848tZNA=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
