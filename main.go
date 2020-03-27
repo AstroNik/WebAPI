@@ -26,15 +26,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 }
 
 func sendData(w http.ResponseWriter, r *http.Request) {
-	//Here we need to retrieve the most recent data for the sensor inputted in the db
-	//the struct will have to change from SensorData -> Sensor
-
-	//currTime := time.Now().Format(time.RFC3339)
-	sensorData := structs.SensorData{}
-	sensorData.AirValue = 850
-	sensorData.WaterValue = 450
-	sensorData.SoilMoistureValue = 700
-	sensorData.SoilMoisturePercent = 60
+	sensorData := db.GetMoistureData("234556314")
 	json.NewEncoder(w).Encode(sensorData)
 
 }
