@@ -46,6 +46,16 @@ github.com/AstroNik/WebCommon v0.0.0-20200326234037-296cd0cbb264 h1:JNZBYjMWxzLr
 github.com/AstroNik/WebCommon v0.0.0-20200326234037-296cd0cbb264/go.mod h1:MU5FNlv/KZxtnk1lFRRLsDnG+7y54auTKTcw848tZNA=
 github.com/AstroNik/WebCommon v0.0.0-20200326235448-425764fa915b h1:x6rLq7AA3IDbafEsNi2hBNkTVlMIad7Pu7MS9n9TRWE=
 github.com/AstroNik/WebCommon v0.0.0-20200326235448-425764fa915b/go.mod h1:MU5FNlv/KZxtnk1lFRRLsDnG+7y54auTKTcw848tZNA=
+github.com/AstroNik/WebCommon v0.0.0-20200327004309-8fffd07cef21 h1:JvEmZhNdk+TW7TwU4q5XdaipJIQ9UnY2XqdwxZ2dJcg=
+github.com/AstroNik/WebCommon v0.0.0-20200327004309-8fffd07cef21/go.mod h1:MU5FNlv/KZxtnk1lFRRLsDnG+7y54auTKTcw848tZNA=
+github.com/AstroNik/WebCommon v0.0.0-20200327004618-f94cd9b1fdcc h1:r2iuUpqadl/zwmsIrJS43B9KInCWdwmjzqRgK8ryt50=
+github.com/AstroNik/WebCommon v0.0.0-20200327004618-f94cd9b1fdcc/go.mod h1:MU5FNlv/KZxtnk1lFRRLsDnG+7y54auTKTcw848tZNA=
+github.com/AstroNik/WebCommon v0.0.0-20200327004948-ce9cd0a4af35 h1:5Mkfxx4ZrFP3qMZxSvXIbdGiFarYN8QK53ZwubDVcNk=
+github.com/AstroNik/WebCommon v0.0.0-20200327004948-ce9cd0a4af35/go.mod h1:MU5FNlv/KZxtnk1lFRRLsDnG+7y54auTKTcw848tZNA=
+github.com/AstroNik/WebCommon v0.0.0-20200327005824-6875f73aa645 h1:Vh9Hkhth0s+uexEe9n3e6Ke9kBdGGAjdMUtiOzTdXYw=
+github.com/AstroNik/WebCommon v0.0.0-20200327005824-6875f73aa645/go.mod h1:MU5FNlv/KZxtnk1lFRRLsDnG+7y54auTKTcw848tZNA=
+github.com/AstroNik/WebCommon v0.0.0-20200327010610-533cdf624b20 h1:YbIgOiWYBHmTV7Ii0Nukod1lNdLloGRnY6I5Z2a5HFY=
+github.com/AstroNik/WebCommon v0.0.0-20200327010610-533cdf624b20/go.mod h1:MU5FNlv/KZxtnk1lFRRLsDnG+7y54auTKTcw848tZNA=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
