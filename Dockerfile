@@ -35,5 +35,7 @@ RUN cp /build/main .
 # Export necessary port
 EXPOSE 8080
 
+RUN chmod +x /app/main
+
 # Command to run when starting the container
 CMD ["/app/main"]
