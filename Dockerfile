@@ -1,4 +1,4 @@
-FROM golang:alpine
+FROM arm32v7/golang:alpine as builder
 
 RUN apk add --update --no-cache ca-certificates git openssh-client
 
