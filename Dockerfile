@@ -6,8 +6,8 @@ RUN apk add --update --no-cache ca-certificates git openssh-client
 ENV GO111MODULE=on \
     CGO_ENABLED=0 \
     GOOS=linux \
-    GOARCH=amr \
-    GOARM=5
+    GOARCH=arm \
+    GOARM=7
 
 # Move to working directory /build
 WORKDIR /build
