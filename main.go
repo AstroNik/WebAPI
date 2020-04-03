@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/AstroNik/WebCommon/db"
 	"github.com/AstroNik/WebCommon/structs"
+	"github.com/caddyserver/certmagic"
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
@@ -18,11 +19,12 @@ func main() {
 	router.HandleFunc("/dataProcess", dataProcess)
 	router.HandleFunc("/signup", signup)
 	router.HandleFunc("/signin", signin)
+	_ = certmagic.HTTPS([]string{"ecoders.ca", "www.ecoders.ca"}, router)
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
 func homePage(w http.ResponseWriter, r *http.Request) {
-
+	json.NewEncoder(w).Encode("Soil Moisture Sensor by ECOders")
 }
 
 func sendData(w http.ResponseWriter, r *http.Request) {
