@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ecoders-web-service
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  rules:
+    - host: ecoders.ca
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: ecoders-web-service
+              servicePort: http
