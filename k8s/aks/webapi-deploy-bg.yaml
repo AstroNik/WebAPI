@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: ecoders-webapi
-        image: astronik/webservice:latest
+        image: astronik/webservice
         imagePullPolicy: Always
         ports:
           - containerPort: 8080
