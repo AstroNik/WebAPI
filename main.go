@@ -53,7 +53,6 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 		SoilMoistureValue:   sensorData.SoilMoistureValue,
 		SoilMoisturePercent: sensorData.SoilMoisturePercent,
 	}
-	log.Println("Data to be inserted into db: ", sensor)
 	//temporary customerID
 	db.InsertMoistureData("234556314", sensor)
 }
