@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: ecoders-web-service
 spec:
-  type: LoadBalancer
   ports:
     - name: http
       port: 80
