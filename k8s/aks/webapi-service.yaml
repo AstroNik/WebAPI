@@ -3,9 +3,15 @@ kind: Service
 metadata:
   name: ecoders-web-service
 spec:
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
   selector:
     app: ecoders-webapi
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+    - name: https
+        protocol: TCP
+        port: 443
+        targetPort: 8081
+  type: LoadBalancer
