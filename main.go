@@ -22,7 +22,8 @@ func main() {
 }
 
 func homePage(w http.ResponseWriter, r *http.Request) {
-	http.FileServer(http.Dir("./home"))
+	fs := http.FileServer(http.Dir("home"))
+	http.Handle("/", fs)
 }
 
 func sendData(w http.ResponseWriter, r *http.Request) {
