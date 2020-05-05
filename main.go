@@ -22,8 +22,7 @@ func main() {
 }
 
 func homePage(w http.ResponseWriter, r *http.Request) {
-	fs := http.FileServer(http.Dir("home"))
-	http.Handle("/", fs)
+	json.NewEncoder(w).Encode("Soil Moisture Sensor by ECOders")
 }
 
 func sendData(w http.ResponseWriter, r *http.Request) {
