@@ -5,13 +5,12 @@ metadata:
     kubernetes.io/ingress.class: nginx
   name: nginx
 spec:
-  tls:
-    - hosts:
-        - ecoders.ca
-      secretName: ecoders-web-tls
+#  tls:
+#    - hosts:
+#        - ecoders.ca
+#      secretName: ecoders-web-tls
   rules:
-    - host:
-      - ecoders.ca
+    - host: ecoders.ca
       http:
         paths:
           - path: /
