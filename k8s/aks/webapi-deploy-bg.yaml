@@ -2,15 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ecoders-webapi
+  labels:
+    app: ecoders-webapi
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: ecoders-webapi
+      app: ecoders-webapi
   template:
     metadata:
       labels:
-        name: ecoders-webapi
+        app: ecoders-webapi
     spec:
       containers:
       - name: ecoders-webapi
