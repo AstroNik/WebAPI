@@ -1,5 +1,21 @@
 # WebAPI
 
+---------------------------- Running Locally (no kubernetes) ----------------------------------
+The build configuration should be as follows.
+
+Click the + icon when you editing build configuration and select **go build**
+
+Under the configuration section change **RUN KIND** to **Directroy**
+
+Change the directory to the project directory and the same for working directory
+
+
+---------------------------- Running Locally w/Kubernetes  ----------------------------------
+Switch to your local kubernetes context using "**kubectl config get-contexts**" and then run "**kubectl config use-context docker-for-desktop**"
+
+then run the **build.sh** file
+
+---------------------------- CLUSTER ACCESS -----------------------------------
 
 In order to access the Kubernetes Cluster running on Digital Ocean. First download the file from our slack channel (ecoders-kubeconfig.yaml)
 
