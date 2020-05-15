@@ -1,4 +1,4 @@
-FROM arm32v7/golang:alpine AS builder
+FROM golang:alpine AS builder
 
 RUN apk add --update --no-cache ca-certificates git openssh-client
 
@@ -6,8 +6,7 @@ RUN apk add --update --no-cache ca-certificates git openssh-client
 ENV GO111MODULE=on \
     CGO_ENABLED=0 \
     GOOS=linux \
-    GOARCH=arm \
-    GOARM=7
+    GOARCH=amd64
 
 # Move to working directory /build
 WORKDIR /build
