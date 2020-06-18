@@ -13,16 +13,12 @@ import (
 
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/", homePage)
 	router.HandleFunc("/getSensorData", sendData)
 	router.HandleFunc("/dataProcess", dataProcess)
 	router.HandleFunc("/signup", signup)
 	router.HandleFunc("/signin", signin)
+	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./admin/build")))
 	log.Fatal(http.ListenAndServe(":8080", router))
-}
-
-func homePage(w http.ResponseWriter, r *http.Request) {
-	http.FileServer(http.Dir("./admin/build"))
 }
 
 func sendData(w http.ResponseWriter, r *http.Request) {
