@@ -1,7 +1,10 @@
 #! /bin/sh
 
-docker build . -t astronik/webservice:latest
+cd admin
+npm run build
+cd ..
 
+docker build . -t astronik/webservice:latest
 
 kubectl delete deploy ecoders-webapi
 kubectl delete svc ecoders-webapi-service
