@@ -4,7 +4,7 @@ import SideDrawer from './components/SideDrawer/SideDrawer';
 import Backdrop from './components/Backdrop/Backdrop'
 import SignUp from "./components/auth/SignUp";
 import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 
 class App extends Component {
