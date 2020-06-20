@@ -17,7 +17,7 @@ const navBar = props => (
                 <div className="toolbarLogo">
                     <Link to="/"> Ecoders </Link>
                 </div>
-                <div className="spacer"></div>
+                <div className="spacer"/>
                 <div className="toolbarNavItems">
                     <ul>
                         <li>

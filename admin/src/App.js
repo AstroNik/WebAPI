@@ -35,8 +35,6 @@ class App extends Component {
             backdrop = <Backdrop click={this.backdropClickHandler}/>
         }
         return (
-
-
             <div id="home">
                 <div className="pageContent">
                     <section>
@@ -48,6 +46,6 @@ class App extends Component {
             </div>
         )
     }
-};
+}
 
 export default App;
