@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import NavBar from './components/Nav/NavBar'
-import SideDrawer from './components/SideDrawer/SideDrawer';
-import Backdrop from './components/Backdrop/Backdrop'
-import SignUp from "./components/auth/SignUp";
 import './App.css'
-// import 'bootstrap/dist/css/bootstrap.min.css'
+import Backdrop from "./components/Backdrop/Backdrop";
+import NavBar from "./components/Nav/NavBar";
+import SideDrawer from "./components/SideDrawer/SideDrawer";
 
 
 class App extends Component {
@@ -22,6 +20,14 @@ class App extends Component {
         this.setState({sideDrawerOpen: false})
     };
 
+    componentDidMount() {
+
+    }
+
+    componentWillUnmount() {
+
+    }
+
     render() {
         let backdrop;
 
@@ -29,32 +35,19 @@ class App extends Component {
             backdrop = <Backdrop click={this.backdropClickHandler}/>
         }
         return (
-            <div className="pageContent">
-                <section>
-                    <NavBar drawerClickHandler={this.drawerToggleClickHandler}/>
-                    <SideDrawer show={this.state.sideDrawerOpen}/>
-                    {backdrop}
-                </section>
 
-                <div id="home">
-                    <section id="landingPage">
 
-                        <div id="model">
-
-                        </div>
-
-                        <div id="signUpBox">
-                            <SignUp/>
-                        </div>
-
-                    </section>
-                    <section id="aboutUs">
-
+            <div id="home">
+                <div className="pageContent">
+                    <section>
+                        <NavBar drawerClickHandler={this.drawerToggleClickHandler}/>
+                        <SideDrawer show={this.state.sideDrawerOpen}/>
+                        {backdrop}
                     </section>
                 </div>
             </div>
-        );
-    };
-}
+        )
+    }
+};
 
 export default App;
