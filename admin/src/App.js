@@ -1,49 +1,27 @@
 import React, {Component} from 'react';
 import './App.css'
-import Backdrop from "./components/Backdrop/Backdrop";
 import NavBar from "./components/Nav/NavBar";
-import SideDrawer from "./components/SideDrawer/SideDrawer";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import Dashboard from './components/Dashboard/Dashboard'
+import DeviceDetails from "./components/Devices/DeviceDetails";
+import LandingPage from "./components/LandingPage/LandingPage";
 
 
 class App extends Component {
-    state = {
-        sideDrawerOpen: false
-    };
-
-    drawerToggleClickHandler = () => {
-        this.setState((prevState) => {
-            return {sideDrawerOpen: !prevState.sideDrawerOpen}
-        });
-    };
-
-    backdropClickHandler = () => {
-        this.setState({sideDrawerOpen: false})
-    };
-
-    componentDidMount() {
-
-    }
-
-    componentWillUnmount() {
-
-    }
-
     render() {
-        let backdrop;
-
-        if (this.state.sideDrawerOpen) {
-            backdrop = <Backdrop click={this.backdropClickHandler}/>
-        }
         return (
-            <div id="home">
-                <div className="pageContent">
+            <BrowserRouter>
+                <div id="home">
                     <section>
-                        <NavBar drawerClickHandler={this.drawerToggleClickHandler}/>
-                        <SideDrawer show={this.state.sideDrawerOpen}/>
-                        {backdrop}
+                        <NavBar/>
+                        <Switch>
+                            <Route exact path='/' component={LandingPage}/>
+                            <Route path='/dashboard' component={Dashboard}/>
+                            <Route path='/device/:id' component={DeviceDetails}/>
+                        </Switch>
                     </section>
                 </div>
-            </div>
+            </BrowserRouter>
         )
     }
 }

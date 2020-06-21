@@ -1,38 +1,23 @@
 import React from 'react';
-import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
-import './NavBar.css';
-import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
-import Login from "../auth/Login";
-import SignUp from "../auth/SignUp";
+import {Link} from 'react-router-dom'
+import SignedInLinks from "./SignedInLinks";
+import SignedOutLinks from "./SignedOutLinks";
+import './NavBar.css'
 
-const navBar = props => (
-
-
-    <Router>
-        <header className="toolbar">
-            <nav className="toolbarNav">
-                <div className="toolbarToggleButton">
-                    <DrawerToggleButton click={props.drawerClickHandler}/>
-                </div>
-                <div className="toolbarLogo">
-                    <Link to="/"> Ecoders </Link>
-                </div>
-                <div className="spacer"/>
-                <div className="toolbarNavItems">
-                    <ul>
-                        <li>
-                            <Link to="/login"> Login </Link>
-                        </li>
-                    </ul>
+const NavBar = () => {
+    return (
+        <header>
+            <nav className="nav-wrapper grey darken-3">
+                <div className="container">
+                    <Link to='/' className="brand-logo"> Ecoders </Link>
+                    <div className="spacer"/>
+                    <SignedInLinks/>
+                    <SignedOutLinks/>
                 </div>
             </nav>
         </header>
 
-        <Switch>
-            <Route path={"/"} exact component={SignUp}/>
-            <Route path={"/login"} component={Login}/>
-        </Switch>
-    </Router>
-);
+    )
+}
 
-export default navBar;
+export default NavBar

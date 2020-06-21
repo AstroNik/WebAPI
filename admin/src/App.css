@@ -1,29 +1,6 @@
-.pageContent {
-    height: 100%;
-    margin-top: 60px;
-}
-
 #home {
     height:100vh;
     background-color: #bbc191;
 }
 
-#signUpBox {
-    float: right;
-    margin-right: 100px;
-    margin-top: 50px;
-    padding: 50px;
-    background-color: #f1ece2;
-    border-radius: 3em;
-}
-
-#loginBox {
-    padding: 50px;
-    background-color: #f1ece2;
-    border-radius: 3em;
-    width: 25vw;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-}
 

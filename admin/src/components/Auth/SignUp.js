@@ -1,30 +1,7 @@
 import React, {Component} from 'react'
-import Fire from '../Firebase/Fire'
+import './SignUp.css'
 
 class SignUp extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            user: {}
-        }
-    }
-
-
-    componentDidMount() {
-        this.authListener()
-    }
-
-    authListener() {
-        Fire.auth().onAuthStateChanged((user) => {
-            if (user) {
-                this.setState({user})
-            } else {
-                this.setState({user: null})
-            }
-
-        })
-    }
-
     render() {
         return (
             <div id="signUpBox">
@@ -33,22 +10,22 @@ class SignUp extends Component {
 
                     <div className="form-group">
                         <label>First name</label>
-                        <input type="text" className="form-control" placeholder="First name" />
+                        <input type="text" className="form-control" placeholder="First name"/>
                     </div>
 
                     <div className="form-group">
                         <label>Last name</label>
-                        <input type="text" className="form-control" placeholder="Last name" />
+                        <input type="text" className="form-control" placeholder="Last name"/>
                     </div>
 
                     <div className="form-group">
                         <label>Email address</label>
-                        <input type="email" className="form-control" placeholder="Enter email" />
+                        <input type="email" className="form-control" placeholder="Enter email"/>
                     </div>
 
                     <div className="form-group">
                         <label>Password</label>
-                        <input type="password" className="form-control" placeholder="Enter password" />
+                        <input type="password" className="form-control" placeholder="Enter password"/>
                     </div>
 
                     <button type="submit" className="btn btn-primary btn-block">Sign Up</button>

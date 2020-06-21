@@ -1,38 +1,6 @@
 import React, {Component} from 'react'
-import Fire from '../Firebase/Fire'
 
 class Login extends Component{
-    constructor(props) {
-        super(props);
-        this.login = this.login.bind(this)
-        this.handleChange = this.handleChange.bind(this)
-        this.state = {
-            email: '',
-            password: ''
-        }
-    }
-
-
-    handleChange = (e) => {
-        this.setState({
-            [e.target.name] : e.target.value
-
-        })
-    }
-
-    handleSubmit = (e) => {
-        console.log(e)
-    }
-
-    login(e){
-        e.preventDefault();
-        Fire.auth().signInWithEmailAndPassword(this.state.email,this.state.password).then((u) =>{
-            console.log(u)
-        }).catch((err)=>{
-            console.log(err)
-        })
-    }
-
     render(){
         return(
             <div id="loginBox">
