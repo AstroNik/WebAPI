@@ -1,20 +1,37 @@
 import React, {Component} from 'react'
+import './SingIn.css'
 
-class Login extends Component{
+class SignIn extends Component{
+    state= {
+        email:'',
+        password: ''
+    }
+
+    handleChange = (e) =>{
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    }
+
+    handleSubmit = (e) =>{
+        e.preventDefault();
+        console.log(this.state)
+    }
+
     render(){
         return(
             <div id="loginBox">
-                <form>
-                    <h3>Login</h3>
+                <form onSubmit={this.handleSubmit}>
+                    <h3>Sign In</h3>
 
                     <div className="form-group">
                         <label>Email address</label>
-                        <input type="email" className="form-control" placeholder="Enter email" />
+                        <input type="email" className="form-control" id="email" placeholder="Enter email" onChange={this.handleChange}/>
                     </div>
 
                     <div className="form-group">
                         <label>Password</label>
-                        <input type="password" className="form-control" placeholder="Enter password" />
+                        <input type="password" className="form-control" id="password" placeholder="Enter password" onChange={this.handleChange}/>
                     </div>
 
                     <div className="form-group">
@@ -34,4 +51,4 @@ class Login extends Component{
     }
 }
 
-export default Login;
+export default SignIn;
