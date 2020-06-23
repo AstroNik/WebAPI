@@ -6,7 +6,7 @@ import Dashboard from './components/Dashboard/Dashboard'
 import DeviceDetails from "./components/Devices/DeviceDetails";
 import LandingPage from "./components/LandingPage/LandingPage";
 import SignIn from "./components/Auth/SignIn";
-import AddPlant from "./components/Plant/AddPlant";
+import AddDevice from "./components/Devices/AddDevice";
 
 class App extends Component {
     render() {
@@ -20,7 +20,7 @@ class App extends Component {
                             <Route path='/signin' component={SignIn}/>
                             <Route path='/dashboard' component={Dashboard}/>
                             <Route path='/device/:id' component={DeviceDetails}/>
-                            <Route path='/create' component={AddPlant}/>
+                            <Route path='/create' component={AddDevice}/>
                         </Switch>
                     </section>
                 </div>
