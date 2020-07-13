@@ -4,15 +4,20 @@ import DeviceList from '../Devices/DeviceList'
 import './Dashboard.css'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
+import {getDevices} from "../../store/Actions/DeviceActions";
 
 class Dashboard extends Component {
-    render(){
-        const { devices, auth } = this.props
 
-        if(!auth.uid){
+    componentDidMount() {
+        this.props.getDevices()
+    }
+
+    render() {
+        const {devices, auth} = this.props
+        if (!auth.uid) {
             return <Redirect to='/signin'/>
         } else {
-            return(
+            return (
                 <div className="dashboard container">
                     <div className="row">
                         <div className="col sm12 m6">
@@ -29,10 +34,17 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return{
+    // console.log(state)
+    return {
         devices: state.device.devices,
         auth: state.firebase.auth
     }
 }
 
-export default connect(mapStateToProps)(Dashboard)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getDevices: () => dispatch(getDevices())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

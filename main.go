@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/AstroNik/WebAPI/backend"
 	"github.com/AstroNik/WebCommon/db"
 	"github.com/AstroNik/WebCommon/structs"
 	"github.com/gorilla/mux"
@@ -13,55 +14,64 @@ import (
 
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/getSensorData", sendData)
+	//router.HandleFunc("/getSensorData", getSensorData)
+	router.HandleFunc("/getSensorData", backend.HandleSecureFunc(getSensorData))
 	router.HandleFunc("/dataProcess", dataProcess)
-	router.HandleFunc("/signup", signup)
-	router.HandleFunc("/signin", signin)
+	router.HandleFunc("/addUser", backend.HandleSecureFunc(signUpUser))
 	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./admin/build")))
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
-func sendData(w http.ResponseWriter, r *http.Request) {
-	sensorData := db.GetMoistureData("234556314")
-	json.NewEncoder(w).Encode(sensorData)
-
-}
-
-func dataProcess(w http.ResponseWriter, r *http.Request) {
-	sensorData := structs.SensorData{}
+func getSensorData(w http.ResponseWriter, r *http.Request) {
+	user := structs.User{}
 	dec := json.NewDecoder(r.Body)
-	err := dec.Decode(&sensorData)
+	err := dec.Decode(&user)
 	if err != nil {
 		fmt.Println("error decoding the response")
 		log.Fatal(err)
 	}
-	log.Print("Data from Sensor: ", sensorData)
+	log.Print(user)
+	deviceData := db.GetMoistureData(user.UID)
+	_ = json.NewEncoder(w).Encode(deviceData)
+}
+
+func dataProcess(w http.ResponseWriter, r *http.Request) {
+	deviceData := structs.DeviceData{}
+	uid := deviceData.UID
+	dec := json.NewDecoder(r.Body)
+	err := dec.Decode(&deviceData)
+	if err != nil {
+		fmt.Println("error decoding the response")
+		log.Fatal(err)
+	}
+	log.Print("Data from Sensor: ", deviceData)
 
 	//The BELOW is how the data will be Inserted into the Database
 	currTime := time.Now() //Time is in UTC Format
 	currTime.Format(time.RFC3339)
-	sensor := structs.Sensor{
-		SensorId:            0,                 //will correspond with the device sending the data
-		SensorName:          "Moisture Sensor", //will have to have somewhere we can set this data up in the app
+	sensor := structs.Device{
+		DeviceID:            deviceData.DeviceID, //will correspond with the device sending the data
+		DeviceName:          "",                  //will have to have somewhere we can set this data up in the app
 		DateTime:            currTime,
-		AirValue:            sensorData.AirValue,
-		WaterValue:          sensorData.WaterValue,
-		SoilMoistureValue:   sensorData.SoilMoistureValue,
-		SoilMoisturePercent: sensorData.SoilMoisturePercent,
+		Battery:             deviceData.Battery,
+		AirValue:            deviceData.AirValue,
+		WaterValue:          deviceData.WaterValue,
+		SoilMoistureValue:   deviceData.SoilMoistureValue,
+		SoilMoisturePercent: deviceData.SoilMoisturePercent,
 	}
-	//temporary customerID
-	db.InsertMoistureData("234556314", sensor)
+	db.InsertMoistureData(uid, sensor)
 }
 
-func signup(w http.ResponseWriter, r *http.Request) {
-	//TODO: Decode data being sent for application
-	//format data into correct format
-	//encrypt password
-	//store in db
+func signUpUser(w http.ResponseWriter, r *http.Request) {
+	newUser := structs.NewUser{}
+	dec := json.NewDecoder(r.Body)
+	err := dec.Decode(&newUser)
+	if err != nil {
+		fmt.Println("error decoding the response")
+		log.Fatal(err)
+	}
+	log.Print("User Data: ", newUser)
+	db.InsertUser(newUser)
 
-}
-func signin(w http.ResponseWriter, r *http.Request) {
-	//check if user exist
-	//allow access
-
+	//return response with empty data objects for different sections
 }

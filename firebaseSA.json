@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "soilmoisturesensorapp",
+  "private_key_id": "09454fe7e7f574d8940ffeb119be01a25f128b5a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCJ0DxUloCymN9Y\nWvNJKKZnhg2WKCl+ryXCl0BvlgfV4gGet4wyYMedjNlLm4XAOfPqTJ/SNUh1E7yu\ndfqsWFpTI+7z0rwmK0eFhUr6JzJkeZgrJ/ysqss4sQHLwhx4J/JezimNmgaZje1L\n+5PuRDxyqhjHrMrFNDhLR0wgHYOukQa16aols/RpZ9jnnL5dD9asP68k3Fb7cDSL\naENaCjH0plNBXp5/pNeTBeCaqMdQBbQfac5FX8uf/8bzITmItTjTV1DlXZD65IDD\nLFpRZ+6W1SVow/3Ohe53esj2zkH+DH4BYp5KAsB4mem3uWpBxtaVu2I6iwtx1oB5\nhj1j19uFAgMBAAECggEAKLsYUaHHuMFQ5XLAC8PNZrRqiJInLW+Dl/8PBsvPVgn9\nk5TJBUywQqLRyDRXdAhMzFdINx8TYrLqJZ/t7gkQ7RimM375p8hL060hC00Raju7\n2ylu1vOFq6Q5FSkyM9sOmbGR+21l/PVDCJ16y8V0HimiuEUcCuvTpYAVgjpm5G0+\niLbe8kE8aFBhxR3bwyAIa8+7ji+lyVYRdEtzLhL9nnATmu7CI3X51AGreCwreugX\nlgE+eFStD0NyQfQ09a7A3POlsFD7sjwNho/3spahqvroG8qki7QUMFHzGfdLyqCg\n9o6YblDf0foNPHxTgwQlfoBc+d/j0r4G5+oSx9aggwKBgQC72n4/j6yeaNKucHpx\nYqQq7AwAkKGRj2Nwr1lMsKenyR93LbUxsAyDbuqwi/bAh1fel3WVtfqlM7yX79C3\nhvkCDRaSVltD1wtaXPbQy95J6ExBLZgXXeLkxE4oes7lrOTgqhVwJdfQ7xm0Np88\nx0z5Hjvk7isBdu5mDfp9+ww4BwKBgQC7zqPtu7aqe4N5akJfXN/JA7eV/0MQo2WC\n1eGEtRRT3s7iHd+cxXFxA1eWkV+NdDlBtvfGy/p0F2RAXiPKWX9iOmM0dwMKkkvp\n02e8upQPrPzGJAuuGySudcZHNPxbZkNGn8SDec0OVXmjM7l6YABAfZlwzjKQgQti\nEzFc7uf1EwKBgCzUf7x7dR54tY6bmRzmBXeYzWR1H5m1Nm316sG6hsgr3y554fvx\nn4reNXPccw6PPhEI5C7ONvql1iQMPysNMu+iX/icUztlXng6J0y82leY8Fm9n8Yz\nyan+jwhqBmYZVKWo8WTKIy7hYKj5QBcpGN16saB4lhrLXylLvLPD7a6RAoGBALdn\nFK8UoU3bUIlBO4/lIqUq/B1/Kf8Vkgwy0gjGzRMagu5OPhDav+2dVeu0C5wX49JI\n269Hg03bigtR46G3xK4oVrjlgBLSy0+NI8Eqc2zbgf39NWrRFwFIAlmHZOnc89YE\nL+Q1Dgrxbdfyqy7WkWhpP27p7ncvje44z/vxUpQBAoGAMSsUDGGScf30hGCfzaV6\nnqwIZ2nbPa6RsK3VpURAufWO8btstoerI0PsW0NykyB5we7vxGxubqei8YupQX9s\n/73hFOv5z5LZpr4sU6usSCI0rxouCCJjmhX9aaRIeOQkiHOohs16Nop57oD+5Gxq\nPeLDEYK5+fFHzDs6fEm1pa8=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-8fod3@soilmoisturesensorapp.iam.gserviceaccount.com",
+  "client_id": "106392731436575022828",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-8fod3%40soilmoisturesensorapp.iam.gserviceaccount.com"
+}
