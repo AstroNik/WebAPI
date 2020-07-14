@@ -44,7 +44,7 @@ export const signUp = (newUser) => {
                     },{
                         headers: {
                             "Authorization" : `Bearer ${idToken}`,
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'application/json',
                         },
                         withCredentials: true
                     }).then((response) => {

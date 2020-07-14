@@ -18,6 +18,9 @@ RUN  git config --global url."https://$GITTOKEN:x-oauth-basic@github.com/AstroNi
 # Copy compiled React App
 COPY /admin/build /app/admin/build
 
+# Copy Firebase
+COPY /firebaseSA.json /app/
+
 # Copy and download dependency using go mod
 COPY go.mod .
 COPY go.sum .
