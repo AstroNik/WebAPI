@@ -25,6 +25,8 @@ const DeviceReducer = (state = initState, action) => {
                 ...state,
                 deviceError: null
             }
+        default:
+            return state
     }
     return state
 }

@@ -10,7 +10,7 @@ export const createDevice = (device) => {
 export const getDevices = () => {
     return (dispatch, getState) => {
         let state = getState();
-        axios.post("https://www.ecoders.ca/getSensorData", {
+        axios.post("/getSensorData", {
             uid: state.firebase.auth.uid
         }, {
             headers: {

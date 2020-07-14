@@ -34,7 +34,7 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-    // console.log(state)
+    console.log(state)
     return {
         devices: state.device.devices,
         auth: state.firebase.auth

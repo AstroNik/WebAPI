@@ -35,7 +35,7 @@ export const signUp = (newUser) => {
         ).then((resp) => {
             firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
                 .then(function(idToken){
-                    axios.post('https://www.ecoders.ca/addUser', {
+                    axios.post('/addUser', {
                         uid: resp.user.uid,
                         email: newUser.email,
                         firstName: newUser.firstName,
