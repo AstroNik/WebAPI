@@ -16,7 +16,8 @@ export const getDevices = () => {
             headers: {
                 "Authorization": `Bearer ${state.firebase.auth.stsTokenManager.accessToken}`,
                 'Content-Type': 'application/json'
-            }
+            },
+            withCredentials: true
         }).then(r => {
             console.log(r.data)
             dispatch({type: 'GET_DEVICE_DATA'})

@@ -45,7 +45,8 @@ export const signUp = (newUser) => {
                         headers: {
                             "Authorization" : `Bearer ${idToken}`,
                             'Content-Type': 'application/json'
-                        }
+                        },
+                        withCredentials: true
                     }).then((response) => {
                         console.log('Success')
                         //TODO: Update user state
