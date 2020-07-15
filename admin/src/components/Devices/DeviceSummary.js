@@ -4,7 +4,7 @@ const DeviceSummary = ({device}) => {
     return (
         <div className="card z-depth-0 device-info">
             <div className="card-content grey-text text-darken-3">
-                <span className="card-title"> {device.deviceName} </span>
+                <span className="card-title"> {device.deviceId} </span>
                 <p> Posted By: {device.deviceName}</p>
                 <p className="grey-text"> {device.dateTime}</p>
             </div>

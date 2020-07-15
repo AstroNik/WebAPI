@@ -7,7 +7,7 @@ const DeviceList = ({devices}) => {
         <div className="device-list section">
             {devices && devices.map(device => {
                 return (
-                    <Link to={'/device/' + device.id} key={device.id}>
+                    <Link to={'/device/' + device.deviceId} key={device.deviceId}>
                     <DeviceSummary device={device} />
                     </Link>
                 )
