@@ -59,6 +59,7 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 		SoilMoistureValue:   deviceData.SoilMoistureValue,
 		SoilMoisturePercent: deviceData.SoilMoisturePercent,
 	}
+	log.Print(uid)
 	db.InsertMoistureData(uid, sensor)
 }
 
