@@ -3,7 +3,8 @@ import {Redirect} from "react-router-dom";
 import {connect} from 'react-redux'
 
 const DeviceDetails = (props) => {
-    const {auth} = props
+    const {auth,device} = props
+    console.log(device)
     if (!auth.uid) {
         return <Redirect to="/signin"/>
     } else {
@@ -11,8 +12,8 @@ const DeviceDetails = (props) => {
             <div className="container section device-details">
                 <div className="card z-depth-0">
                     <div className="card-content">
-                        <span className="card-title"> Plant Name </span>
-                        <p>  Plant Details </p>
+                        <span className="card-title"> {device.deviceName} </span>
+                        <p>  Moisture Percent - {device.soilMoisturePercent} </p>
                     </div>
                     <div className="card-action grey lighten-4 grey-text">
                         <div> INSERT CHART HERE </div>
@@ -24,9 +25,13 @@ const DeviceDetails = (props) => {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+    const id = ownProps.match.params.id;
+    const devices = state.device.devices;
+    const device = devices ? devices[0] : null
     return {
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        device: device
     }
 }
 

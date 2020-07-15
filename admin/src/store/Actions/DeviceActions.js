@@ -10,7 +10,7 @@ export const createDevice = (device) => {
 export const getDevices = () => {
     return (dispatch, getState) => {
         let state = getState();
-        axios.post("/getSensorData", {
+        return axios.post("/getSensorData", {
             uid: state.firebase.auth.uid
         }, {
             headers: {
@@ -18,9 +18,8 @@ export const getDevices = () => {
                 'Content-Type': 'application/json'
             },
             withCredentials: true
-        }).then(r => {
-            console.log(r.data)
-            dispatch({type: 'GET_DEVICE_DATA'})
+        }).then(({data}) => {
+            dispatch({type: 'GET_DEVICE_DATA', devices: data})
         }, (error) => {
             console.log(error)
         })
