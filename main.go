@@ -37,13 +37,13 @@ func getSensorData(w http.ResponseWriter, r *http.Request) {
 
 func dataProcess(w http.ResponseWriter, r *http.Request) {
 	deviceData := structs.DeviceData{}
-	uid := deviceData.UID
 	dec := json.NewDecoder(r.Body)
 	err := dec.Decode(&deviceData)
 	if err != nil {
 		fmt.Println("error decoding the response")
 		log.Fatal(err)
 	}
+	uid := deviceData.UID
 	log.Print("Data from Sensor: ", deviceData)
 
 	//The BELOW is how the data will be Inserted into the Database
@@ -59,7 +59,6 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 		SoilMoistureValue:   deviceData.SoilMoistureValue,
 		SoilMoisturePercent: deviceData.SoilMoisturePercent,
 	}
-	log.Print(uid)
 	db.InsertMoistureData(uid, sensor)
 }
 
