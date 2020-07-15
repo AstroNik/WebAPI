@@ -50,10 +50,10 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 	currTime := time.Now() //Time is in UTC Format
 	currTime.Format(time.RFC3339)
 	sensor := structs.Device{
-		DeviceID:            deviceData.DeviceID, //will correspond with the device sending the data
-		DeviceName:          "",                  //will have to have somewhere we can set this data up in the app
-		DateTime:            currTime,
-		Battery:             deviceData.Battery,
+		//DeviceID:            deviceData.DeviceID, //will correspond with the device sending the data
+		DeviceName: "", //will have to have somewhere we can set this data up in the app
+		DateTime:   currTime,
+		//Battery:             deviceData.Battery,
 		AirValue:            deviceData.AirValue,
 		WaterValue:          deviceData.WaterValue,
 		SoilMoistureValue:   deviceData.SoilMoistureValue,
