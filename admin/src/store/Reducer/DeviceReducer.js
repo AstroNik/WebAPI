@@ -12,7 +12,8 @@ const initState = {
             waterValue: 0,
         }
     ],
-    deviceError: null
+    deviceError: null,
+    devicesLoaded: false
 }
 
 const DeviceReducer = (state = initState, action) => {
@@ -25,7 +26,8 @@ const DeviceReducer = (state = initState, action) => {
             return {
                 ...state,
                 devices: [action.devices],
-                deviceError: null
+                deviceError: null,
+                devicesLoaded: true
             }
         default:
             return state

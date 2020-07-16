@@ -9,7 +9,9 @@ import {getDevices} from "../../store/Actions/DeviceActions";
 class Dashboard extends Component {
 
     componentDidMount() {
-        this.props.getDevices()
+        if(this.props.deviceLoaded === false){
+            this.props.getDevices()
+        }
     }
 
     render() {
@@ -34,10 +36,10 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         devices: state.device.devices,
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        deviceLoaded: state.device.devicesLoaded
     }
 }
 

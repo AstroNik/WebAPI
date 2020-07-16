@@ -43,15 +43,15 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("error decoding the response")
 		log.Fatal(err)
 	}
-	uid := deviceData.UID
+
 	log.Print("Data from Sensor: ", deviceData)
 
 	//The BELOW is how the data will be Inserted into the Database
 	currTime := time.Now() //Time is in UTC Format
 	currTime.Format(time.RFC3339)
 	sensor := structs.Device{
-		DeviceID:            deviceData.DeviceID, //will correspond with the device sending the data
-		DeviceName:          "",                  //will have to have somewhere we can set this data up in the app
+		DeviceID:            deviceData.DeviceID,
+		DeviceName:          "",
 		DateTime:            currTime,
 		Battery:             deviceData.Battery,
 		AirValue:            deviceData.AirValue,
@@ -59,7 +59,7 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 		SoilMoistureValue:   deviceData.SoilMoistureValue,
 		SoilMoisturePercent: deviceData.SoilMoisturePercent,
 	}
-	db.InsertMoistureData(uid, sensor)
+	db.InsertMoistureData(deviceData.UID, sensor)
 }
 
 func signUpUser(w http.ResponseWriter, r *http.Request) {
@@ -72,6 +72,4 @@ func signUpUser(w http.ResponseWriter, r *http.Request) {
 	}
 	log.Print("User Data: ", newUser)
 	db.InsertUser(newUser)
-
-	//return response with empty data objects for different sections
 }
