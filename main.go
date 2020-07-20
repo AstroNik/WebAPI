@@ -31,7 +31,9 @@ func getSensorData(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 	log.Print(user)
+
 	deviceData := db.GetMoistureData(user.UID)
+
 	_ = json.NewEncoder(w).Encode(deviceData)
 }
 

@@ -3,17 +3,14 @@ import DeviceSummary from "./DeviceSummary";
 import {Link} from "react-router-dom";
 
 const DeviceList = ({devices}) => {
-    let deviceCounter = 0;
     return (
         <div className="device-list section">
-            {devices && devices.map(device => {
+            {devices && devices.map((device,index) => {
                 return (
-                    <Link to={'/device/' + deviceCounter} key={deviceCounter}>
+                    <Link to={'/device/' + index} key={index}>
                     <DeviceSummary device={device} />
                     </Link>
                 )
-                deviceCounter++;
-                console.log(deviceCounter)
             })}
         </div>
     )

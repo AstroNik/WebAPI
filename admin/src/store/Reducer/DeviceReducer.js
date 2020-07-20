@@ -25,7 +25,7 @@ const DeviceReducer = (state = initState, action) => {
             console.log('Retrieved device data')
             return {
                 ...state,
-                devices: [action.devices],
+                devices: action.devices,
                 deviceError: null,
                 devicesLoaded: true
             }
