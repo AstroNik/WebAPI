@@ -18,9 +18,6 @@ const initState = {
 
 const DeviceReducer = (state = initState, action) => {
     switch(action.type){
-        // case 'CREATE_DEVICE':
-        //     console.log('create device', action.device)
-        //     return
         case 'GET_DEVICE_DATA':
             console.log('Retrieved device data')
             return {
@@ -28,6 +25,11 @@ const DeviceReducer = (state = initState, action) => {
                 devices: action.devices,
                 deviceError: null,
                 devicesLoaded: true
+            }
+        case 'GET_DEVICE_DATA_ERROR':
+            console.log('Error hitting endpoint: ' + action.err)
+            return{
+                ...state,
             }
         default:
             return state

@@ -21,7 +21,7 @@ export const getDevices = () => {
         }).then(({data}) => {
             dispatch({type: 'GET_DEVICE_DATA', devices: data})
         }, (error) => {
-            console.log(error)
+            dispatch({type: 'GET_DEVICE_DATA_ERROR', err: error})
         })
     }
 }
