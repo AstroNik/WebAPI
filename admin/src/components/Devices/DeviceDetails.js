@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 
 const DeviceDetails = (props) => {
     const {auth,device} = props
+
     if (!auth.uid) {
         return <Redirect to="/signin"/>
     } else {
@@ -25,12 +26,13 @@ const DeviceDetails = (props) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
+    console.log(state)
     const id = ownProps.match.params.id;
     const devices = state.device.devices;
     const device = devices ? devices[id] : null
     return {
         auth: state.firebase.auth,
-        device: device
+        device: device,
     }
 }
 

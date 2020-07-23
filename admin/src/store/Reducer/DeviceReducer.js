@@ -13,7 +13,14 @@ const initState = {
         }
     ],
     deviceError: null,
-    devicesLoaded: false
+    devicesLoaded: false,
+
+    sensorData: [
+        {
+            dateTime: "",
+            soilMoisturePercent: 0
+        }
+    ]
 }
 
 const DeviceReducer = (state = initState, action) => {
@@ -30,6 +37,12 @@ const DeviceReducer = (state = initState, action) => {
             console.log('Error hitting endpoint: ' + action.err)
             return{
                 ...state,
+            }
+        case 'GET_SENSOR_DATA':
+            console.log("Retrieved unique sensor data")
+            return {
+                ...state,
+                sensorData: [action.sensorData]
             }
         default:
             return state
