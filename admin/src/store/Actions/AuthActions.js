@@ -64,3 +64,30 @@ export const signUp = (newUser) => {
         })
     }
 }
+
+export const changePassword = (password) => {
+    return (dispatch, getState, {getFirebase}) => {
+        const firebase = getFirebase()
+
+
+        firebase.auth().currentUser.updatePassword(password).then(() => {
+            console.log("Successful Password Change")
+        }).catch(err => {
+            console.log("Failed Password Change: " + err)
+        });
+
+
+    }
+}
+
+export const changeEmail = (email) => {
+    return (dispatch, getState, {getFirebase}) => {
+        const firebase = getFirebase()
+
+        firebase.auth().currentUser.updateEmail(email).then(() =>{
+            console.log("Successful Email Change")
+        }).catch(err => {
+            console.log("Failed Email Change: " + err)
+        });
+    }
+}

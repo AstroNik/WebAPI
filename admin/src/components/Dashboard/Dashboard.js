@@ -9,13 +9,9 @@ import {getDevices, getUniqueDeviceData} from "../../store/Actions/DeviceActions
 class Dashboard extends Component {
 
     componentDidMount() {
-        if(this.props.deviceLoaded === false){
+        if (this.props.deviceLoaded === false) {
             this.props.getDevices()
         }
-    }
-
-    componentWillUnmount() {
-        this.props.getUniqueDeviceData()
     }
 
     render() {

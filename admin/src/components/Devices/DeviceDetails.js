@@ -26,7 +26,6 @@ const DeviceDetails = (props) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state)
     const id = ownProps.match.params.id;
     const devices = state.device.devices;
     const device = devices ? devices[id] : null

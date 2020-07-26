@@ -120,6 +120,6 @@ func uniqueDeviceData(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("error decoding the response")
 		log.Fatal(err)
 	}
-	//specificDeviceData := db.GetAllMoistureData(userDevice.UID, userDevice.DeviceId)
-	//_ = json.NewEncoder(w).Encode(specificDeviceData)
+	specificDeviceData := db.GetAllMoistureData(userDevice.UID, userDevice.DeviceId)
+	_ = json.NewEncoder(w).Encode(specificDeviceData)
 }

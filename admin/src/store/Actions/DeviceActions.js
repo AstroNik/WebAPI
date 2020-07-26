@@ -41,10 +41,10 @@ export const getUniqueDeviceData = () => {
             withCredentials: true
         }).then(({data}) => {
             console.log(data)
-            // dispatch({type: 'GET_DEVICE_DATA', devices: data})
+            dispatch({type: 'GET_DEVICE_DATA', devices: data})
         }, (error) => {
             console.log(error)
-            // dispatch({type: 'GET_DEVICE_DATA_ERROR', err: error})
+            dispatch({type: 'GET_DEVICE_DATA_ERROR', err: error})
         })
     }
 }
