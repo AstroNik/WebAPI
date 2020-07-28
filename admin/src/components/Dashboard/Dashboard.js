@@ -11,6 +11,7 @@ class Dashboard extends Component {
     componentDidMount() {
         if (this.props.deviceLoaded === false) {
             this.props.getDevices()
+            this.props.getUniqueDeviceData()
         }
     }
 
@@ -18,7 +19,15 @@ class Dashboard extends Component {
         const {devices, auth} = this.props
         if (!auth.uid) {
             return <Redirect to='/signin'/>
-        } else {
+        }
+        else if(this.props.deviceLoaded ===false){
+            return (
+                <div>
+                    <p> Loading ...</p>
+                </div>
+            )
+        }
+        else {
             return (
                 <div className="dashboard container">
                     <div className="row">

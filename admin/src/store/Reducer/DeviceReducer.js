@@ -17,6 +17,7 @@ const initState = {
 
     sensorData: [
         {
+            deviceId: 0,
             dateTime: "",
             soilMoisturePercent: 0
         }
@@ -42,7 +43,8 @@ const DeviceReducer = (state = initState, action) => {
             console.log("Retrieved unique sensor data")
             return {
                 ...state,
-                sensorData: [action.sensorData]
+                sensorData: action.sensorData,
+                deviceError: null
             }
         default:
             return state

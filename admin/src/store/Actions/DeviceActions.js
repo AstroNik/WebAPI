@@ -19,7 +19,6 @@ export const getDevices = () => {
             },
             withCredentials: true
         }).then(({data}) => {
-            getUniqueDeviceData()
             dispatch({type: 'GET_DEVICE_DATA', devices: data})
         }, (error) => {
             dispatch({type: 'GET_DEVICE_DATA_ERROR', err: error})
@@ -32,7 +31,6 @@ export const getUniqueDeviceData = () => {
         let state = getState();
         return axios.post("/uniqueDeviceData", {
             uid: state.firebase.auth.uid,
-            deviceId: 976345435
         }, {
             headers: {
                 "Authorization": `Bearer ${state.firebase.auth.stsTokenManager.accessToken}`,
@@ -40,8 +38,7 @@ export const getUniqueDeviceData = () => {
             },
             withCredentials: true
         }).then(({data}) => {
-            console.log(data)
-            dispatch({type: 'GET_DEVICE_DATA', devices: data})
+            dispatch({type: 'GET_SENSOR_DATA', sensorData: data})
         }, (error) => {
             console.log(error)
             dispatch({type: 'GET_DEVICE_DATA_ERROR', err: error})

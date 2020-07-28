@@ -1,23 +1,68 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {Redirect} from "react-router-dom";
 import {connect} from 'react-redux'
+import {Line} from "react-chartjs-2";
+
+import "./DeviceDetails.css"
 
 const DeviceDetails = (props) => {
-    const {auth,device} = props
+    const {auth, device, sensorData} = props
+    const [chartData, setChartData] = useState({})
+
+    let date = []
+    let val = []
+
+    for(const dataObj of sensorData){
+        date.push(dataObj.dateTime)
+        val.push(dataObj.soilMoisturePercent)
+    }
+    console.log(date,val)
+
+
+    const chart = () => {
+        setChartData({
+            labels: date,
+            datasets: [
+                {
+                    label: "Moisture Levels",
+                    data: val,
+                    backgroundColor: ['rgba(75,192,192,0.6)'],
+                    borderWidth: 4
+                }
+            ],
+        })
+    }
+
+    const options = {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    max: 100,
+                    min: 0,
+                }
+            }]
+        }
+    }
+
+    useEffect(() => {
+        chart();
+    }, [])
+
 
     if (!auth.uid) {
         return <Redirect to="/signin"/>
     } else {
-        return(
-            <div className="container section device-details">
-                <div className="card z-depth-0">
+        return (
+            <div className="fitting container section">
+                <div className="device-details z-depth-0">
                     <div className="card-content">
-                        <span className="card-title"> {device.deviceName} </span>
-                        <p>  Moisture Percent - {device.soilMoisturePercent} </p>
+                        <span className="card-title"> Name - {device.deviceName} </span>
+                        <p> Date/Time - {device.dateTime} </p>
+                        <p> Battery Percent - {device.battery} </p>
+                        <p> Moisture Percent - {device.soilMoisturePercent} </p>
                     </div>
                     <div className="card-action grey lighten-4 grey-text">
-                        <div> INSERT CHART HERE </div>
-                        <div> CHART STATS </div>
+                        <Line data={chartData} options={options}/>
                     </div>
                 </div>
             </div>
@@ -28,10 +73,13 @@ const DeviceDetails = (props) => {
 const mapStateToProps = (state, ownProps) => {
     const id = ownProps.match.params.id;
     const devices = state.device.devices;
+    const sensors = state.device.sensorData;
     const device = devices ? devices[id] : null
+    const sensorData = sensors ? sensors[id] : null
     return {
         auth: state.firebase.auth,
         device: device,
+        sensorData: sensorData
     }
 }
 
