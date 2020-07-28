@@ -22,7 +22,10 @@ body {
   -webkit-user-select: none; /* Chrome/Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+ */
-  background-color: #bbc191;
+  background-image: url("assets/img/background.png") ;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 code {

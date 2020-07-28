@@ -1,5 +1,5 @@
 .fitting{
-    margin-left: 15%;
+    margin-left: 20%;
 }
 .device-details{
     position: relative;
@@ -7,7 +7,7 @@
     display: flex;
     -ms-flex-direction: column;
     flex-direction: column;
-    min-width: 70vw;
+    min-width: 60vw;
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;

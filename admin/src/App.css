@@ -1,6 +1,9 @@
 #home {
     height:100vh;
-    background-color: #bbc191;
+    background-image: url("assets/img/background.png") ;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 

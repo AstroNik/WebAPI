@@ -12,12 +12,10 @@ const DeviceDetails = (props) => {
     let date = []
     let val = []
 
-    for(const dataObj of sensorData){
+    for (const dataObj of sensorData) {
         date.push(dataObj.dateTime)
         val.push(dataObj.soilMoisturePercent)
     }
-    console.log(date,val)
-
 
     const chart = () => {
         setChartData({
@@ -44,10 +42,10 @@ const DeviceDetails = (props) => {
         }
     }
 
-    useEffect(() => {
-        chart();
-    }, [])
 
+    useEffect(() => {
+        chart()
+    },[]);
 
     if (!auth.uid) {
         return <Redirect to="/signin"/>
@@ -56,7 +54,7 @@ const DeviceDetails = (props) => {
             <div className="fitting container section">
                 <div className="device-details z-depth-0">
                     <div className="card-content">
-                        <span className="card-title"> Name - {device.deviceName} </span>
+                        <p className="card-title"> Name - {device.deviceName} </p>
                         <p> Date/Time - {device.dateTime} </p>
                         <p> Battery Percent - {device.battery} </p>
                         <p> Moisture Percent - {device.soilMoisturePercent} </p>
