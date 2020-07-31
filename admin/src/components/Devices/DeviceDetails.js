@@ -10,7 +10,7 @@ import axios from "axios";
 const DeviceDetails = (props) => {
     const {auth, device, sensorData} = props
     const [chartData, setChartData] = useState({})
-    const today = new Date().toISOString().split("T")[0]
+    const today = moment().format().split("T")[0]
 
     function handleChange(date) {
         axios.post("/specificDate", {
@@ -122,7 +122,7 @@ const DeviceDetails = (props) => {
                         <p> Moisture Percent - {device.soilMoisturePercent} </p>
                     </div>
                     <div className="card-action grey lighten-4 grey-text">
-                        <input type="date" max={today} onChange={(event => handleChange(event.target.value))}/>
+                        <input type="date" defaultValue={today} max={today} onChange={(event => handleChange(event.target.value))}/>
                         <Line data={chartData} options={options}/>
                     </div>
                 </div>
