@@ -46,7 +46,7 @@ func main() {
 	router.HandleFunc("/dataProcess", dataProcess)
 	router.HandleFunc("/addUser", backend.HandleSecureFunc(signUpUser))
 	router.HandleFunc("/uniqueDeviceData", backend.HandleSecureFunc(uniqueDeviceData))
-
+	router.HandleFunc("/specificDate", differentDayChartData)
 	spa := spaHandler{staticPath: "./admin/build", indexPath: "index.html"}
 	router.PathPrefix("/").Handler(spa)
 
@@ -121,6 +121,25 @@ func uniqueDeviceData(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	specificDeviceData := db.GetAllMoistureData(userDevice.UID)
+	specificDeviceData := db.GetAllMoistureData(userDevice.UID) //TODO: Modify this to only get one days data
 	_ = json.NewEncoder(w).Encode(specificDeviceData)
+}
+
+func differentDayChartData(w http.ResponseWriter, r *http.Request) {
+	type UserDevice struct {
+		UID      string
+		DeviceId int
+		Date     time.Time
+	}
+
+	var userDevice UserDevice
+	dec := json.NewDecoder(r.Body)
+	err := dec.Decode(&userDevice)
+	if err != nil {
+		fmt.Println("error decoding the response")
+		log.Fatal(err)
+	}
+
+	specificDateData := db.GetSpecificDayChartData(userDevice.UID, userDevice.DeviceId, userDevice.Date)
+	_ = json.NewEncoder(w).Encode(specificDateData)
 }
