@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {signIn} from "../../store/Actions/AuthActions";
-import './SingIn.css'
 import {Redirect} from 'react-router-dom'
 
 class SignIn extends Component {
@@ -29,37 +28,34 @@ class SignIn extends Component {
         }
         else {
             return (
-                <div id="loginBox">
-                    <form onSubmit={this.handleSubmit}>
-                        <h3>Sign In</h3>
+                <div id="landing-content" className="d-flex justify-content align-items-center">
+                    <div className="mx-auto justify-content-center col-lg-4 col-md-6 col-sm-6 col">
+                        <div id="loginBox">
+                            <form onSubmit={this.handleSubmit}>
+                                <h4 className="center-align">Sign In</h4>
 
-                        <div className="form-group">
-                            <label>Email address</label>
-                            <input type="email" className="form-control" id="email" placeholder="Enter email"
-                                   onChange={this.handleChange}/>
-                        </div>
+                                <div className="input-field col s6">
+                                    <input type="email" className="validate" id="email" onChange={this.handleChange}/>
+                                    <label htmlFor="email">Email</label>
+                                </div>
 
-                        <div className="form-group">
-                            <label>Password</label>
-                            <input type="password" className="form-control" id="password" placeholder="Enter password"
-                                   onChange={this.handleChange}/>
-                        </div>
+                                <div className="input-field col s6">
+                                    <input type="password" className="validate" id="password" onChange={this.handleChange}/>
+                                    <label htmlFor="password">Password</label>
+                                </div>
 
-                        <div className="form-group">
-                            <div className="custom-control custom-checkbox">
-                                <input type="checkbox" className="custom-control-input" id="customCheck1"/>
-                                <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                            </div>
+                                <button type="submit" className="btn waves-effect waves-light">Submit</button>
+                                <br/>
+                                <br/>
+                                <p className="forgot-password text-center">
+                                    Forgot <a href="/">password?</a>
+                                </p>
+                                <div className="red-text center">
+                                    {authError ? <p>{authError}</p> : null}
+                                </div>
+                            </form>
                         </div>
-
-                        <button type="submit" className="btn btn-primary btn-block">Submit</button>
-                        <p className="forgot-password text-right">
-                            Forgot <a href="/">password?</a>
-                        </p>
-                        <div className="red-text center">
-                            {authError ? <p>{authError}</p> : null}
-                        </div>
-                    </form>
+                    </div>
                 </div>
             )
         }

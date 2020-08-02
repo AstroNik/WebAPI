@@ -1,24 +1,23 @@
 import React, {Component} from 'react'
-import './SignUp.css'
-import {Link, Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {signUp} from "../../store/Actions/AuthActions";
 
 class SignUp extends Component {
-    state= {
-        email:'',
+    state = {
+        email: '',
         password: '',
         firstName: '',
         lastName: ''
     }
 
-    handleChange = (e) =>{
+    handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
         })
     }
 
-    handleSubmit = (e) =>{
+    handleSubmit = (e) => {
         e.preventDefault();
         // console.log(this.state)
         this.props.signUp(this.state)
@@ -26,42 +25,41 @@ class SignUp extends Component {
 
     render() {
         const {auth, authError} = this.props
-        if(auth.uid) {
+        if (auth.uid) {
             return <Redirect to="/dashboard"/>
         } else {
             return (
-                <div id="signUpBox">
-                    <form onSubmit={this.handleSubmit}>
-                        <h3 className="text-center">Sign Up</h3>
+                <div className="col-lg-7 col-md-auto col-sm-auto mx-auto" id="signUpBox">
+                    <form className="col s12" onSubmit={this.handleSubmit}>
+                        <h4 className="center-align">Sign Up</h4>
 
-                        <div className="form-group">
-                            <label>First name</label>
-                            <input type="text" id="firstName" className="form-control" placeholder="First name" onChange={this.handleChange}/>
+                        <div id="form-row-override" className="row">
+                            <div className="input-field col s6">
+                                <input type="text" id="firstName" className="validate" onChange={this.handleChange}/>
+                                <label htmlFor="firstName">First name</label>
+                            </div>
+
+                            <div className="input-field col s6">
+                                <input type="text" id="lastName" className="validate" onChange={this.handleChange}/>
+                                <label htmlFor="lastName">Last name</label>
+                            </div>
+                        </div>
+                        <div id="form-row-override" className="row input-field col s6">
+                            <input autocomplete="off" type="email" id="email" className="validate" onChange={this.handleChange}/>
+                            <label for="email">Email</label>
                         </div>
 
-                        <div className="form-group">
-                            <label>Last name</label>
-                            <input type="text" id="lastName" className="form-control" placeholder="Last name" onChange={this.handleChange}/>
+                        <div className="row input-field col s6">
+                            <input type="password" id="password" className="validate" onChange={this.handleChange}/>
+                            <label for="password">Password</label>
                         </div>
 
-                        <div className="form-group">
-                            <label>Email address</label>
-                            <input type="email" id="email" className="form-control" placeholder="Enter email" onChange={this.handleChange}/>
-                        </div>
-
-                        <div className="form-group">
-                            <label>Password</label>
-                            <input type="password" id="password" className="form-control" placeholder="Enter password" onChange={this.handleChange}/>
-                        </div>
-
-                        <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
-                        <p className="forgot-password text-center">
-                            Already registered <Link to='/signin'>sign in?</Link>
-                        </p>
+                        <button type="submit" className="btn waves-effect waves-light">Sign Up</button>
 
                         <div className="red-text center">
                             {authError ? <p> {authError}</p> : null}
                         </div>
+                        <br/>
                     </form>
                 </div>
             )

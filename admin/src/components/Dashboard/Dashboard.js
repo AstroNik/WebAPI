@@ -29,14 +29,14 @@ class Dashboard extends Component {
         }
         else {
             return (
-                <div className="dashboard container">
+                <div className="dashboard-container">
                     <div className="row">
-                        <div className="col sm12 m6">
+                        <div className="col-sm-6 col-md-6 col-lg-6">
                             <DeviceList devices={devices}/>
                         </div>
-                        <div className="col sm12 m5 offset-m1">
-                            <Notifications/>
-                        </div>
+                        {/*<div className="col sm12 m5 offset-m1">*/}
+                        {/*    <Notifications/>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             )

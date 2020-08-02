@@ -11,6 +11,7 @@ const DeviceDetails = (props) => {
     const {auth, device, sensorData} = props
     const [chartData, setChartData] = useState({})
     const today = moment().format().split("T")[0]
+    const localTime = moment(device.dateTime).format("DD/MM/YYYY HH:mm").toString()
 
     function handleChange(date) {
         axios.post("/specificDate", {
@@ -113,11 +114,11 @@ const DeviceDetails = (props) => {
         return <Redirect to="/signin"/>
     } else {
         return (
-            <div className="fitting container section">
+            <div className="fitting dashboard-container section">
                 <div className="device-details z-depth-0">
                     <div className="card-content">
                         <p className="card-title"> Name - {device.deviceName} </p>
-                        <p> Date/Time - {device.dateTime} </p>
+                        <p> Date/Time - {localTime} </p>
                         <p> Battery Percent - {device.battery} </p>
                         <p> Moisture Percent - {device.soilMoisturePercent} </p>
                     </div>

@@ -13,7 +13,7 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div id="home">
-                    <section>
+                    <section id="home">
                         <NavBar/>
                         <Switch>
                             <Route exact path='/' component={LandingPage}/>
