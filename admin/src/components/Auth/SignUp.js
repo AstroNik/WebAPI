@@ -45,7 +45,7 @@ class SignUp extends Component {
                             </div>
                         </div>
                         <div id="form-row-override" className="row input-field col s6">
-                            <input autocomplete="off" type="email" id="email" className="validate" onChange={this.handleChange}/>
+                            <input autoComplete="off" type="email" id="email" className="validate" onChange={this.handleChange}/>
                             <label for="email">Email</label>
                         </div>
 

@@ -10,12 +10,9 @@ import {getFirebase, isLoaded, ReactReduxFirebaseProvider} from 'react-redux-fir
 import fbConfig from "./firebase/fbConfig";
 import firebase from "firebase/app";
 import {createFirestoreInstance} from "redux-firestore";
-
 import './index.css';
-
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'materialize-css/dist/css/materialize.min.css'
-import 'materialize-css/dist/js/materialize.min'
 
 
 const store = createStore(RootReducer,

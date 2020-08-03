@@ -1,11 +1,11 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom'
-import {connect} from 'react-redux'
+import {NavLink} from "react-router-dom";
 import {signOut} from "../../store/Actions/AuthActions";
+import {connect} from "react-redux";
 
-const SignedInLinks = (props) => {
+const SideBarSignedIn = (props) => {
     return (
-        <ul className="right center-align hide-on-med-and-down">
+        <ul id="sidebar" className="sidenav">
             <li><NavLink to='/'> Find Plant </NavLink></li>
             <li><NavLink to='/create'> Add Plant </NavLink></li>
             <li><NavLink to='/'> Chat </NavLink></li>
@@ -21,4 +21,4 @@ const mapDispatchStateToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchStateToProps)(SignedInLinks)
+export default connect(null, mapDispatchStateToProps)(SideBarSignedIn)

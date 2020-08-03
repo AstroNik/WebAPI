@@ -1,14 +1,17 @@
 import React, {useEffect} from 'react';
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import SignedInLinks from "./SignedInLinks";
 import SignedOutLinks from "./SignedOutLinks";
+import SideBarSignedIn from "./SideBarSignedIn";
+import SideBarSignedOut from "./SideBarSignedOut";
 import {connect} from 'react-redux'
+import M from 'materialize-css/dist/js/materialize.min';
 
-import M from  'materialize-css/dist/js/materialize.min.js';
 
 const NavBar = (props) => {
     const {auth} = props
     const links = auth.uid ? <SignedInLinks/> : <SignedOutLinks/>
+    const sidebarLinks = auth.uid ? <SideBarSignedIn/> : <SideBarSignedOut/>
 
     useEffect(() => {
         let sidenav = document.querySelector('#sidebar');
@@ -16,8 +19,8 @@ const NavBar = (props) => {
     })
 
     return (
-        <header className="navbar-fixed">
-            <nav className="nav-wrapper grey darken-3">
+        <header>
+            <nav className="navbar-fixed nav-wrapper grey darken-3">
                 <div className="nav-container">
                     <Link to={'/'} data-target="sidebar" className="sidenav-trigger"><i
                         className="material-icons">menu</i></Link>
@@ -26,8 +29,8 @@ const NavBar = (props) => {
                     {links}
                 </div>
             </nav>
+            {sidebarLinks}
         </header>
-
     )
 }
 
