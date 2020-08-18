@@ -9,7 +9,6 @@ import thunk from "redux-thunk";
 import {getFirebase, isLoaded, ReactReduxFirebaseProvider} from 'react-redux-firebase'
 import fbConfig from "./firebase/fbConfig";
 import firebase from "firebase/app";
-import {createFirestoreInstance} from "redux-firestore";
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'materialize-css/dist/css/materialize.min.css'
@@ -25,7 +24,6 @@ const rrfProps = {
     firebase,
     config: fbConfig,
     dispatch: store.dispatch,
-    createFirestoreInstance
 };
 
 function AuthIsLoaded({children}) {
