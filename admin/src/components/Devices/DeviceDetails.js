@@ -23,7 +23,7 @@ const DeviceDetails = (props) => {
             if(data){
                 newData = data.map(dataSet => {
                     const container = {};
-                    container.x = dataSet.dateTime
+                    container.x = moment(dataSet.dateTime)
                     container.y = dataSet.soilMoisturePercent
                     return container
                 })
@@ -53,7 +53,7 @@ const DeviceDetails = (props) => {
         if (sensorData) {
             chartData = sensorData.map(data => {
                 const container = {};
-                container.x = data.dateTime
+                container.x = moment(data.dateTime)
                 container.y = data.soilMoisturePercent
                 return container
             })

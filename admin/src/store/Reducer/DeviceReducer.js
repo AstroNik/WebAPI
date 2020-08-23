@@ -14,7 +14,6 @@ const initState = {
     ],
     deviceError: null,
     devicesLoaded: false,
-
     sensorData: [
         {
             deviceId: 0,

@@ -1,24 +1,34 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-import {signOut} from "../../store/Actions/AuthActions";
+import {getUserData, signOut} from "../../store/Actions/AuthActions";
 import {connect} from "react-redux";
 
 const SideBarSignedIn = (props) => {
+    const {user} = props
+    let initials = user.user.FirstName.charAt(0) + user.user.LastName.charAt(0)
     return (
         <ul id="sidebar" className="sidenav">
             <li><NavLink to='/'> Find Plant </NavLink></li>
             <li><NavLink to='/create'> Add Plant </NavLink></li>
             <li><NavLink to='/'> Chat </NavLink></li>
             <li><a href="/" onClick={props.signOut}>Log Out</a></li>
-            <li><NavLink to='/' className='btn-round btn-floating pink lighten-1'>NK</NavLink></li>
+            <li><NavLink to='/' className='btn-round btn-floating pink lighten-1'>{initials}</NavLink></li>
         </ul>
     )
 }
 
-const mapDispatchStateToProps = (dispatch) => {
+const mapStateToProps = (state) => {
     return {
-        signOut: () => dispatch(signOut())
+        auth: state.firebase.auth,
+        user: state.auth,
     }
 }
 
-export default connect(null, mapDispatchStateToProps)(SideBarSignedIn)
+const mapDispatchStateToProps = (dispatch) => {
+    return {
+        getUserData: () => dispatch(getUserData()),
+        signOut: () => dispatch(signOut()),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchStateToProps)(SideBarSignedIn)

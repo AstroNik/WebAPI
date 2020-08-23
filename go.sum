@@ -46,6 +46,10 @@ github.com/AstroNik/WebCommon v0.0.0-20200730203258-8e7790827663 h1:r9jUO6EiPbB6
 github.com/AstroNik/WebCommon v0.0.0-20200730203258-8e7790827663/go.mod h1:BUdGVaICMwgmz5iZGmexnmwu4EhPERi+t63phyRtTWk=
 github.com/AstroNik/WebCommon v0.0.0-20200730203516-d32feeb65bfc h1:SA9jKKde3aIrDQaXUKxyZeykmD4L9EXzom5A/KMuGUo=
 github.com/AstroNik/WebCommon v0.0.0-20200730203516-d32feeb65bfc/go.mod h1:BUdGVaICMwgmz5iZGmexnmwu4EhPERi+t63phyRtTWk=
+github.com/AstroNik/WebCommon v0.0.0-20200823180041-659446aca18a h1:K1QC2CMGX7+qbXQuN4oFbzp0noiMG32vfun4dnL2TYk=
+github.com/AstroNik/WebCommon v0.0.0-20200823180041-659446aca18a/go.mod h1:BUdGVaICMwgmz5iZGmexnmwu4EhPERi+t63phyRtTWk=
+github.com/AstroNik/WebCommon v0.0.0-20200823181147-d839272b657c h1:CEpjw/fsLB1QYp2R97ZX0Y1AKS6MLYSb+guy15XouYk=
+github.com/AstroNik/WebCommon v0.0.0-20200823181147-d839272b657c/go.mod h1:BUdGVaICMwgmz5iZGmexnmwu4EhPERi+t63phyRtTWk=
 github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=

@@ -42,6 +42,7 @@ func (h spaHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	router := mux.NewRouter()
+	router.HandleFunc("/login", backend.HandleSecureFunc(login))
 	router.HandleFunc("/getSensorData", backend.HandleSecureFunc(getSensorData))
 	router.HandleFunc("/dataProcess", dataProcess)
 	router.HandleFunc("/addUser", backend.HandleSecureFunc(signUpUser))
@@ -51,6 +52,20 @@ func main() {
 	router.PathPrefix("/").Handler(spa)
 
 	log.Fatal(http.ListenAndServe(":8080", router))
+}
+
+func login(w http.ResponseWriter, r *http.Request) {
+	user := structs.User{}
+	dec := json.NewDecoder(r.Body)
+	err := dec.Decode(&user)
+	if err != nil {
+		fmt.Println("error decoding the response")
+		log.Fatal(err)
+	}
+	log.Print(user)
+
+	userData := db.RetrieveUserInfo(user.UID)
+	_ = json.NewEncoder(w).Encode(userData)
 }
 
 func getSensorData(w http.ResponseWriter, r *http.Request) {

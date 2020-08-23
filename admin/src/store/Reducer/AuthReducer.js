@@ -1,9 +1,30 @@
 const initState = {
-    authError: null
+    authError: null,
+    user: {
+        Email: "",
+        FirstName: "",
+        LastName: "",
+        UID: "",
+    },
+    userLoaded: false
 }
 
 const AuthReducer = (state = initState, action) => {
     switch(action.type){
+        case 'GET_USER_DATA_SUCCESS':
+            console.log("GET_USER_DATA_SUCCESS")
+            return {
+                ...state,
+                authError: null,
+                user: action.data,
+                userLoaded: true,
+            }
+        case 'FAILED_GET_USER_DATA':
+            console.log("FAILED_GET_USER_DATA")
+            return {
+                ...state,
+                authError: null,
+            }
         case 'LOGIN_ERROR':
             console.log("Login Error")
             return {
@@ -14,7 +35,7 @@ const AuthReducer = (state = initState, action) => {
             console.log("Login Success")
             return {
                 ...state,
-                authError: null
+                authError: null,
             }
         case 'SIGNOUT_SUCCESS':
             console.log("Signout Success")
