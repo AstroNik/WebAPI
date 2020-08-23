@@ -21,7 +21,7 @@ then run the **build.sh** file
 
 In order to access the Kubernetes Cluster running on Digital Ocean. First download the file from our slack channel (ecoders-kubeconfig.yaml)
 
-Go to your user Folder C:\Users\YourName\.kube
+Go to your user Folder C:\Users\YourName\ .kube folder
 
 Open the config file using Notepad++ (regular notepad sucks you might lose the file formatting)
 
