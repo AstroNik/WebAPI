@@ -50,8 +50,13 @@ func main() {
 	router.HandleFunc("/specificDate", differentDayChartData)
 	spa := spaHandler{staticPath: "./admin/build", indexPath: "index.html"}
 	router.PathPrefix("/").Handler(spa)
-
+	log.Print(DateBeginning(time.Now()))
 	log.Fatal(http.ListenAndServe(":8080", router))
+}
+
+func DateBeginning(t time.Time) time.Time {
+	year, month, day := t.Date()
+	return time.Date(year, month, day, 0, 0, 0, 0, t.Location())
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
