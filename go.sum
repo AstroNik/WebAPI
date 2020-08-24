@@ -50,6 +50,14 @@ github.com/AstroNik/WebCommon v0.0.0-20200823180041-659446aca18a h1:K1QC2CMGX7+q
 github.com/AstroNik/WebCommon v0.0.0-20200823180041-659446aca18a/go.mod h1:BUdGVaICMwgmz5iZGmexnmwu4EhPERi+t63phyRtTWk=
 github.com/AstroNik/WebCommon v0.0.0-20200823181147-d839272b657c h1:CEpjw/fsLB1QYp2R97ZX0Y1AKS6MLYSb+guy15XouYk=
 github.com/AstroNik/WebCommon v0.0.0-20200823181147-d839272b657c/go.mod h1:BUdGVaICMwgmz5iZGmexnmwu4EhPERi+t63phyRtTWk=
+github.com/AstroNik/WebCommon v0.0.0-20200824012242-3a259e6cce35 h1:iDlouXWnMucsMgUofR7DksunfRR2y8lhBq2yIrHQQME=
+github.com/AstroNik/WebCommon v0.0.0-20200824012242-3a259e6cce35/go.mod h1:BUdGVaICMwgmz5iZGmexnmwu4EhPERi+t63phyRtTWk=
+github.com/AstroNik/WebCommon v0.0.0-20200824012441-513bfd4c4bb4 h1:wEhVPtCGR+82DetjOJMIPk7H6hikxfjqBIWgOPrrpPg=
+github.com/AstroNik/WebCommon v0.0.0-20200824012441-513bfd4c4bb4/go.mod h1:BUdGVaICMwgmz5iZGmexnmwu4EhPERi+t63phyRtTWk=
+github.com/AstroNik/WebCommon v0.0.0-20200824013030-e4563ec57d42 h1:lrw3MKTUpR0aOi3WVLaky/RH5PpUr1TXEaDLCj3Pqkk=
+github.com/AstroNik/WebCommon v0.0.0-20200824013030-e4563ec57d42/go.mod h1:BUdGVaICMwgmz5iZGmexnmwu4EhPERi+t63phyRtTWk=
+github.com/AstroNik/WebCommon v0.0.0-20200824145104-0639f08db785 h1:5b8p0f8i4Y1eqRHpVwLo1Qm1gC6C0MTxqaTpEwr0M7E=
+github.com/AstroNik/WebCommon v0.0.0-20200824145104-0639f08db785/go.mod h1:BUdGVaICMwgmz5iZGmexnmwu4EhPERi+t63phyRtTWk=
 github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=

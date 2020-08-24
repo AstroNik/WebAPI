@@ -17,7 +17,8 @@ const DeviceDetails = (props) => {
         axios.post("/specificDate", {
             uid: auth.uid,
             deviceId: device.deviceId,
-            date: moment(date).toISOString()
+            date: moment(date).toISOString(true),
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         }).then(({data}) => {
             let newData = {};
             if(data){

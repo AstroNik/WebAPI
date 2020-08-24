@@ -50,13 +50,7 @@ func main() {
 	router.HandleFunc("/specificDate", differentDayChartData)
 	spa := spaHandler{staticPath: "./admin/build", indexPath: "index.html"}
 	router.PathPrefix("/").Handler(spa)
-	log.Print(DateBeginning(time.Now()))
 	log.Fatal(http.ListenAndServe(":8080", router))
-}
-
-func DateBeginning(t time.Time) time.Time {
-	year, month, day := t.Date()
-	return time.Date(year, month, day, 0, 0, 0, 0, t.Location())
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
@@ -130,7 +124,7 @@ func signUpUser(w http.ResponseWriter, r *http.Request) {
 func uniqueDeviceData(w http.ResponseWriter, r *http.Request) {
 	type UserDevice struct {
 		UID      string
-		DeviceId int
+		TimeZone string
 	}
 
 	var userDevice UserDevice
@@ -141,7 +135,7 @@ func uniqueDeviceData(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	specificDeviceData := db.GetAllMoistureData(userDevice.UID) //TODO: Modify this to only get one days data
+	specificDeviceData := db.GetAllMoistureData(userDevice.UID, userDevice.TimeZone)
 	_ = json.NewEncoder(w).Encode(specificDeviceData)
 }
 
@@ -150,6 +144,7 @@ func differentDayChartData(w http.ResponseWriter, r *http.Request) {
 		UID      string
 		DeviceId int
 		Date     time.Time
+		TimeZone string
 	}
 
 	var userDevice UserDevice
@@ -159,7 +154,7 @@ func differentDayChartData(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("error decoding the response")
 		log.Fatal(err)
 	}
-
-	specificDateData := db.GetSpecificDayChartData(userDevice.UID, userDevice.DeviceId, userDevice.Date)
+	log.Print(userDevice.Date)
+	specificDateData := db.GetSpecificDayChartData(userDevice.UID, userDevice.DeviceId, userDevice.Date, userDevice.TimeZone)
 	_ = json.NewEncoder(w).Encode(specificDateData)
 }

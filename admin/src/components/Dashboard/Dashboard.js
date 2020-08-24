@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
-import Notifications from "./Notifications";
 import DeviceList from '../Devices/DeviceList'
 import './Dashboard.css'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
-import {getDevices, getUniqueDeviceData} from "../../store/Actions/DeviceActions";
+import {getDevices, getUniqueDeviceData} from "../../store/Actions/DeviceActions"
 
 class Dashboard extends Component {
 
@@ -19,15 +18,13 @@ class Dashboard extends Component {
         const {devices, auth} = this.props
         if (!auth.uid) {
             return <Redirect to='/signin'/>
-        }
-        else if(this.props.deviceLoaded ===false){
+        } else if (this.props.deviceLoaded === false) {
             return (
                 <div>
                     <p> Loading ...</p>
                 </div>
             )
-        }
-        else {
+        } else {
             return (
                 <div className="dashboard-container">
                     <div className="row">

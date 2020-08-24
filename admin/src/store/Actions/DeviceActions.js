@@ -1,4 +1,5 @@
 import axios from 'axios'
+import moment from "moment";
 
 export const createDevice = (device) => {
     return (dispatch, getState) => {
@@ -31,6 +32,7 @@ export const getUniqueDeviceData = () => {
         let state = getState();
         return axios.post("/uniqueDeviceData", {
             uid: state.firebase.auth.uid,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         }, {
             headers: {
                 "Authorization": `Bearer ${state.firebase.auth.stsTokenManager.accessToken}`,
