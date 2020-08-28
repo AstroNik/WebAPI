@@ -69,7 +69,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 }
 
 func deviceLogin(w http.ResponseWriter, r *http.Request) {
-
+	log.Print("Device has hit me")
 }
 
 func getSensorData(w http.ResponseWriter, r *http.Request) {
