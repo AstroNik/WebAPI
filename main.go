@@ -43,6 +43,7 @@ func (h spaHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/login", backend.HandleSecureFunc(login))
+	router.HandleFunc("/devicelogin", backend.HandleSecureLogin(deviceLogin))
 	router.HandleFunc("/getSensorData", backend.HandleSecureFunc(getSensorData))
 	router.HandleFunc("/dataProcess", dataProcess)
 	router.HandleFunc("/addUser", backend.HandleSecureFunc(signUpUser))
@@ -65,6 +66,10 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 	userData := db.RetrieveUserInfo(user.UID)
 	_ = json.NewEncoder(w).Encode(userData)
+}
+
+func deviceLogin(w http.ResponseWriter, r *http.Request) {
+
 }
 
 func getSensorData(w http.ResponseWriter, r *http.Request) {

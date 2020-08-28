@@ -54,3 +54,48 @@ func HandleSecureFunc(handler http.HandlerFunc) http.HandlerFunc {
 		handler(w, r)
 	}
 }
+
+func HandleSecureLogin(handler http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+
+		type UserEmail struct {
+			Email string
+		}
+
+		email := UserEmail{}
+
+		dec := json.NewDecoder(r.Body)
+		err := dec.Decode(&email)
+		if err != nil {
+			log.Println("error decoding the response")
+			log.Fatal(err)
+		}
+		log.Print(email)
+
+		//INIT FIREBASE APP
+		ctx := context.Background()
+		opt := option.WithCredentialsFile("firebaseSA.json") //import file as env var??
+		app, err := firebase.NewApp(ctx, nil, opt)
+		if err != nil {
+			log.Fatalf("error initializing app: %v\n", err)
+		}
+
+		client, err := app.Auth(ctx)
+		if err != nil {
+			log.Fatalf("error getting Auth client: %v\n", err)
+		}
+
+		u, err := client.GetUserByEmail(ctx, email.Email)
+		if err != nil {
+			log.Fatalf("error getting user by email %s: %v\n", email, err)
+		}
+		log.Printf("Successfully fetched user data: %v\n", u)
+
+		log.Print(u.UID)
+
+		_ = json.NewEncoder(w).Encode(u.UID)
+
+		handler(w, r)
+
+	}
+}
