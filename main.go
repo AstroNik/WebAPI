@@ -43,7 +43,7 @@ func (h spaHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/login", backend.HandleSecureFunc(login))
-	router.HandleFunc("/devicelogin", backend.HandleSecureLogin(deviceLogin))
+	router.HandleFunc("/devicelogin", backend.HandleSecureLogin)
 	router.HandleFunc("/getSensorData", backend.HandleSecureFunc(getSensorData))
 	router.HandleFunc("/dataProcess", dataProcess)
 	router.HandleFunc("/addUser", backend.HandleSecureFunc(signUpUser))
@@ -51,7 +51,16 @@ func main() {
 	router.HandleFunc("/specificDate", differentDayChartData)
 	spa := spaHandler{staticPath: "./admin/build", indexPath: "index.html"}
 	router.PathPrefix("/").Handler(spa)
-	log.Fatal(http.ListenAndServe(":8080", router))
+
+	svr := &http.Server{
+		Handler: router,
+		Addr:    ":8080",
+		// Good practice: enforce timeouts for servers you create!
+		WriteTimeout: 15 * time.Second,
+		ReadTimeout:  15 * time.Second,
+	}
+
+	log.Fatal(svr.ListenAndServe())
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
@@ -66,10 +75,6 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 	userData := db.RetrieveUserInfo(user.UID)
 	_ = json.NewEncoder(w).Encode(userData)
-}
-
-func deviceLogin(w http.ResponseWriter, r *http.Request) {
-	log.Print("Device has hit me")
 }
 
 func getSensorData(w http.ResponseWriter, r *http.Request) {
