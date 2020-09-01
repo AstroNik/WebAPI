@@ -1,5 +1,4 @@
 import axios from 'axios'
-import moment from "moment";
 
 export const createDevice = (device) => {
     return (dispatch, getState) => {
@@ -12,6 +11,25 @@ export const getDevices = () => {
     return (dispatch, getState) => {
         let state = getState();
         return axios.post("/getSensorData", {
+            uid: state.firebase.auth.uid
+        }, {
+            headers: {
+                "Authorization": `Bearer ${state.firebase.auth.stsTokenManager.accessToken}`,
+                'Content-Type': 'application/json'
+            },
+            withCredentials: true
+        }).then(({data}) => {
+            dispatch({type: 'GET_DEVICE_DATA', devices: data})
+        }, (error) => {
+            dispatch({type: 'GET_DEVICE_DATA_ERROR', err: error})
+        })
+    }
+}
+
+export const getUniqueDeviceData = () => {
+    return (dispatch, getState) => {
+        let state = getState();
+        return axios.post("/uniqueDeviceData", {
             uid: state.firebase.auth.uid,
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         }, {
@@ -21,10 +39,10 @@ export const getDevices = () => {
             },
             withCredentials: true
         }).then(({data}) => {
-            dispatch({type: 'GET_DEVICE_DATA', devices: data.DeviceData, sensorData: data.SensorData})
+            dispatch({type: 'GET_SENSOR_DATA', sensorData: data})
         }, (error) => {
+            console.log(error)
             dispatch({type: 'GET_DEVICE_DATA_ERROR', err: error})
         })
     }
 }
-
