@@ -30,6 +30,7 @@ const DeviceReducer = (state = initState, action) => {
             return {
                 ...state,
                 devices: action.devices,
+                sensorData: action.sensorData,
                 deviceError: null,
                 devicesLoaded: true
             }
@@ -37,13 +38,6 @@ const DeviceReducer = (state = initState, action) => {
             console.log('Error hitting endpoint: ' + action.err)
             return{
                 ...state,
-            }
-        case 'GET_SENSOR_DATA':
-            console.log("Retrieved unique sensor data")
-            return {
-                ...state,
-                sensorData: action.sensorData,
-                deviceError: null
             }
         default:
             return state

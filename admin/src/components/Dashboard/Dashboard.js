@@ -3,14 +3,13 @@ import DeviceList from '../Devices/DeviceList'
 import './Dashboard.css'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
-import {getDevices, getUniqueDeviceData} from "../../store/Actions/DeviceActions"
+import {getDevices} from "../../store/Actions/DeviceActions"
 
 class Dashboard extends Component {
 
     componentDidMount() {
         if (this.props.deviceLoaded === false) {
             this.props.getDevices()
-            this.props.getUniqueDeviceData()
         }
     }
 
@@ -61,7 +60,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getDevices: () => dispatch(getDevices()),
-        getUniqueDeviceData: () => dispatch(getUniqueDeviceData())
     }
 }
 

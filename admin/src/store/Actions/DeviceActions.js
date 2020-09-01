@@ -12,25 +12,6 @@ export const getDevices = () => {
     return (dispatch, getState) => {
         let state = getState();
         return axios.post("/getSensorData", {
-            uid: state.firebase.auth.uid
-        }, {
-            headers: {
-                "Authorization": `Bearer ${state.firebase.auth.stsTokenManager.accessToken}`,
-                'Content-Type': 'application/json'
-            },
-            withCredentials: true
-        }).then(({data}) => {
-            dispatch({type: 'GET_DEVICE_DATA', devices: data})
-        }, (error) => {
-            dispatch({type: 'GET_DEVICE_DATA_ERROR', err: error})
-        })
-    }
-}
-
-export const getUniqueDeviceData = () => {
-    return (dispatch, getState) => {
-        let state = getState();
-        return axios.post("/uniqueDeviceData", {
             uid: state.firebase.auth.uid,
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         }, {
@@ -40,10 +21,10 @@ export const getUniqueDeviceData = () => {
             },
             withCredentials: true
         }).then(({data}) => {
-            dispatch({type: 'GET_SENSOR_DATA', sensorData: data})
+            dispatch({type: 'GET_DEVICE_DATA', devices: data.DeviceData, sensorData: data.SensorData})
         }, (error) => {
-            console.log(error)
             dispatch({type: 'GET_DEVICE_DATA_ERROR', err: error})
         })
     }
 }
+

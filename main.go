@@ -78,7 +78,13 @@ func login(w http.ResponseWriter, r *http.Request) {
 }
 
 func getSensorData(w http.ResponseWriter, r *http.Request) {
-	user := structs.User{}
+	type UserDevice struct {
+		UID      string
+		TimeZone string
+	}
+
+	var user UserDevice
+
 	dec := json.NewDecoder(r.Body)
 	err := dec.Decode(&user)
 	if err != nil {
@@ -87,9 +93,35 @@ func getSensorData(w http.ResponseWriter, r *http.Request) {
 	}
 	log.Print(user)
 
-	deviceData := db.GetMoistureData(user.UID)
+	type DashboardData struct {
+		DeviceData []structs.Device
+		SenosrData []interface{}
+	}
 
-	_ = json.NewEncoder(w).Encode(deviceData)
+	var dashboardData DashboardData
+
+	dashboardData.DeviceData = db.GetMoistureData(user.UID)
+	dashboardData.SenosrData = db.GetAllMoistureData(user.UID, user.TimeZone)
+
+	_ = json.NewEncoder(w).Encode(dashboardData)
+}
+
+func uniqueDeviceData(w http.ResponseWriter, r *http.Request) {
+	type UserDevice struct {
+		UID      string
+		TimeZone string
+	}
+
+	var userDevice UserDevice
+	dec := json.NewDecoder(r.Body)
+	err := dec.Decode(&userDevice)
+	if err != nil {
+		fmt.Println("error decoding the response")
+		log.Fatal(err)
+	}
+
+	specificDeviceData := db.GetAllMoistureData(userDevice.UID, userDevice.TimeZone)
+	_ = json.NewEncoder(w).Encode(specificDeviceData)
 }
 
 func dataProcess(w http.ResponseWriter, r *http.Request) {
@@ -129,24 +161,6 @@ func signUpUser(w http.ResponseWriter, r *http.Request) {
 	}
 	log.Print("User Data: ", newUser)
 	db.InsertUser(newUser)
-}
-
-func uniqueDeviceData(w http.ResponseWriter, r *http.Request) {
-	type UserDevice struct {
-		UID      string
-		TimeZone string
-	}
-
-	var userDevice UserDevice
-	dec := json.NewDecoder(r.Body)
-	err := dec.Decode(&userDevice)
-	if err != nil {
-		fmt.Println("error decoding the response")
-		log.Fatal(err)
-	}
-
-	specificDeviceData := db.GetAllMoistureData(userDevice.UID, userDevice.TimeZone)
-	_ = json.NewEncoder(w).Encode(specificDeviceData)
 }
 
 func differentDayChartData(w http.ResponseWriter, r *http.Request) {
