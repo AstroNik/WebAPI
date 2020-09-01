@@ -67,7 +67,7 @@ func HandleSecureLogin(w http.ResponseWriter, r *http.Request) {
 	err := dec.Decode(&email)
 	if err != nil {
 		log.Println("error decoding the response")
-		log.Fatal(err)
+		//log.Fatal(err)
 	}
 	log.Print(email)
 
