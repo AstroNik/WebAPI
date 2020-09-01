@@ -101,15 +101,20 @@ export const getUserData = () => {
     }
 }
 
-
-
-
-
+export const forgotPassword = (email) => {
+    return (dispatch, getState, {getFirebase}) => {
+        const firebase = getFirebase()
+        firebase.auth().sendPasswordResetEmail(email).then(() => {
+            dispatch({type: 'Email_Sent'})
+        }).catch((error) => {
+            dispatch({type: 'Failed_To_Send'})
+        })
+    }
+}
 
 export const changePassword = (password) => {
     return (dispatch, getState, {getFirebase}) => {
         const firebase = getFirebase()
-
 
         firebase.auth().currentUser.updatePassword(password).then(() => {
             console.log("Successful Password Change")

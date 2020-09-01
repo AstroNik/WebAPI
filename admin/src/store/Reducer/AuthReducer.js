@@ -1,5 +1,6 @@
 const initState = {
     authError: null,
+    emailAuth: null,
     user: {
         Email: "",
         FirstName: "",
@@ -51,6 +52,18 @@ const AuthReducer = (state = initState, action) => {
             return {
                 ...state,
                 authError: action.err.message
+            }
+        case 'Email_Sent':
+            console.log('Successfully Sent Email')
+            return {
+                ...state,
+                emailAuth: null,
+            }
+        case 'Failed_To_Send':
+            console.log('Failed to Send Email')
+            return {
+                ...state,
+                emailAuth: action.err.message
             }
         default:
             return state

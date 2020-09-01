@@ -25,18 +25,27 @@ class Dashboard extends Component {
                 </div>
             )
         } else {
-            return (
-                <div className="dashboard-container">
-                    <div className="row">
-                        <div className="col-sm-6 col-md-6 col-lg-6">
-                            <DeviceList devices={devices}/>
-                        </div>
-                        {/*<div className="col sm12 m5 offset-m1">*/}
-                        {/*    <Notifications/>*/}
-                        {/*</div>*/}
+            if(devices === null){
+                return (
+                    <div>
+                        <p> No Devices </p>
                     </div>
-                </div>
-            )
+                )
+            }
+            else{
+                return (
+                    <div className="dashboard-container">
+                        <div className="row">
+                            <div className="col-sm-6 col-md-6 col-lg-6">
+                                <DeviceList devices={devices}/>
+                            </div>
+                            {/*<div className="col sm12 m5 offset-m1">*/}
+                            {/*    <Notifications/>*/}
+                            {/*</div>*/}
+                        </div>
+                    </div>
+                )
+            }
         }
     }
 }

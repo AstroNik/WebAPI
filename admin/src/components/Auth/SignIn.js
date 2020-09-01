@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {signIn} from "../../store/Actions/AuthActions";
-import {Redirect} from 'react-router-dom'
+import {Redirect, NavLink} from 'react-router-dom'
+
 
 class SignIn extends Component {
     state = {
@@ -48,7 +49,7 @@ class SignIn extends Component {
                                 <br/>
                                 <br/>
                                 <p className="forgot-password text-center">
-                                    Forgot <a href="/">password?</a>
+                                    Forgot <NavLink to="/passwordReset">password?</NavLink>
                                 </p>
                                 <div className="red-text center">
                                     {authError ? <p>{authError}</p> : null}
