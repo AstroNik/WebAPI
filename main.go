@@ -79,8 +79,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 func getSensorData(w http.ResponseWriter, r *http.Request) {
 	type UserDevice struct {
-		UID      string
-		TimeZone string
+		UID string
 	}
 
 	var user UserDevice
@@ -93,15 +92,7 @@ func getSensorData(w http.ResponseWriter, r *http.Request) {
 	}
 	log.Print(user)
 
-	type DashboardData struct {
-		DeviceData []structs.Device
-		SenosrData []interface{}
-	}
-
-	var dashboardData DashboardData
-
-	dashboardData.DeviceData = db.GetMoistureData(user.UID)
-	dashboardData.SenosrData = db.GetAllMoistureData(user.UID, user.TimeZone)
+	dashboardData := db.GetMoistureData(user.UID)
 
 	_ = json.NewEncoder(w).Encode(dashboardData)
 }

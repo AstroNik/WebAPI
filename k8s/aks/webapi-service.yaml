@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: ecoders-web-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: ecoders-webapi
   ports:
