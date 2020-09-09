@@ -69,7 +69,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 	err := dec.Decode(&user)
 	if err != nil {
 		fmt.Println("error decoding the response")
-		log.Fatal(err)
+		//log.Fatal(err)
 	}
 	log.Print(user)
 
@@ -88,7 +88,7 @@ func getSensorData(w http.ResponseWriter, r *http.Request) {
 	err := dec.Decode(&user)
 	if err != nil {
 		fmt.Println("error decoding the response")
-		log.Fatal(err)
+		//log.Fatal(err)
 	}
 	log.Print(user)
 
@@ -108,7 +108,7 @@ func uniqueDeviceData(w http.ResponseWriter, r *http.Request) {
 	err := dec.Decode(&userDevice)
 	if err != nil {
 		fmt.Println("error decoding the response")
-		log.Fatal(err)
+		//log.Fatal(err)
 	}
 
 	specificDeviceData := db.GetAllMoistureData(userDevice.UID, userDevice.TimeZone)
@@ -121,7 +121,7 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 	err := dec.Decode(&deviceData)
 	if err != nil {
 		fmt.Println("error decoding the response")
-		log.Fatal(err)
+		//log.Fatal(err)
 	}
 
 	log.Print("Data from Sensor: ", deviceData)
@@ -148,7 +148,7 @@ func signUpUser(w http.ResponseWriter, r *http.Request) {
 	err := dec.Decode(&newUser)
 	if err != nil {
 		fmt.Println("error decoding the response")
-		log.Fatal(err)
+		//log.Fatal(err)
 	}
 	log.Print("User Data: ", newUser)
 	db.InsertUser(newUser)
@@ -167,7 +167,7 @@ func differentDayChartData(w http.ResponseWriter, r *http.Request) {
 	err := dec.Decode(&userDevice)
 	if err != nil {
 		fmt.Println("error decoding the response")
-		log.Fatal(err)
+		//log.Fatal(err)
 	}
 	log.Print(userDevice.Date)
 	specificDateData := db.GetSpecificDayChartData(userDevice.UID, userDevice.DeviceId, userDevice.Date, userDevice.TimeZone)
