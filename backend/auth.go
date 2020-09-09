@@ -31,12 +31,12 @@ func HandleSecureFunc(handler http.HandlerFunc) http.HandlerFunc {
 		opt := option.WithCredentialsFile("firebaseSA.json") //import file as env var??
 		app, err := firebase.NewApp(ctx, nil, opt)
 		if err != nil {
-			log.Fatalf("error initializing app: %v\n", err)
+			log.Printf("error initializing app: %v\n", err)
 		}
 
 		client, err := app.Auth(ctx)
 		if err != nil {
-			log.Fatalf("error getting Auth client: %v\n", err)
+			log.Printf("error getting Auth client: %v\n", err)
 		}
 
 		header = strings.Trim(header, "Bearer")
@@ -76,17 +76,17 @@ func HandleSecureLogin(w http.ResponseWriter, r *http.Request) {
 	opt := option.WithCredentialsFile("firebaseSA.json") //import file as env var??
 	app, err := firebase.NewApp(ctx, nil, opt)
 	if err != nil {
-		log.Fatalf("error initializing app: %v\n", err)
+		log.Printf("error initializing app: %v\n", err)
 	}
 
 	client, err := app.Auth(ctx)
 	if err != nil {
-		log.Fatalf("error getting Auth client: %v\n", err)
+		log.Printf("error getting Auth client: %v\n", err)
 	}
 
 	u, err := client.GetUserByEmail(ctx, email.Email)
 	if err != nil {
-		log.Fatalf("error getting user by email %s: %v\n", email, err)
+		log.Printf("error getting user by email %s: %v\n", email, err)
 	}
 	log.Printf("Successfully fetched user data: %v\n", u)
 
