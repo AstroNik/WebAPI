@@ -13,7 +13,7 @@ export const signIn = (credentials) => {
                         uid: resp.user.uid,
                     }, {
                         headers: {
-                            "Authorization": `Bearer ${idToken}`,
+                            "Authorization": `${idToken}`,
                             'Content-Type': 'application/json',
                         },
                         withCredentials: true
@@ -61,7 +61,7 @@ export const signUp = (newUser) => {
                         token: idToken
                     },{
                         headers: {
-                            "Authorization" : `Bearer ${idToken}`,
+                            "Authorization" : `${idToken}`,
                             'Content-Type': 'application/json',
                         },
                         withCredentials: true
@@ -89,7 +89,7 @@ export const getUserData = () => {
             uid: state.firebase.auth.uid,
         }, {
             headers: {
-                "Authorization": `Bearer ${state.firebase.auth.stsTokenManager.accessToken}`,
+                "Authorization": `${state.firebase.auth.stsTokenManager.accessToken}`,
                 'Content-Type': 'application/json',
             },
             withCredentials: true

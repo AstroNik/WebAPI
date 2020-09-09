@@ -39,9 +39,6 @@ func HandleSecureFunc(handler http.HandlerFunc) http.HandlerFunc {
 			log.Printf("error getting Auth client: %v\n", err)
 		}
 
-		header = strings.Trim(header, "Bearer")
-		header = strings.TrimSpace(header)
-
 		token, err := client.VerifyIDToken(ctx, header)
 		if err != nil {
 			log.Printf("error verifying ID token: %v\n", err)

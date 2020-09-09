@@ -14,7 +14,7 @@ export const getDevices = () => {
             uid: state.firebase.auth.uid
         }, {
             headers: {
-                "Authorization": `Bearer ${state.firebase.auth.stsTokenManager.accessToken}`,
+                "Authorization": `${state.firebase.auth.stsTokenManager.accessToken}`,
                 'Content-Type': 'application/json'
             },
             withCredentials: true
@@ -34,7 +34,7 @@ export const getUniqueDeviceData = () => {
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         }, {
             headers: {
-                "Authorization": `Bearer ${state.firebase.auth.stsTokenManager.accessToken}`,
+                "Authorization": `${state.firebase.auth.stsTokenManager.accessToken}`,
                 'Content-Type': 'application/json'
             },
             withCredentials: true
