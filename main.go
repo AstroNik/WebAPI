@@ -43,12 +43,18 @@ func (h spaHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/login", backend.HandleSecureFunc(login))
-	router.HandleFunc("/devicelogin", backend.HandleSecureLogin)
-	router.HandleFunc("/getSensorData", backend.HandleSecureFunc(getSensorData))
-	router.HandleFunc("/dataProcess", dataProcess)
 	router.HandleFunc("/addUser", backend.HandleSecureFunc(signUpUser))
+
+	router.HandleFunc("/devicelogin", backend.HandleSecureLogin)
+	router.HandleFunc("/dataProcess", dataProcess)
+
+	router.HandleFunc("/getSensorData", backend.HandleSecureFunc(getSensorData))
 	router.HandleFunc("/uniqueDeviceData", backend.HandleSecureFunc(uniqueDeviceData))
 	router.HandleFunc("/specificDate", differentDayChartData)
+
+	router.HandleFunc("/getPlantData", backend.HandleSecureFunc(getPlantData))
+	router.HandleFunc("/getAllPlantData", backend.HandleSecureFunc(getAllPlantData))
+
 	spa := spaHandler{staticPath: "./admin/build", indexPath: "index.html"}
 	router.PathPrefix("/").Handler(spa)
 
@@ -107,7 +113,7 @@ func uniqueDeviceData(w http.ResponseWriter, r *http.Request) {
 	dec := json.NewDecoder(r.Body)
 	err := dec.Decode(&userDevice)
 	if err != nil {
-		fmt.Println("error decoding the response")
+		log.Printf("error decoding the response, %+v", err)
 		//log.Fatal(err)
 	}
 
@@ -120,7 +126,7 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 	dec := json.NewDecoder(r.Body)
 	err := dec.Decode(&deviceData)
 	if err != nil {
-		fmt.Println("error decoding the response")
+		log.Printf("error decoding the response, %+v", err)
 		//log.Fatal(err)
 	}
 
@@ -147,7 +153,7 @@ func signUpUser(w http.ResponseWriter, r *http.Request) {
 	dec := json.NewDecoder(r.Body)
 	err := dec.Decode(&newUser)
 	if err != nil {
-		fmt.Println("error decoding the response")
+		log.Printf("error decoding the response, %+v", err)
 		//log.Fatal(err)
 	}
 	log.Print("User Data: ", newUser)
@@ -166,10 +172,33 @@ func differentDayChartData(w http.ResponseWriter, r *http.Request) {
 	dec := json.NewDecoder(r.Body)
 	err := dec.Decode(&userDevice)
 	if err != nil {
-		fmt.Println("error decoding the response")
+		log.Printf("error decoding the response, %+v", err)
 		//log.Fatal(err)
 	}
 	log.Print(userDevice.Date)
 	specificDateData := db.GetSpecificDayChartData(userDevice.UID, userDevice.DeviceId, userDevice.Date, userDevice.TimeZone)
 	_ = json.NewEncoder(w).Encode(specificDateData)
+}
+
+func getPlantData(w http.ResponseWriter, r *http.Request) {
+	type PlantName struct {
+		PlantName string
+	}
+
+	var plantName PlantName
+	dec := json.NewDecoder(r.Body)
+	err := dec.Decode(&plantName)
+	if err != nil {
+		log.Printf("error decoding the response, %+v", err)
+		//log.Fatal(err)
+	}
+
+	plantData := db.GetPlantData(plantName.PlantName)
+	log.Print(plantData)
+	_ = json.NewEncoder(w).Encode(plantData)
+}
+
+func getAllPlantData(w http.ResponseWriter, r *http.Request) {
+	allPlantData := db.GetAllPlantData()
+	_ = json.NewEncoder(w).Encode(allPlantData)
 }
