@@ -8,6 +8,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import SignIn from "./components/Auth/SignIn";
 import AddDevice from "./components/Devices/AddDevice";
 import PasswordReset from "./components/Auth/PasswordReset";
+import ViewPlants from "./components/Plant/ViewPlant";
 
 class App extends Component {
     render() {
@@ -23,6 +24,7 @@ class App extends Component {
                             <Route path='/device/:id' component={DeviceDetails}/>
                             <Route path='/create' component={AddDevice}/>
                             <Route path='/passwordReset' component={PasswordReset}/>
+                            <Route path='/plant' component={ViewPlants}/>
                         </Switch>
                     </section>
                 </div>

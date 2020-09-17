@@ -22,7 +22,7 @@ class SignedInLinks extends Component {
             let initials = user.user.FirstName.charAt(0) + user.user.LastName.charAt(0)
             return (
                 <ul className="right center-align hide-on-med-and-down">
-                    <li><NavLink to='/'> Find Plant </NavLink></li>
+                    <li><NavLink to='/plant'> Find Plant </NavLink></li>
                     <li><NavLink to='/create'> Add Plant </NavLink></li>
                     <li><NavLink to='/'> Chat </NavLink></li>
                     <li><a href="/" onClick={this.props.signOut}>Log Out</a></li>
