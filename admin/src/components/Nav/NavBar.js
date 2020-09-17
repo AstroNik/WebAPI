@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Link, NavLink} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import SignedInLinks from "./SignedInLinks";
 import SignedOutLinks from "./SignedOutLinks";
 import SideBarSignedIn from "./SideBarSignedIn";

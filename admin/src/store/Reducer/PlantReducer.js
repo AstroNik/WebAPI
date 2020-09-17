@@ -1,9 +1,9 @@
 const initState = {
     plant: {
-        botanicalName : "",
-        commonName : "",
-        plantType : "",
-        matureSize : "",
+        botanicalName: "",
+        commonName: "",
+        plantType: "",
+        matureSize: "",
         care: {
             lightLevel: "",
             humidity: "",
@@ -32,5 +32,9 @@ const PlantReducer = (state = initState, action) => {
                 ...state,
                 error: action.err
             }
+        default:
+            return state
     }
 }
+
+export default PlantReducer

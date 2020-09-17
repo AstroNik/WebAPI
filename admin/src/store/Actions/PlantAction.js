@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const getPlantData = () => {
+export const getPlantData = (options) => {
     return (dispatch, getState) => {
-        let state = getState();
+        let state = getState()
         return axios.post("/getPlantData", {
-            plantName: state.plantName
+            plantName: options.plantName
         }, {
             headers: {
                 "Authorization": `${state.firebase.auth.stsTokenManager.accessToken}`,
@@ -19,11 +19,11 @@ export const getPlantData = () => {
     }
 }
 
-export const getAllPlantData = () => {
+export const getAllPlantData = (option) => {
     return (dispatch, getState) => {
-        let state = getState();
+        let state = getState()
         return axios.post("/getAllPlantData", {
-            plantName: state.plantName
+            plantName: option.plantName
         }, {
             headers: {
                 "Authorization": `${state.firebase.auth.stsTokenManager.accessToken}`,

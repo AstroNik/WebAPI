@@ -192,7 +192,6 @@ func getPlantData(w http.ResponseWriter, r *http.Request) {
 		log.Printf("error decoding the response, %+v", err)
 		//log.Fatal(err)
 	}
-
 	plantData := db.GetPlantData(plantName.PlantName)
 	log.Print(plantData)
 	_ = json.NewEncoder(w).Encode(plantData)

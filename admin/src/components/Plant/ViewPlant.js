@@ -4,12 +4,10 @@ import {getPlantData} from "../../store/Actions/PlantAction";
 import {Redirect} from "react-router-dom";
 
 class ViewPlants extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            plantName: '',
-        }
+    state = {
+        plantName: "",
     }
+
 
     handleChange = (e) => {
         this.setState({
@@ -22,6 +20,14 @@ class ViewPlants extends Component {
         this.props.getPlantData(this.state)
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.plant !== this.props.plant) {
+            this.setState({
+                plant: this.props.plant
+            })
+        }
+    }
+
     render() {
         const {auth, plant} = this.props
         if (!auth.uid) {
@@ -32,13 +38,14 @@ class ViewPlants extends Component {
             <div>
                 <div>
                     <form onSubmit={this.handleSubmit}>
-                        <h4 className="center-align">Sign In</h4>
+                        <h4 className="left-align">Find a Plant</h4>
 
-                        <div className="input-field col s6">
+                        <div className="input-field col s6 flex-row">
                             <input type="name" className="validate" id="plantName" onChange={this.handleChange}/>
                             <label htmlFor="plantName">Plant Name</label>
+                            <button type="submit" className="btn waves-effect waves-light">Find</button>
                         </div>
-                        <button type="submit" className="btn waves-effect waves-light">Find</button>
+
                     </form>
                 </div>
                 <div>
@@ -57,16 +64,17 @@ class ViewPlants extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state.plant)
     return {
         auth: state.firebase.auth,
-        plant: state.plant.data
+        plant: state.plant.plant
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getPlantData: () => dispatch(getPlantData())
+        getPlantData: (data) => dispatch(getPlantData(data))
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(ViewPlants)
+export default connect(mapStateToProps, mapDispatchToProps)(ViewPlants)
