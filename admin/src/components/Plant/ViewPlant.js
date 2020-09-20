@@ -8,7 +8,6 @@ class ViewPlants extends Component {
         plantName: "",
     }
 
-
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
@@ -30,9 +29,9 @@ class ViewPlants extends Component {
 
     render() {
         const {auth, plant} = this.props
-        // if (!auth.uid) {
-        //     return <Redirect to='/signin'/>
-        // }
+        if (!auth.uid) {
+            return <Redirect to='/signin'/>
+        }
 
         return (
             <Card className="col-lg-9 col-md-9 col-sm-10 col-10 mx-auto">
@@ -66,7 +65,6 @@ class ViewPlants extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state.plant)
     return {
         auth: state.firebase.auth,
         plant: state.plant.plant
