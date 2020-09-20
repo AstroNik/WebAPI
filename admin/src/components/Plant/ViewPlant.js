@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {getPlantData} from "../../store/Actions/PlantAction";
-import {Redirect} from "react-router-dom";
+import {Card, Row} from "react-bootstrap";
 
 class ViewPlants extends Component {
     state = {
@@ -30,35 +30,37 @@ class ViewPlants extends Component {
 
     render() {
         const {auth, plant} = this.props
-        if (!auth.uid) {
-            return <Redirect to='/signin'/>
-        }
+        // if (!auth.uid) {
+        //     return <Redirect to='/signin'/>
+        // }
 
         return (
-            <div>
+            <Card className="col-lg-9 col-md-9 col-sm-10 col-10 mx-auto">
                 <div>
                     <form onSubmit={this.handleSubmit}>
                         <h4 className="left-align">Find a Plant</h4>
 
-                        <div className="input-field col s6 flex-row">
-                            <input type="name" className="validate" id="plantName" onChange={this.handleChange}/>
-                            <label htmlFor="plantName">Plant Name</label>
-                            <button type="submit" className="btn waves-effect waves-light">Find</button>
-                        </div>
+                        <Row className="input-field justify-content-between">
+                            <input type="email" className="validate col-lg-8" id="plantName" onChange={this.handleChange}/>
+                            <label htmlFor="email">Plant Name</label>
+                            <button type="submit" className="btn waves-effect waves-light col-lg-3 mt-2">Find</button>
+                        </Row>
 
                     </form>
                 </div>
                 <div>
-                    <h3> Botanical Name - </h3> <h3> {plant.botanicalName} </h3>
-                    <h3> Common Name - </h3> <h3> {plant.commonName} </h3>
-                    <h3> Plant Type - </h3> <h3> {plant.plantType} </h3>
-                    <h3> Mature Size - </h3> <h3> {plant.matureSize} </h3>
-                    <h3> Light Level - </h3> <h3> {plant.care.lightLevel} </h3>
-                    <h3> Humidity - </h3> <h3> {plant.care.humidity} </h3>
-                    <h3> Duration - </h3> <h3> {plant.care.duration} </h3>
-                    <h3> Direction - </h3> <h3> {plant.care.direction} </h3>
+                    <h5> Botanical Name - </h5> <h5> {plant.botanicalName} </h5>
+                    <h5> Common Name(s) - </h5> <h5> {plant.commonName} </h5>
+                    <h5> Plant Type - </h5> <h5> {plant.plantType} </h5>
+                    <h5> Mature Size - </h5> <h5> {plant.matureSize} </h5>
+                    <hr/>
+                    <h4> Care </h4>
+                    <h5> Light Level - </h5> <h5> {plant.care.lightLevel} </h5>
+                    <h5> Humidity - </h5> <h5> {plant.care.humidity} </h5>
+                    <h5> Duration - </h5> <h5> {plant.care.duration} </h5>
+                    <h5> Direction - </h5> <h5> {plant.care.direction} </h5>
                 </div>
-            </div>
+            </Card>
         )
     }
 }

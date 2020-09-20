@@ -39,17 +39,17 @@ class SignUp extends Component {
                                 <label htmlFor="firstName">First name</label>
                             </div>
 
-                            <div className="input-field col s6">
+                            <div className="input-field col s6 pr-0">
                                 <input type="text" id="lastName" className="validate" onChange={this.handleChange}/>
                                 <label htmlFor="lastName">Last name</label>
                             </div>
                         </div>
-                        <div id="form-row-override" className="row input-field col s6">
+                        <div id="form-row-override" className="row input-field col s6 pr-0">
                             <input autoComplete="off" type="email" id="email" className="validate" onChange={this.handleChange}/>
                             <label for="email">Email</label>
                         </div>
 
-                        <div className="row input-field col s6">
+                        <div className="row input-field col s6 pr-0">
                             <input type="password" id="password" className="validate" onChange={this.handleChange}/>
                             <label for="password">Password</label>
                         </div>
