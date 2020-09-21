@@ -1,5 +1,7 @@
 # WebAPI
 
+This is our main service that handles everything
+
 ---------------------------- Running Locally (no kubernetes) ----------------------------------
 
 The build configuration should be as follows.

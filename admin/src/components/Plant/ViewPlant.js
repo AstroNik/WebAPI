@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {getPlantData} from "../../store/Actions/PlantAction";
 import {Card, Row} from "react-bootstrap";
+import {Redirect} from "react-router-dom";
 
 class ViewPlants extends Component {
     state = {
