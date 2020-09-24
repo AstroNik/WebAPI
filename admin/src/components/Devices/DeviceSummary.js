@@ -3,7 +3,7 @@ import moment from 'moment'
 
 const DeviceSummary = ({device}) => {
     const nameDisplay = device.deviceName ? device.deviceName : "Device Name Required"
-    const localTime = moment(device.dateTime).format("DD/MM/YYYY HH:mm").toString()
+    const localTime = moment(device.dateTime).local().format("lll").toString()
 
     return (
         <div className="card z-depth-0 device-info">
