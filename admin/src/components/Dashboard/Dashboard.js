@@ -4,13 +4,15 @@ import './Dashboard.css'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import {getDevices, getUniqueDeviceData} from "../../store/Actions/DeviceActions"
+import {getUserData} from "../../store/Actions/AuthActions";
 
 class Dashboard extends Component {
 
     componentDidMount() {
-        if (this.props.deviceLoaded === false) {
+        if (this.props.deviceLoaded === false || this.props.user.userLoaded === false) {
             this.props.getDevices()
             this.props.getUniqueDeviceData()
+            this.props.getUserData()
         }
     }
 
@@ -61,6 +63,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        getUserData: () => dispatch(getUserData()),
         getDevices: () => dispatch(getDevices()),
         getUniqueDeviceData: () => dispatch(getUniqueDeviceData())
     }

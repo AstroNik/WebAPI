@@ -118,7 +118,7 @@ const DeviceDetails = (props) => {
             <div className="fitting dashboard-container section">
                 <div className="device-details z-depth-0">
                     <div className="card-content">
-                        <p className="card-title"> Name - {device.deviceName} </p>
+                        {/*<p className="card-title"> Name - {device.deviceName} </p>*/}
                         <p> Date/Time - {localTime} </p>
                         <p> Battery Percent - {device.battery} </p>
                         <p> Moisture Percent - {device.soilMoisturePercent} </p>

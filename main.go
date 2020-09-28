@@ -137,7 +137,6 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 	currTime.Format(time.RFC3339)
 	sensor := structs.Device{
 		DeviceID:            deviceData.DeviceID,
-		DeviceName:          "",
 		DateTime:            currTime,
 		Battery:             deviceData.Battery,
 		AirValue:            deviceData.AirValue,

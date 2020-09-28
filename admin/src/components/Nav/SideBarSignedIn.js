@@ -1,10 +1,11 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-import {getUserData, signOut} from "../../store/Actions/AuthActions";
+import {signOut} from "../../store/Actions/AuthActions";
 import {connect} from "react-redux";
 
 const SideBarSignedIn = (props) => {
     const {user} = props
+    console.log(user)
     let initials = user.firstName.charAt(0) + user.lastName.charAt(0)
     return (
         <ul id="sidebar" className="sidenav">
@@ -26,7 +27,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchStateToProps = (dispatch) => {
     return {
-        getUserData: () => dispatch(getUserData()),
         signOut: () => dispatch(signOut()),
     }
 }
