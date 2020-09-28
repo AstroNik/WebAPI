@@ -21,7 +21,7 @@ then run the **build.sh** file
 
 ---------------------------- CLUSTER ACCESS -----------------------------------
 
-In order to access the Kubernetes Cluster running on Digital Ocean. First download the file from our slack channel (ecoders-kubeconfig.yaml)
+In order to access the Kubernetes Cluster running on Digital Ocean (credentials change every 7 days/ unless you already have access then it's fine). First download the file from our slack channel (ecoders-kubeconfig.yaml)
 
 Go to your user Folder C:\Users\YourName\ .kube folder
 
