@@ -4,6 +4,12 @@ import {combineReducers} from "redux";
 import {firebaseReducer} from 'react-redux-firebase'
 import PlantReducer from "./PlantReducer";
 
+/*
+Code Written By
+Nikhil Kapadia
+991495131
+*/
+
 const RootReducer = combineReducers({
     auth: AuthReducer,
     device: DeviceReducer,

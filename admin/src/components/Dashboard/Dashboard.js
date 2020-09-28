@@ -6,6 +6,12 @@ import {Redirect} from 'react-router-dom'
 import {getDevices, getUniqueDeviceData} from "../../store/Actions/DeviceActions"
 import {getUserData} from "../../store/Actions/AuthActions";
 
+/*
+Code Written By
+Nikhil Kapadia
+991495131
+*/
+
 class Dashboard extends Component {
 
     componentDidMount() {

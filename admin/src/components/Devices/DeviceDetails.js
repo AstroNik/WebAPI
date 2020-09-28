@@ -3,9 +3,14 @@ import {Redirect} from "react-router-dom";
 import {connect} from 'react-redux'
 import {Line} from "react-chartjs-2";
 import moment from "moment";
-
 import "./DeviceDetails.css"
 import axios from "axios";
+
+/*
+Code Written By
+Nikhil Kapadia
+991495131
+*/
 
 const DeviceDetails = (props) => {
     const {auth, device, sensorData,deviceName} = props

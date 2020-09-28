@@ -3,6 +3,12 @@ import DeviceSummary from "./DeviceSummary";
 import {Link} from "react-router-dom";
 import {useTrail, animated as a} from "react-spring/web";
 
+/*
+Code Written By
+Nikhil Kapadia
+991495131
+*/
+
 const config = { mass: 5, tension: 2000, friction: 200 };
 
 const DeviceList = ({devices, userDevices}) => {

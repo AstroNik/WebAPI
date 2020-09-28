@@ -3,6 +3,12 @@ import {NavLink} from "react-router-dom";
 import {signOut} from "../../store/Actions/AuthActions";
 import {connect} from "react-redux";
 
+/*
+Code Written By
+Nikhil Kapadia
+991495131
+*/
+
 const SideBarSignedIn = (props) => {
     const {user} = props
     console.log(user)

@@ -2,6 +2,12 @@ import React, {Component} from 'react'
 import {forgotPassword} from "../../store/Actions/AuthActions";
 import {connect} from 'react-redux'
 
+/*
+Code Written By
+Nikhil Kapadia
+991495131
+*/
+
 class PasswordReset extends Component {
     state = {
         email: '',

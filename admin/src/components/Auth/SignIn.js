@@ -3,6 +3,11 @@ import {connect} from 'react-redux'
 import {signIn} from "../../store/Actions/AuthActions";
 import {Redirect, NavLink} from 'react-router-dom'
 
+/*
+Code Written By
+Nikhil Kapadia
+991495131
+*/
 
 class SignIn extends Component {
     state = {

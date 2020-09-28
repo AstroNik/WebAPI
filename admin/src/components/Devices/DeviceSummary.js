@@ -1,8 +1,13 @@
 import React from 'react'
 import moment from 'moment'
 
+/*
+Code Written By
+Nikhil Kapadia
+991495131
+*/
+
 const DeviceSummary = ({device, devName}) => {
-    // const nameDisplay = device.deviceName ? device.deviceName : "Device Name Required"
     const localTime = moment(device.dateTime).local().format("lll").toString()
 
     return (

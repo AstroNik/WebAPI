@@ -7,6 +7,11 @@ import SideBarSignedOut from "./SideBarSignedOut";
 import {connect} from 'react-redux'
 import M from 'materialize-css/dist/js/materialize.min';
 
+/*
+Code Written By
+Nikhil Kapadia
+991495131
+*/
 
 const NavBar = (props) => {
     const {auth} = props

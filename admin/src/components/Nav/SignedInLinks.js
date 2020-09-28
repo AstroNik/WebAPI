@@ -3,6 +3,12 @@ import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getUserData, signOut} from "../../store/Actions/AuthActions";
 
+/*
+Code Written By
+Nikhil Kapadia
+991495131
+*/
+
 class SignedInLinks extends Component {
     render() {
         const {user} = this.props

@@ -9,6 +9,12 @@ import PasswordReset from "./components/Auth/PasswordReset";
 import ViewPlants from "./components/Plant/ViewPlant";
 import Setup from "./components/Devices/Setup";
 
+/*
+Code Written By
+Nikhil Kapadia
+991495131
+*/
+
 class App extends Component {
     render() {
         return (

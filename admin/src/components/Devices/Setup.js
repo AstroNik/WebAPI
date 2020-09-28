@@ -3,6 +3,12 @@ import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import Card from "@material-ui/core/Card";
 
+/*
+Code Written By
+Nikhil Kapadia
+991495131
+*/
+
 class Setup extends Component {
     render() {
         const {auth} = this.props

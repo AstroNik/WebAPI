@@ -3,6 +3,12 @@ import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {signUp} from "../../store/Actions/AuthActions";
 
+/*
+Code Written By
+Nikhil Kapadia
+991495131
+*/
+
 class SignUp extends Component {
     state = {
         email: '',

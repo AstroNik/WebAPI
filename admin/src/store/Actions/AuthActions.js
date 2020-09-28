@@ -1,5 +1,11 @@
 import axios from 'axios'
 
+/*
+Code Written By
+Nikhil Kapadia
+991495131
+*/
+
 export const signIn = (credentials) => {
     return (dispatch, getState, {getFirebase}) => {
         const firebase = getFirebase()

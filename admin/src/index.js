@@ -13,6 +13,11 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'materialize-css/dist/css/materialize.min.css'
 
+/*
+Code Written By
+Nikhil Kapadia
+991495131
+*/
 
 const store = createStore(RootReducer,
     compose(

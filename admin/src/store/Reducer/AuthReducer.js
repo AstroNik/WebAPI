@@ -1,3 +1,9 @@
+/*
+Code Written By
+Nikhil Kapadia
+991495131
+*/
+
 const initState = {
     authError: null,
     emailAuth: null,

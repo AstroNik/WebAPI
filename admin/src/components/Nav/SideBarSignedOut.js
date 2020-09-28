@@ -1,6 +1,12 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
 
+/*
+Code Written By
+Nikhil Kapadia
+991495131
+*/
+
 const SideBarSignedOut = () => {
     return (
         <ul id="sidebar" className="sidenav">

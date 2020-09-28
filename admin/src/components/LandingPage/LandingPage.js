@@ -1,6 +1,12 @@
 import React, {Component} from 'react'
 import SignUp from "../Auth/SignUp";
 
+/*
+Code Written By
+Nikhil Kapadia
+991495131
+*/
+
 class LandingPage extends Component{
     render() {
         return (

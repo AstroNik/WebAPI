@@ -1,5 +1,11 @@
 import axios from 'axios'
 
+/*
+Code Written By
+Nikhil Kapadia
+991495131
+*/
+
 export const createDevice = (device) => {
     return (dispatch, getState) => {
 
