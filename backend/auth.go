@@ -3,6 +3,7 @@ package backend
 import (
 	"encoding/json"
 	firebase "firebase.google.com/go/v4"
+	"github.com/AstroNik/WebCommon/db"
 	"golang.org/x/net/context"
 	"google.golang.org/api/option"
 	"log"
@@ -54,19 +55,21 @@ func HandleSecureFunc(handler http.HandlerFunc) http.HandlerFunc {
 
 func HandleSecureLogin(w http.ResponseWriter, r *http.Request) {
 
-	type UserEmail struct {
-		Email string
+	type DeviceSetup struct {
+		Email      string
+		DeviceId   int
+		DeviceName string
 	}
 
-	email := UserEmail{}
+	device := DeviceSetup{}
 
 	dec := json.NewDecoder(r.Body)
-	err := dec.Decode(&email)
+	err := dec.Decode(&device)
 	if err != nil {
 		log.Println("error decoding the response")
 		//log.Fatal(err)
 	}
-	log.Print(email)
+	log.Print(device)
 
 	//INIT FIREBASE APP
 	ctx := context.Background()
@@ -81,13 +84,15 @@ func HandleSecureLogin(w http.ResponseWriter, r *http.Request) {
 		log.Printf("error getting Auth client: %v\n", err)
 	}
 
-	u, err := client.GetUserByEmail(ctx, email.Email)
+	u, err := client.GetUserByEmail(ctx, device.Email)
 	if err != nil {
-		log.Printf("error getting user by email %s: %v\n", email, err)
+		log.Printf("error getting user by email %s: %v\n", device, err)
 	}
 	log.Printf("Successfully fetched user data: %v\n", u)
 
 	log.Print(u.UID)
+
+	db.AddDeviceToProfile(u.UID, device.DeviceId, device.DeviceName)
 
 	_ = json.NewEncoder(w).Encode(u.UID)
 
