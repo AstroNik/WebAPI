@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 
 const SideBarSignedIn = (props) => {
     const {user} = props
-    let initials = user.user.FirstName.charAt(0) + user.user.LastName.charAt(0)
+    let initials = user.firstName.charAt(0) + user.lastName.charAt(0)
     return (
         <ul id="sidebar" className="sidenav">
             <li><NavLink to='/'> Find Plant </NavLink></li>
@@ -20,7 +20,7 @@ const SideBarSignedIn = (props) => {
 const mapStateToProps = (state) => {
     return {
         auth: state.firebase.auth,
-        user: state.auth,
+        user: state.auth.user,
     }
 }
 

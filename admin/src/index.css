@@ -22,7 +22,7 @@ body {
     -webkit-user-select: none; /* Chrome/Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+ */
-    background-image: url("assets/img/background.png");
+    /*background-image: url("assets/img/kaufmann-mercantile.jpg");*/
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -72,7 +72,7 @@ nav ul a:hover {
 
 #signUpBox {
     padding: 25px;
-    background-color: #f1ece2;
+    background-color: rgba(244, 247, 230,0.9);
     border-radius: 3em;
 }
 
@@ -84,4 +84,12 @@ nav ul a:hover {
 
 .btn {
     width: 100%;
+}
+
+#home {
+    height:100vh;
+    background-image: url("assets/img/peter-zagar.png") ;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }

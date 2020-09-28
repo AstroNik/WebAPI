@@ -14,15 +14,19 @@ class SignedInLinks extends Component {
         const {user} = this.props
         if (this.props.user.userLoaded === false) {
             return (
-                <div>
-                    <p> Loading ... </p>
-                </div>
+                <ul className="right center-align hide-on-med-and-down">
+                    <li><NavLink to='/plant'> Find Plant </NavLink></li>
+                    <li><NavLink to="/setup"> Sensor Setup </NavLink> </li>
+                    <li><a href="/" onClick={this.props.signOut}>Log Out</a></li>
+                    <li><NavLink to='/' className='btn-round btn-floating pink lighten-1'/></li>
+                </ul>
             )
         } else {
-            let initials = user.user.FirstName.charAt(0) + user.user.LastName.charAt(0)
+            let initials = user.firstName.charAt(0) + user.lastName.charAt(0)
             return (
                 <ul className="right center-align hide-on-med-and-down">
                     <li><NavLink to='/plant'> Find Plant </NavLink></li>
+                    <li><NavLink to="/setup"> Sensor Setup </NavLink> </li>
                     <li><a href="/" onClick={this.props.signOut}>Log Out</a></li>
                     <li><NavLink to='/' className='btn-round btn-floating pink lighten-1'>{initials}</NavLink></li>
                 </ul>
@@ -35,7 +39,7 @@ const mapStateToProps = (state) => {
     getUserData()
     return {
         auth: state.firebase.auth,
-        user: state.auth,
+        user: state.auth.user,
     }
 }
 

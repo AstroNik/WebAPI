@@ -2,10 +2,11 @@ const initState = {
     authError: null,
     emailAuth: null,
     user: {
-        Email: "",
-        FirstName: "",
-        LastName: "",
-        UID: "",
+        email: "",
+        firstName: "",
+        lastName: "",
+        uid: "",
+        devices: {},
     },
     userLoaded: false
 }

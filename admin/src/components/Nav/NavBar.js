@@ -20,7 +20,7 @@ const NavBar = (props) => {
 
     return (
         <header>
-            <nav className="navbar-fixed nav-wrapper grey darken-3">
+            <nav className="navbar-fixed nav-wrapper grey darken-4">
                 <div className="nav-container">
                     <Link to={'/'} data-target="sidebar" className="sidenav-trigger"><i
                         className="material-icons">menu</i></Link>

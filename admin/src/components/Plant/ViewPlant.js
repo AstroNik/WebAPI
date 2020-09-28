@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {getPlantData} from "../../store/Actions/PlantAction";
 import {Card, Row} from "react-bootstrap";
 import {Redirect} from "react-router-dom";
+import {Button, TextField} from '@material-ui/core';
 
 class ViewPlants extends Component {
     state = {
@@ -37,15 +38,16 @@ class ViewPlants extends Component {
         return (
             <Card className="col-lg-9 col-md-9 col-sm-10 col-10 mx-auto">
                 <div>
-                    <form onSubmit={this.handleSubmit}>
+
+                    <form noValidate autoComplete="off" onSubmit={this.handleSubmit}>
                         <h4 className="left-align">Find a Plant</h4>
-
                         <Row className="input-field justify-content-between">
-                            <input type="email" className="validate col-lg-8" id="plantName" onChange={this.handleChange}/>
-                            <label htmlFor="email">Plant Name</label>
-                            <button type="submit" className="btn waves-effect waves-light col-lg-3 mt-2">Find</button>
+                            <TextField fullWidth InputProps={{disableUnderline: true}} id="plantName" label="Plant Name"
+                                       onChange={this.handleChange}/>
+                            <Button variant="contained" color="primary">
+                                Find
+                            </Button>
                         </Row>
-
                     </form>
                 </div>
                 <div>

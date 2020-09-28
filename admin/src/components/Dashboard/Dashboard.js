@@ -54,7 +54,8 @@ const mapStateToProps = (state) => {
     return {
         devices: state.device.devices,
         auth: state.firebase.auth,
-        deviceLoaded: state.device.devicesLoaded
+        deviceLoaded: state.device.devicesLoaded,
+        user: state.auth.user.devices,
     }
 }
 

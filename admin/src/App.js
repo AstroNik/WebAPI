@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './App.css'
 import NavBar from "./components/Nav/NavBar";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Dashboard from './components/Dashboard/Dashboard'
@@ -8,6 +7,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import SignIn from "./components/Auth/SignIn";
 import PasswordReset from "./components/Auth/PasswordReset";
 import ViewPlants from "./components/Plant/ViewPlant";
+import Setup from "./components/Devices/Setup";
 
 class App extends Component {
     render() {
@@ -23,7 +23,7 @@ class App extends Component {
                             <Route path='/device/:id' component={DeviceDetails}/>
                             <Route path='/passwordReset' component={PasswordReset}/>
                             <Route path='/plant' component={ViewPlants}/>
-                            {/*<Router path='/settings' component={Settings}/>*/}
+                            <Route path='/setup' component={Setup}/>
                         </Switch>
                     </section>
                 </div>

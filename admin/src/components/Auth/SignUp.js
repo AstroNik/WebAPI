@@ -31,7 +31,7 @@ class SignUp extends Component {
             return (
                 <div className="col-lg-7 col-md-auto col-sm-auto mx-auto" id="signUpBox">
                     <form className="col s12" onSubmit={this.handleSubmit}>
-                        <h4 className="center-align">Sign Up</h4>
+                        <h4 className="center-align"><b>Sign Up</b></h4>
 
                         <div id="form-row-override" className="row">
                             <div className="input-field col s6">
@@ -46,12 +46,12 @@ class SignUp extends Component {
                         </div>
                         <div id="form-row-override" className="row input-field col s6 pr-0">
                             <input autoComplete="off" type="email" id="email" className="validate" onChange={this.handleChange}/>
-                            <label for="email">Email</label>
+                            <label htmlFor="email">Email</label>
                         </div>
 
                         <div className="row input-field col s6 pr-0">
                             <input type="password" id="password" className="validate" onChange={this.handleChange}/>
-                            <label for="password">Password</label>
+                            <label htmlFor="password">Password</label>
                         </div>
 
                         <button type="submit" className="btn waves-effect waves-light">Sign Up</button>
