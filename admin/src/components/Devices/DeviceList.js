@@ -5,12 +5,12 @@ import {useTrail, animated as a} from "react-spring/web";
 
 const config = { mass: 5, tension: 2000, friction: 200 };
 
-const DeviceList = ({devices}) => {
-    const mappedData =  devices && devices.map((device, index) => {
+const DeviceList = ({devices, userDevices}) => {
+    const mappedData = devices && devices.map((device, index) => {
         return (
             <div>
                 <Link to={'/device/' + index} key={index}>
-                    <DeviceSummary device={device}/>
+                    <DeviceSummary device={device} devName={userDevices[index].Value}/>
                 </Link>
             </div>
         )

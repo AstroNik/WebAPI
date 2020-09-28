@@ -17,7 +17,7 @@ class Dashboard extends Component {
     }
 
     render() {
-        const {devices, auth} = this.props
+        const {devices, auth, user} = this.props
         if (!auth.uid) {
             return <Redirect to='/signin'/>
         } else if (this.props.deviceLoaded === false) {
@@ -39,7 +39,7 @@ class Dashboard extends Component {
                     <div className="dashboard-container">
                         <div className="row">
                             <div className="col-sm-6 col-md-6 col-lg-6">
-                                <DeviceList devices={devices}/>
+                                <DeviceList devices={devices} userDevices={user.devices}/>
                             </div>
                             {/*<div className="col sm12 m5 offset-m1">*/}
                             {/*    <Notifications/>*/}
@@ -57,7 +57,7 @@ const mapStateToProps = (state) => {
         devices: state.device.devices,
         auth: state.firebase.auth,
         deviceLoaded: state.device.devicesLoaded,
-        user: state.auth.user.devices,
+        user: state.auth.user,
     }
 }
 

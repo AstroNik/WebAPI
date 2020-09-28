@@ -3,7 +3,6 @@ const initState = {
         {
             ID: "",
             deviceId: 0,
-            deviceName: "",
             battery: 0,
             dateTime: "",
             airValue: 0,
