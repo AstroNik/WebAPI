@@ -61,6 +61,9 @@ func main() {
 	router.HandleFunc("/getPlantData", backend.HandleSecureFunc(getPlantData))
 	router.HandleFunc("/getAllPlantData", backend.HandleSecureFunc(getAllPlantData))
 
+	router.HandleFunc("/getNotifications", backend.HandleSecureFunc(getNotifications))
+	router.HandleFunc("/updateNotification", backend.HandleSecureFunc(updateNotification))
+
 	spa := spaHandler{staticPath: "./admin/build", indexPath: "index.html"}
 	router.PathPrefix("/").Handler(spa)
 
@@ -151,6 +154,15 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 		SoilMoisturePercent: deviceData.SoilMoisturePercent,
 	}
 	db.InsertMoistureData(deviceData.UID, sensor)
+	if sensor.SoilMoistureValue <= 60 {
+		notif := structs.Notification{
+			DateTime: currTime,
+			Title:    "ALERT",
+			Content:  "You need to water your plants!",
+			IsRead:   false,
+		}
+		db.PushNotification(deviceData.UID, notif)
+	}
 }
 
 func signUpUser(w http.ResponseWriter, r *http.Request) {
@@ -205,4 +217,39 @@ func getPlantData(w http.ResponseWriter, r *http.Request) {
 func getAllPlantData(w http.ResponseWriter, r *http.Request) {
 	allPlantData := db.GetAllPlantData()
 	_ = json.NewEncoder(w).Encode(allPlantData)
+}
+
+func getNotifications(w http.ResponseWriter, r *http.Request) {
+	type User struct {
+		UID string
+	}
+
+	var user User
+	dec := json.NewDecoder(r.Body)
+	err := dec.Decode(&user)
+	if err != nil {
+		log.Printf("error decoding the response, %+v", err)
+		//log.Fatal(err)
+	}
+
+	allNotifs := db.GetNotifications(user.UID)
+	_ = json.NewEncoder(w).Encode(allNotifs)
+
+}
+
+func updateNotification(w http.ResponseWriter, r *http.Request) {
+	type User struct {
+		UID            string
+		NotificationID int
+	}
+
+	var user User
+	dec := json.NewDecoder(r.Body)
+	err := dec.Decode(&user)
+	if err != nil {
+		log.Printf("error decoding the response, %+v", err)
+		//log.Fatal(err)
+	}
+
+	db.UpdateNotification(user.UID, user.NotificationID)
 }

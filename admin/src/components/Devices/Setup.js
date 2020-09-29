@@ -19,9 +19,9 @@ class Setup extends Component {
 
         return (
             <div>
-                <Card className="w-75">
+                <Card className="w-75 ml-auto mr-auto mt-5 p-4">
                     <h4> Device Setup </h4>
-                    <p> Instructions Will Come Device is Done</p>
+                    <p> Instructions Will Come When Device is Done</p>
                 </Card>
             </div>
         )
