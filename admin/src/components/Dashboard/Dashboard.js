@@ -6,7 +6,6 @@ import {Redirect} from 'react-router-dom'
 import {getDevices, getUniqueDeviceData} from "../../store/Actions/DeviceActions"
 import {getUserData} from "../../store/Actions/AuthActions";
 import {getAllNotification} from "../../store/Actions/NotificationActions";
-import Notifications from "./Notifications";
 
 /*
 Code Written By
@@ -15,6 +14,8 @@ Nikhil Kapadia
 */
 
 class Dashboard extends Component {
+
+
 
     componentDidMount() {
         if (this.props.deviceLoaded === false || this.props.user.userLoaded === false) {
@@ -25,13 +26,15 @@ class Dashboard extends Component {
         }
     }
 
+
+
     render() {
         const {devices, auth, user, notifications} = this.props
         if (!auth.uid) {
             return <Redirect to='/signin'/>
         } else if (this.props.deviceLoaded === false) {
             return (
-                <div>
+                <div className="mx-auto">
                     <p> Loading ...</p>
                 </div>
             )
@@ -46,11 +49,8 @@ class Dashboard extends Component {
                 return (
                     <div className="dashboard-container">
                         <div className="row">
-                            <div className="col-sm-6 col-md-6 col-lg-6">
+                            <div className="col-sm-6 col-md-6 col-lg-6 ml-auto mr-auto">
                                 <DeviceList devices={devices} userDevices={user.devices}/>
-                            </div>
-                            <div className="col sm12 m5 offset-m1">
-                                <Notifications notification={notifications}/>
                             </div>
                         </div>
                     </div>

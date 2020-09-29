@@ -14,9 +14,8 @@ const SideBarSignedIn = (props) => {
     let initials = user.firstName.charAt(0) + user.lastName.charAt(0)
     return (
         <ul id="sidebar" className="sidenav">
-            <li><NavLink to='/'> Find Plant </NavLink></li>
-            <li><NavLink to='/create'> Add Plant </NavLink></li>
-            <li><NavLink to='/'> Chat </NavLink></li>
+            <li><NavLink to='/plant'> Find Plant </NavLink></li>
+            <li><NavLink to="/setup"> Sensor Setup </NavLink></li>
             <li><a href="/" onClick={props.signOut}>Log Out</a></li>
             <li><NavLink to='/' className='btn-round btn-floating pink lighten-1'>{initials}</NavLink></li>
         </ul>
