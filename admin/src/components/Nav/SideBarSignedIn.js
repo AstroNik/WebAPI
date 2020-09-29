@@ -17,7 +17,7 @@ const SideBarSignedIn = (props) => {
             <li><NavLink to='/plant'> Find Plant </NavLink></li>
             <li><NavLink to="/setup"> Sensor Setup </NavLink></li>
             <li><a href="/" onClick={props.signOut}>Log Out</a></li>
-            <li><NavLink to='/' className='btn-round btn-floating pink lighten-1'>{initials}</NavLink></li>
+            <li><NavLink to='/settings' className='btn-round btn-floating pink lighten-1'>{initials}</NavLink></li>
         </ul>
     )
 }
