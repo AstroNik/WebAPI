@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import NotificationSummary from "./NotificationSummary";
 import {store} from "react-notifications-component";
+import {updateNotification} from "../../store/Actions/NotificationActions";
+import {connect} from "react-redux";
 
 /*
 Code Written By
@@ -13,17 +15,14 @@ class Notifications extends Component {
         const {notification} = this.props
         notification && notification.map((notif) => {
             store.addNotification({
-                title: notif.title,
-                message: notif.content,
-                type: "info",
+                content: <NotificationSummary notification={notif}/>,
                 insert: "bottom",
                 container: "bottom-right",
                 animationIn: ["animate__animated", "animate__fadeIn"],
                 animationOut: ["animate__animated", "animate__fadeOut"],
-                // dismiss: {
-                //     duration: 5000,
-                //     onScreen: true
-                // }
+                onRemoval: (id, removedBy) => {
+                    this.props.updateNotification(notif.notificationId)
+                }
             });
         })
 
@@ -33,4 +32,10 @@ class Notifications extends Component {
     }
 }
 
-export default Notifications
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateNotification: (id) => dispatch(updateNotification(id))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Notifications)

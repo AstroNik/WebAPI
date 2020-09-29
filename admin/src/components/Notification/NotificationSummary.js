@@ -11,12 +11,10 @@ const NotificationSummary = ({notification}) => {
     const localTime = moment(notification.dateTime).local().format("lll").toString()
 
     return (
-        <div className="card z-depth-0 device-info">
-            <div className="card-content grey-text text-darken-3">
-                <span className="card-title"> {notification.title} </span>
-                <p className="grey-text"> {localTime}</p>
-                <p> {notification.content} </p>
-            </div>
+        <div className="notification-success w-100 p-2">
+            <h6 className="card-title"><b> {notification.title} </b></h6>
+            <p className="white-text"> {localTime}</p>
+            <p> {notification.content} </p>
         </div>
     )
 }
