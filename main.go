@@ -8,6 +8,7 @@ import (
 	"github.com/AstroNik/WebCommon/structs"
 	"github.com/gorilla/mux"
 	"log"
+	"math/rand"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -156,10 +157,12 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 	db.InsertMoistureData(deviceData.UID, sensor)
 	if sensor.SoilMoistureValue <= 60 {
 		notif := structs.Notification{
-			DateTime: currTime,
-			Title:    "ALERT",
-			Content:  "You need to water your plants!",
-			IsRead:   false,
+			DateTime:       currTime,
+			NotificationID: rand.Int(),
+			DeviceID:       deviceData.DeviceID,
+			Title:          "ALERT",
+			Content:        "You need to water your plants!",
+			IsRead:         false,
 		}
 		db.PushNotification(deviceData.UID, notif)
 	}

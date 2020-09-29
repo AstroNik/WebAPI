@@ -3,6 +3,7 @@ import DeviceReducer from "./DeviceReducer";
 import {combineReducers} from "redux";
 import {firebaseReducer} from 'react-redux-firebase'
 import PlantReducer from "./PlantReducer";
+import NotificationReducer from "./NotificationReducer";
 
 /*
 Code Written By
@@ -14,6 +15,7 @@ const RootReducer = combineReducers({
     auth: AuthReducer,
     device: DeviceReducer,
     plant: PlantReducer,
+    notification: NotificationReducer,
     firebase: firebaseReducer
 })
 

@@ -31,7 +31,7 @@ const initState = {
 const DeviceReducer = (state = initState, action) => {
     switch(action.type){
         case 'GET_DEVICE_DATA':
-            console.log('Retrieved device data')
+            console.log('GET_DEVICE_DATA')
             return {
                 ...state,
                 devices: action.devices,
@@ -44,7 +44,7 @@ const DeviceReducer = (state = initState, action) => {
                 ...state,
             }
         case 'GET_SENSOR_DATA':
-            console.log("Retrieved unique sensor data")
+            console.log("GET_SENSOR_DATA")
             return {
                 ...state,
                 sensorData: action.sensorData,

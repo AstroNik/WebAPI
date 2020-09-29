@@ -11,7 +11,6 @@ Nikhil Kapadia
 
 const SideBarSignedIn = (props) => {
     const {user} = props
-    console.log(user)
     let initials = user.firstName.charAt(0) + user.lastName.charAt(0)
     return (
         <ul id="sidebar" className="sidenav">
