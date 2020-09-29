@@ -45,12 +45,12 @@ class ViewPlants extends Component {
             <Card className="col-lg-9 col-md-9 col-sm-10 col-10 mx-auto">
                 <div>
 
-                    <form noValidate autoComplete="off" onSubmit={this.handleSubmit}>
+                    <form noValidate autoComplete="off">
                         <h4 className="left-align">Find a Plant</h4>
                         <Row className="input-field justify-content-between">
                             <TextField fullWidth InputProps={{disableUnderline: true}} id="plantName" label="Plant Name"
                                        onChange={this.handleChange}/>
-                            <Button variant="contained" color="primary">
+                            <Button variant="contained" color="primary" onClick={this.handleSubmit}>
                                 Find
                             </Button>
                         </Row>
