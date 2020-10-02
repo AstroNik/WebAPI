@@ -46,6 +46,8 @@ class Setting extends Component {
                     <form>
                         <label> Email</label>
                         <input type="email" id="email" onChange={this.handleChange}/>
+                        <label> Password </label>
+                        <input type="password" id="password" onChange={this.handleChange}/>
                         <label> First Name</label>
                         <input type="text" id="firstName" onChange={this.handleChange}/>
                         <label> Last Name </label>

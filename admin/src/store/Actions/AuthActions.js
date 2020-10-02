@@ -58,16 +58,16 @@ export const signUp = (newUser) => {
             newUser.password
         ).then((resp) => {
             firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
-                .then(function(idToken){
+                .then(function (idToken) {
                     axios.post('/addUser', {
                         uid: resp.user.uid,
                         email: newUser.email,
                         firstName: newUser.firstName,
                         lastName: newUser.lastName,
                         token: idToken
-                    },{
+                    }, {
                         headers: {
-                            "Authorization" : `${idToken}`,
+                            "Authorization": `${idToken}`,
                             'Content-Type': 'application/json',
                         },
                         withCredentials: true
@@ -137,7 +137,7 @@ export const changeEmail = (email) => {
     return (dispatch, getState, {getFirebase}) => {
         const firebase = getFirebase()
 
-        firebase.auth().currentUser.updateEmail(email).then(() =>{
+        firebase.auth().currentUser.updateEmail(email).then(() => {
             console.log("Successful Email Change")
         }).catch(err => {
             console.log("Failed Email Change: " + err)
@@ -161,7 +161,10 @@ export const updateUserData = (user) => {
             },
             withCredentials: true
         }).then(() => {
-            // dispatch({type: "GET_USER_DATA_SUCCESS", data})
+            changeEmail(user.email)
+            if (!isEmpty(user.password)) {
+                changePassword(user.password)
+            }
         }, (error) => {
             // dispatch({type: "FAILED_GET_USER_DATA"})
         })
