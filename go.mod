@@ -5,7 +5,7 @@ go 1.13
 require (
 	cloud.google.com/go v0.50.0 // indirect
 	firebase.google.com/go/v4 v4.0.0
-	github.com/AstroNik/WebCommon v0.0.0-20200929173957-6dd9ab84603a
+	github.com/AstroNik/WebCommon v0.0.0-20201002202946-e86349407097
 	github.com/gorilla/mux v1.7.4
 	github.com/hashicorp/golang-lru v0.5.3 // indirect
 	github.com/stretchr/testify v1.4.0 // indirect

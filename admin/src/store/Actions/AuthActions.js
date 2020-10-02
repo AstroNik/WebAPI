@@ -118,6 +118,7 @@ export const forgotPassword = (email) => {
     }
 }
 
+
 export const changePassword = (password) => {
     return (dispatch, getState, {getFirebase}) => {
         const firebase = getFirebase()
@@ -141,5 +142,28 @@ export const changeEmail = (email) => {
         }).catch(err => {
             console.log("Failed Email Change: " + err)
         });
+    }
+}
+
+export const updateUserData = (user) => {
+    return (dispatch, getState) => {
+        let state = getState();
+        return axios.post('/updateUserData', {
+            uid: state.firebase.auth.uid,
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            devices: user.devices,
+        }, {
+            headers: {
+                "Authorization": `${state.firebase.auth.stsTokenManager.accessToken}`,
+                'Content-Type': 'application/json',
+            },
+            withCredentials: true
+        }).then(() => {
+            // dispatch({type: "GET_USER_DATA_SUCCESS", data})
+        }, (error) => {
+            // dispatch({type: "FAILED_GET_USER_DATA"})
+        })
     }
 }

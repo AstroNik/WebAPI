@@ -65,6 +65,8 @@ func main() {
 	router.HandleFunc("/getNotifications", backend.HandleSecureFunc(getNotifications))
 	router.HandleFunc("/updateNotification", backend.HandleSecureFunc(updateNotification))
 
+	router.HandleFunc("/updateUserData", backend.HandleSecureFunc(updateUserData))
+
 	spa := spaHandler{staticPath: "./admin/build", indexPath: "index.html"}
 	router.PathPrefix("/").Handler(spa)
 
@@ -255,4 +257,17 @@ func updateNotification(w http.ResponseWriter, r *http.Request) {
 	}
 
 	db.UpdateNotification(user.UID, user.NotificationID)
+}
+
+func updateUserData(w http.ResponseWriter, r *http.Request) {
+	var user structs.UserRetrieval
+	dec := json.NewDecoder(r.Body)
+	err := dec.Decode(&user)
+	if err != nil {
+		log.Printf("error decoding the response, %+v", err)
+	}
+
+	log.Print(user)
+
+	db.UpdateUserData(user)
 }

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import SignedInLinks from "./SignedInLinks";
 import SignedOutLinks from "./SignedOutLinks";
 import SideBarSignedIn from "./SideBarSignedIn";
@@ -27,9 +27,9 @@ const NavBar = (props) => {
         <header>
             <nav className="navbar-fixed nav-wrapper grey darken-4">
                 <div className="nav-container">
-                    <Link to={'/'} data-target="sidebar" className="sidenav-trigger"><i
-                        className="material-icons">menu</i></Link>
-                    <Link to={'/'} className="brand-logo"> Ecoders </Link>
+                    <NavLink to='/' data-target="sidebar" className="sidenav-trigger"><i
+                        className="material-icons">menu</i></NavLink>
+                    <NavLink to='/' className="brand-logo"> Ecoders </NavLink>
                     <div className="spacer"/>
                     {links}
                 </div>

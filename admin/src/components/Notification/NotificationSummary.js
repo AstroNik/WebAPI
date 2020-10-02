@@ -13,7 +13,7 @@ const NotificationSummary = ({notification}) => {
     return (
         <div className="notification-success w-100 p-2">
             <h6 className="card-title"><b> {notification.title} </b></h6>
-            <p className="white-text"> {localTime}</p>
+            <p className="white-text mb-0"> {localTime}</p>
             <p> {notification.content} </p>
         </div>
     )

@@ -6,7 +6,6 @@ import {Redirect} from 'react-router-dom'
 import {getDevices, getUniqueDeviceData} from "../../store/Actions/DeviceActions"
 import {getUserData} from "../../store/Actions/AuthActions";
 import {getAllNotification} from "../../store/Actions/NotificationActions";
-import { store } from 'react-notifications-component';
 import Notification from "../Notification/Notification";
 
 /*

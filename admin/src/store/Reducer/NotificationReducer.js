@@ -6,7 +6,7 @@ Nikhil Kapadia
 
 const initState = {
     notification:[],
-    error: null
+    error: null,
 }
 
 const NotificationReducer = (state = initState, action) => {
@@ -16,7 +16,7 @@ const NotificationReducer = (state = initState, action) => {
             return{
                 ...state,
                 notification: action.notif,
-                error: null
+                error: null,
             }
         case 'UPDATE_NOTIFICATION':
             return {
