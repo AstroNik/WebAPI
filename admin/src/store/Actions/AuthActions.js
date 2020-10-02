@@ -162,7 +162,7 @@ export const updateUserData = (user) => {
             withCredentials: true
         }).then(() => {
             changeEmail(user.email)
-            if (!isEmpty(user.password)) {
+            if (user.password.length !== 0) {
                 changePassword(user.password)
             }
         }, (error) => {
