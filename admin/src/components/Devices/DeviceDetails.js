@@ -19,7 +19,6 @@ class DeviceDetails extends Component {
         this.handleNameChange = this.handleNameChange.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.state = {
-            todaysData: {},
             chartData: {},
             options: {
                 scales: {
@@ -54,7 +53,8 @@ class DeviceDetails extends Component {
                 }
             },
             devName: this.props.deviceName,
-            deviceId: this.props.device.deviceId
+            deviceId: this.props.device.deviceId,
+            index: this.props.index
         }
     }
 
@@ -179,6 +179,7 @@ const mapStateToProps = (state, ownProps) => {
         device: device,
         sensorData: sensorData,
         deviceName: deviceName,
+        index: id
     }
 }
 

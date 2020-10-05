@@ -13,13 +13,13 @@ const initState = {
         firstName: "",
         lastName: "",
         uid: "",
-        devices: {},
+        devices: [],
     },
     userLoaded: false
 }
 
 const AuthReducer = (state = initState, action) => {
-    switch(action.type){
+    switch (action.type) {
         case 'GET_USER_DATA_SUCCESS':
             console.log("GET_USER_DATA_SUCCESS")
             return {
@@ -75,9 +75,11 @@ const AuthReducer = (state = initState, action) => {
             }
         case 'UPDATE_DEVICE_NAME':
             console.log('UPDATE_DEVICE_NAME')
+            state.user.devices[action.targetItemIndex].Value = action.deviceName
             return {
                 ...state,
-                deviceNameError: null,
+                deviceNameError: null
+
             }
         case 'UPDATE_DEVICE_NAME_ERROR':
             console.log('UPDATE_DEVICE_NAME_ERROR')

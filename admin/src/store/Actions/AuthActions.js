@@ -185,7 +185,7 @@ export const updateDeviceName = (device) => {
             },
             withCredentials: true
         }).then(() => {
-            dispatch({type:'UPDATE_DEVICE_NAME', deviceName: device.devName, deviceId: device.deviceId})
+            dispatch({type:'UPDATE_DEVICE_NAME', deviceName: device.devName, targetItemIndex: device.index})
         }, (error) => {
             dispatch({type: 'UPDATE_DEVICE_NAME_ERROR', err: error})
         })
