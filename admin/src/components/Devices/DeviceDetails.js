@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React, {Component} from 'react'
 import {Redirect} from "react-router-dom";
 import {connect} from 'react-redux'
 import {Line} from "react-chartjs-2";
 import moment from "moment";
 import "./DeviceDetails.css"
 import axios from "axios";
+import {updateDeviceName} from "../../store/Actions/AuthActions";
 
 /*
 Code Written By
@@ -12,13 +13,53 @@ Nikhil Kapadia
 991495131
 */
 
-const DeviceDetails = (props) => {
-    const {auth, device, sensorData,deviceName} = props
-    const [chartData, setChartData] = useState({})
-    const today = moment().format().split("T")[0]
-    const localTime = moment(device.dateTime).format("DD/MM/YYYY HH:mm").toString()
+class DeviceDetails extends Component {
+    constructor(props) {
+        super(props);
+        this.handleNameChange = this.handleNameChange.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.state = {
+            todaysData: {},
+            chartData: {},
+            options: {
+                scales: {
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'time',
+                        },
+                        type: 'time',
+                        display: true,
+                        distribution: 'linear',
+                        time: {
+                            unit: 'minute',
+                            unitStepSize: 30,
+                            displayFormats: {
+                                hour: 'h:mm a',
+                                min: moment().startOf('day'),
+                                max: moment().endOf('day'),
+                            }
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'moisture (%)',
+                        },
+                        ticks: {
+                            max: 100,
+                            min: 0,
+                        }
+                    }]
+                }
+            },
+            devName: this.props.deviceName,
+            deviceId: this.props.device.deviceId
+        }
+    }
 
-    function handleChange(date) {
+    handleChange = (date) => {
+        const {auth, device} = this.props
         axios.post("/specificDate", {
             uid: auth.uid,
             deviceId: device.deviceId,
@@ -26,7 +67,7 @@ const DeviceDetails = (props) => {
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         }).then(({data}) => {
             let newData = {};
-            if(data){
+            if (data) {
                 newData = data.map(dataSet => {
                     const container = {};
                     container.x = moment(dataSet.dateTime)
@@ -34,26 +75,30 @@ const DeviceDetails = (props) => {
                     return container
                 })
             }
-            if (data == null){
+            if (data == null) {
                 newData = data
             }
-            setChartData({
-                labels: [moment(date).startOf('day'), moment(date).endOf('day')],
-                datasets: [
-                    {
-                        label: "Moisture Level",
-                        data: newData,
-                        backgroundColor: ['rgba(75,192,192,0.6)'],
-                        borderWidth: 4
-                    }
-                ],
+            this.setState({
+                chartData: {
+                    labels: [moment(date).startOf('day'), moment(date).endOf('day')],
+                    datasets: [
+                        {
+                            label: "Moisture Level",
+                            data: newData,
+                            backgroundColor: ['rgba(75,192,192,0.6)'],
+                            borderWidth: 4
+                        }
+                    ],
+                }
             })
         }, (error) => {
             console.log(error)
         })
     }
 
-    useEffect(() => {
+    componentDidMount = () => {
+        const {sensorData} = this.props
+
         let chartData = {}
 
         if (sensorData) {
@@ -65,9 +110,8 @@ const DeviceDetails = (props) => {
             })
         }
 
-
-        const chart = () => {
-            setChartData({
+        this.setState({
+            chartData: {
                 labels: [moment().startOf('day'), moment().endOf('day')],
                 datasets: [
                     {
@@ -77,64 +121,49 @@ const DeviceDetails = (props) => {
                         borderWidth: 4
                     }
                 ],
-            })
-        }
-
-        chart()
-    }, [sensorData]);
-
-    const options = {
-        scales: {
-            xAxes: [{
-                scaleLabel: {
-                    display: true,
-                    labelString: 'time',
-                },
-                type: 'time',
-                display: true,
-                distribution: 'linear',
-                time: {
-                    unit: 'minute',
-                    unitStepSize: 30,
-                    displayFormats: {
-                        hour: 'h:mm a',
-                        min: moment().startOf('day'),
-                        max: moment().endOf('day'),
-                    }
-                }
-            }],
-            yAxes: [{
-                scaleLabel: {
-                    display: true,
-                    labelString: 'moisture (%)',
-                },
-                ticks: {
-                    max: 100,
-                    min: 0,
-                }
-            }]
-        }
+            }
+        })
     }
 
-    if (!auth.uid) {
-        return <Redirect to="/signin"/>
-    } else {
-        return (
-            <div className="fitting dashboard-container section">
-                <div className="device-details z-depth-0">
-                    <div className="card-content">
-                        <p className="card-title"> Name - {deviceName} </p>
-                        <p> Date/Time - {localTime} </p>
-                        <p> Battery Percent - {device.battery} </p>
-                        <p> Moisture Percent - {device.soilMoisturePercent} </p>
+    handleNameChange = (event) => {
+        this.setState({
+            devName: event.target.value
+        })
+    }
+
+    updateDeviceName = () => {
+        this.props.updateDeviceName(this.state)
+    }
+
+    render() {
+        const {auth, device} = this.props
+        const today = moment().format().split("T")[0]
+        const localTime = moment(device.dateTime).format("DD/MM/YYYY HH:mm").toString()
+
+        if (!auth.uid) {
+            return <Redirect to="/signin"/>
+        } else {
+            return (
+                <form>
+                    <div className="fitting dashboard-container section">
+                        <div className="device-details z-depth-0">
+                            <div className="card-content">
+                                <input type="text" id="devName" value={this.state.devName}
+                                       onChange={this.handleNameChange} onBlur={this.updateDeviceName}/>
+                                <p> Date/Time - {localTime} </p>
+                                <p> Battery Percent - {device.battery} </p>
+                                <p> Moisture Percent - {device.soilMoisturePercent} </p>
+                            </div>
+                            <div className="card-action grey lighten-4 grey-text">
+                                <input type="date" defaultValue={today} max={today}
+                                       onChange={(event => this.handleChange(event.target.value))}/>
+                                <Line data={this.state.chartData} options={this.state.options} redraw={true}/>
+                            </div>
+                        </div>
                     </div>
-                    <div className="card-action grey lighten-4 grey-text">
-                        <input type="date" defaultValue={today} max={today} onChange={(event => handleChange(event.target.value))}/>
-                        <Line data={chartData} options={options}/>
-                    </div>
-                </div>
-            </div>
-        )
+                </form>
+            )
+        }
     }
 }
 
@@ -143,7 +172,7 @@ const mapStateToProps = (state, ownProps) => {
     const devices = state.device.devices;
     const sensors = state.device.sensorData;
     const device = devices ? devices[id] : null
-    const deviceName = state.auth.user.devices[id].Value
+    const deviceName = state.auth.user.devices[id].Value.toString()
     const sensorData = sensors ? sensors[id] : null
     return {
         auth: state.firebase.auth,
@@ -153,4 +182,10 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps)(DeviceDetails)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateDeviceName: (device) => dispatch(updateDeviceName(device))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeviceDetails)

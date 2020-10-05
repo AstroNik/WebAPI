@@ -11,16 +11,14 @@ Nikhil Kapadia
 */
 
 class Setting extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: "",
-            password: "",
-            firstName: "",
-            lastName: "",
-            devices: [],
-        }
+    state = {
+        email: this.props.user.email,
+        password: "",
+        firstName: this.props.user.firstName,
+        lastName: this.props.user.lastName,
+        devices: [],
     }
+
 
     handleChange = (e) => {
         this.setState({
@@ -44,19 +42,32 @@ class Setting extends Component {
                 <div className="pl-3 pr-3 pb-3">
                     <h4> Settings </h4>
                     <form>
+                        <input type="email" id="email" value={this.state.email} onChange={this.handleChange}/>
                         <label> Email</label>
-                        <input type="email" id="email" onChange={this.handleChange}/>
-                        <label> Password </label>
                         <input type="password" id="password" onChange={this.handleChange}/>
+                        <label> Password </label>
+                        <input type="text" id="firstName" value={this.state.firstName} onChange={this.handleChange}/>
                         <label> First Name</label>
-                        <input type="text" id="firstName" onChange={this.handleChange}/>
+                        <input type="text" id="lastName" value={this.state.lastName} onChange={this.handleChange}/>
                         <label> Last Name </label>
-                        <input type="text" id="lastName" onChange={this.handleChange}/>
+
+                        {/*{*/}
+                        {/*    user.devices && user.devices.map((device) => {*/}
+                        {/*        return (*/}
+                        {/*            <div>*/}
+                        {/*                <input type="text" id={device.Key}*/}
+                        {/*                       onChange={this.handleChange}/>*/}
+                        {/*                <label> {device.Value} </label>*/}
+                        {/*            </div>*/}
+                        {/*        )*/}
+                        {/*    })*/}
+                        {/*}*/}
+
                         <Button className="right" variant="contained" color="primary" onClick={this.handleSubmit}>
                             Save Changes
                         </Button>
                     </form>
-                    <hr/>
+                    {/*<hr/>*/}
                     <form>
 
                     </form>

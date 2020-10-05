@@ -111,9 +111,9 @@ export const forgotPassword = (email) => {
     return (dispatch, getState, {getFirebase}) => {
         const firebase = getFirebase()
         firebase.auth().sendPasswordResetEmail(email).then(() => {
-            dispatch({type: 'Email_Sent'})
+            dispatch({type: 'EMAIL_SENT'})
         }).catch((error) => {
-            dispatch({type: 'Failed_To_Send'})
+            dispatch({type: 'FAILED_TO_SEND_EMAIL'})
         })
     }
 }
@@ -167,6 +167,27 @@ export const updateUserData = (user) => {
             }
         }, (error) => {
             // dispatch({type: "FAILED_GET_USER_DATA"})
+        })
+    }
+}
+
+export const updateDeviceName = (device) => {
+    return (dispatch, getState) => {
+        let state = getState()
+        return axios.post("/updateDeviceName", {
+            uid: state.firebase.auth.uid,
+            deviceId: device.deviceId,
+            deviceName: device.devName
+        }, {
+            headers: {
+                "Authorization": `${state.firebase.auth.stsTokenManager.accessToken}`,
+                'Content-Type': 'application/json'
+            },
+            withCredentials: true
+        }).then(() => {
+            dispatch({type:'UPDATE_DEVICE_NAME', deviceName: device.devName, deviceId: device.deviceId})
+        }, (error) => {
+            dispatch({type: 'UPDATE_DEVICE_NAME_ERROR', err: error})
         })
     }
 }

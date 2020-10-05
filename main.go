@@ -66,6 +66,7 @@ func main() {
 	router.HandleFunc("/updateNotification", backend.HandleSecureFunc(updateNotification))
 
 	router.HandleFunc("/updateUserData", backend.HandleSecureFunc(updateUserData))
+	router.HandleFunc("/updateDeviceName", backend.HandleSecureFunc(updateDeviceName))
 
 	spa := spaHandler{staticPath: "./admin/build", indexPath: "index.html"}
 	router.PathPrefix("/").Handler(spa)
@@ -270,4 +271,23 @@ func updateUserData(w http.ResponseWriter, r *http.Request) {
 	log.Print(user)
 
 	db.UpdateUserData(user)
+}
+
+func updateDeviceName(w http.ResponseWriter, r *http.Request) {
+	type Device struct {
+		UID        string
+		DeviceId   int
+		DeviceName string
+	}
+
+	var device Device
+
+	dec := json.NewDecoder(r.Body)
+	err := dec.Decode(&device)
+	if err != nil {
+		log.Printf("error decoding the response, %+v", err)
+	}
+	log.Printf("Device Details, %+v", device)
+
+	db.UpdateDeviceName(device.UID, device.DeviceId, device.DeviceName)
 }

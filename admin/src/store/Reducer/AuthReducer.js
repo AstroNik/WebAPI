@@ -7,6 +7,7 @@ Nikhil Kapadia
 const initState = {
     authError: null,
     emailAuth: null,
+    deviceNameError: null,
     user: {
         email: "",
         firstName: "",
@@ -60,17 +61,29 @@ const AuthReducer = (state = initState, action) => {
                 ...state,
                 authError: action.err.message
             }
-        case 'Email_Sent':
+        case 'EMAIL_SENT':
             console.log('Successfully Sent Email')
             return {
                 ...state,
                 emailAuth: null,
             }
-        case 'Failed_To_Send':
+        case 'FAILED_TO_SEND_EMAIL':
             console.log('Failed to Send Email')
             return {
                 ...state,
                 emailAuth: action.err.message
+            }
+        case 'UPDATE_DEVICE_NAME':
+            console.log('UPDATE_DEVICE_NAME')
+            return {
+                ...state,
+                deviceNameError: null,
+            }
+        case 'UPDATE_DEVICE_NAME_ERROR':
+            console.log('UPDATE_DEVICE_NAME_ERROR')
+            return {
+                ...state,
+                deviceNameError: action.err.message
             }
         default:
             return state
