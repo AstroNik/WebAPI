@@ -3,6 +3,7 @@ import {Button} from "@material-ui/core";
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {updateUserData} from "../../store/Actions/AuthActions";
+import {Modal} from "react-bootstrap";
 
 /*
 Code Written By
@@ -13,10 +14,14 @@ Nikhil Kapadia
 class Setting extends Component {
     state = {
         email: this.props.user.email,
-        password: "",
+        newPassword: "",
+        oldPassword: "",
         firstName: this.props.user.firstName,
         lastName: this.props.user.lastName,
         devices: [],
+        modalShow: false,
+        modalShown: false,
+        modalShow2: false,
     }
 
 
@@ -27,8 +32,17 @@ class Setting extends Component {
     }
 
     handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.updateUserData(this.state)
+        if (this.state.modalShown === false) {
+            this.setState({modalShow: true})
+            this.setState({modalShown: true})
+        }
+        if (this.state.modalShow === true && this.state.modalShown === true) {
+            this.props.updateUserData(this.state)
+            this.setState({modalShow: false})
+            this.setState({modalShown: false})
+            this.setState({newPassword: ""})
+            this.setState({modalShow2: true})
+        }
     }
 
     render() {
@@ -38,41 +52,78 @@ class Setting extends Component {
             return <Redirect to='/signin'/>
         }
         return (
-            <div className="card z-depth-0 w-75 ml-auto mr-auto mt-3">
-                <div className="pl-3 pr-3 pb-3">
-                    <h4> Settings </h4>
-                    <form>
-                        <input type="email" id="email" value={this.state.email} onChange={this.handleChange}/>
-                        <label> Email</label>
-                        <input type="password" id="password" onChange={this.handleChange}/>
-                        <label> Password </label>
-                        <input type="text" id="firstName" value={this.state.firstName} onChange={this.handleChange}/>
-                        <label> First Name</label>
-                        <input type="text" id="lastName" value={this.state.lastName} onChange={this.handleChange}/>
-                        <label> Last Name </label>
+            <>
+                <div className="card z-depth-0 w-75 ml-auto mr-auto mt-3">
+                    <div className="pl-3 pr-3 pb-3">
+                        <h4> Settings </h4>
+                        <form>
+                            <input type="email" id="email" value={this.state.email} onChange={this.handleChange}/>
+                            <label> Email</label>
+                            <input type="password" id="newPassword" onChange={this.handleChange}/>
+                            <label> Password </label>
+                            <input type="text" id="firstName" value={this.state.firstName}
+                                   onChange={this.handleChange}/>
+                            <label> First Name</label>
+                            <input type="text" id="lastName" value={this.state.lastName} onChange={this.handleChange}/>
+                            <label> Last Name </label>
 
-                        {/*{*/}
-                        {/*    user.devices && user.devices.map((device) => {*/}
-                        {/*        return (*/}
-                        {/*            <div>*/}
-                        {/*                <input type="text" id={device.Key}*/}
-                        {/*                       onChange={this.handleChange}/>*/}
-                        {/*                <label> {device.Value} </label>*/}
-                        {/*            </div>*/}
-                        {/*        )*/}
-                        {/*    })*/}
-                        {/*}*/}
-
-                        <Button className="right" variant="contained" color="primary" onClick={this.handleSubmit}>
-                            Save Changes
-                        </Button>
-                    </form>
-                    {/*<hr/>*/}
-                    <form>
-
-                    </form>
+                            <Button className="right" variant="contained" color="primary"
+                                    onClick={this.handleSubmit}>
+                                Save Changes
+                            </Button>
+                        </form>
+                    </div>
                 </div>
-            </div>
+                <Modal
+                    show={this.state.modalShow}
+                    onBackdropClick={() => {
+                        this.setState({modalShow: false})
+                        this.setState({modalShown: false})
+                    }}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                    style={{backgroundColor: "transparent", width: "100%", height: "100%", maxHeight: "100%"}}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title id="contained-modal-title-vcenter">
+                            Re-Authenticate
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <h5>Password</h5>
+                        <input type="password" id="oldPassword" onChange={this.handleChange}/>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={() => this.setState({modalShow: false})}>Close</Button>
+                        <Button onClick={this.handleSubmit}>Submit</Button>
+                    </Modal.Footer>
+                </Modal>
+
+                <Modal
+                    show={this.state.modalShow2}
+                    onBackdropClick={() => {
+                        this.setState({modalShow2: false})
+                    }}
+                    size="lg"
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                    style={{backgroundColor: "transparent", width: "100%", height: "100%", maxHeight: "100%"}}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title id="contained-modal-title-vcenter">
+                            Sign Out in Progress
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <p> You will be signed out shortly </p>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={() => this.setState({modalShow2: false})}>Close</Button>
+                    </Modal.Footer>
+                </Modal>
+
+            </>
         )
     }
 }

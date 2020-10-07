@@ -13,9 +13,9 @@ export const signIn = (credentials) => {
             credentials.email,
             credentials.password
         ).then((resp) => {
-            firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
+            return firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
                 .then(function (idToken) {
-                    axios.post('/login', {
+                    return axios.post('/login', {
                         uid: resp.user.uid,
                     }, {
                         headers: {
@@ -118,58 +118,52 @@ export const forgotPassword = (email) => {
     }
 }
 
-
-export const changePassword = (password) => {
+export const updateUserData = (userData) => {
     return (dispatch, getState, {getFirebase}) => {
+        const state = getState();
         const firebase = getFirebase()
 
-        firebase.auth().currentUser.updatePassword(password).then(() => {
-            console.log("Successful Password Change")
-        }).catch(err => {
-            console.log("Failed Password Change: " + err)
-        });
+        let user = firebase.auth().currentUser;
+        let cred = firebase.auth.EmailAuthProvider.credential(user.email, userData.oldPassword);
 
-
-    }
-}
-
-export const changeEmail = (email) => {
-    return (dispatch, getState, {getFirebase}) => {
-        const firebase = getFirebase()
-
-        firebase.auth().currentUser.updateEmail(email).then(() => {
-            console.log("Successful Email Change")
-        }).catch(err => {
-            console.log("Failed Email Change: " + err)
-        });
-    }
-}
-
-export const updateUserData = (user) => {
-    return (dispatch, getState) => {
-        let state = getState();
-        return axios.post('/updateUserData', {
-            uid: state.firebase.auth.uid,
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            devices: user.devices,
-        }, {
-            headers: {
-                "Authorization": `${state.firebase.auth.stsTokenManager.accessToken}`,
-                'Content-Type': 'application/json',
-            },
-            withCredentials: true
+        user.reauthenticateWithCredential(cred).then(() => {
+            return axios.post('/updateUserData', {
+                uid: state.firebase.auth.uid,
+                email: userData.email,
+                firstName: userData.firstName,
+                lastName: userData.lastName,
+                devices: userData.devices,
+            }, {
+                headers: {
+                    "Authorization": `${state.firebase.auth.stsTokenManager.accessToken}`,
+                    'Content-Type': 'application/json',
+                },
+                withCredentials: true
+            }).then(() => {
+                if (state.firebase.auth.email !== userData.email) {
+                    return firebase.auth().currentUser.updateEmail(userData.email).then(() => {
+                        console.log("Email Changed")
+                    }).catch(err => {
+                        console.log("Failed Email Change: " + err)
+                    });
+                }
+            }).then(() => {
+                if (userData.newPassword.length !== 0) {
+                    return firebase.auth().currentUser.updatePassword(userData.newPassword).then(() => {
+                        console.log("Successful Password Change")
+                    }).catch(err => {
+                        console.log("Failed Password Change: " + err)
+                    });
+                }
+            }).catch(err => {
+                console.log("Failed Email Change: " + err)
+            });
         }).then(() => {
-            changeEmail(user.email)
-            if (user.password.length !== 0) {
-                changePassword(user.password)
-            }
-        }, (error) => {
-            // dispatch({type: "FAILED_GET_USER_DATA"})
+            return firebase.auth().signOut().then(null)
         })
     }
 }
+
 
 export const updateDeviceName = (device) => {
     return (dispatch, getState) => {
@@ -185,7 +179,7 @@ export const updateDeviceName = (device) => {
             },
             withCredentials: true
         }).then(() => {
-            dispatch({type:'UPDATE_DEVICE_NAME', deviceName: device.devName, targetItemIndex: device.index})
+            dispatch({type: 'UPDATE_DEVICE_NAME', deviceName: device.devName, targetItemIndex: device.index})
         }, (error) => {
             dispatch({type: 'UPDATE_DEVICE_NAME_ERROR', err: error})
         })

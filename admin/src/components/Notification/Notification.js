@@ -24,6 +24,9 @@ class Notifications extends Component {
                     this.props.updateNotification(notif.notificationId)
                 }
             });
+            return (
+                <></>
+            )
         })
 
         return (

@@ -49,7 +49,7 @@ class Dashboard extends Component {
                             <div className="col-sm-6 col-md-6 col-lg-6 ml-auto mr-auto ">
                                 <DeviceList devices={devices} userDevices={user.devices}/>
                             </div>
-                                <Notification notification={notifications}/>
+                            <Notification notification={notifications}/>
                         </div>
                     </div>
                 )
@@ -64,7 +64,8 @@ const mapStateToProps = (state) => {
         auth: state.firebase.auth,
         deviceLoaded: state.device.devicesLoaded,
         user: state.auth.user,
-        notifications: state.notification.notification
+        notifications: state.notification.notification,
+        notifLoaded: state.notification.notifLoaded,
     }
 }
 
