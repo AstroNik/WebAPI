@@ -93,6 +93,7 @@ func HandleSecureLogin(w http.ResponseWriter, r *http.Request) {
 	u, err := client.GetUserByEmail(ctx, device.Email)
 	if err != nil {
 		log.Printf("error getting user by email %s: %v\n", device, err)
+		_ = json.NewEncoder(w).Encode("UserNotFound")
 	}
 	log.Printf("Successfully fetched user data: %v\n", u)
 
