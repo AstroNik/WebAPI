@@ -14,6 +14,7 @@ import (
 	"google.golang.org/api/option"
 	"log"
 	"net/http"
+	"strconv"
 	"strings"
 )
 
@@ -63,7 +64,7 @@ func HandleSecureLogin(w http.ResponseWriter, r *http.Request) {
 
 	type DeviceSetup struct {
 		Email      string
-		DeviceId   int
+		DeviceId   string
 		DeviceName string
 	}
 
@@ -99,7 +100,13 @@ func HandleSecureLogin(w http.ResponseWriter, r *http.Request) {
 
 	log.Print(u.UID)
 
-	db.AddDeviceToProfile(u.UID, device.DeviceId, device.DeviceName)
+	deviceId, err := strconv.Atoi(device.DeviceId)
+
+	if err != nil {
+		log.Print("Cannot convert string id to int id")
+	}
+
+	db.AddDeviceToProfile(u.UID, deviceId, device.DeviceName)
 
 	_ = json.NewEncoder(w).Encode(u.UID)
 

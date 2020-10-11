@@ -146,7 +146,11 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 
 	log.Print("Data from Sensor: ", deviceData)
 
-	deviceId, _ := strconv.Atoi(deviceData.DeviceID)
+	deviceId, err := strconv.Atoi(deviceData.DeviceID)
+
+	if err != nil {
+		log.Print("Cannot convert string id to int id")
+	}
 
 	//The BELOW is how the data will be Inserted into the Database
 	currTime := time.Now() //Time is in UTC Format
