@@ -12,6 +12,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strconv"
 	"time"
 )
 
@@ -145,11 +146,13 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 
 	log.Print("Data from Sensor: ", deviceData)
 
+	deviceId, _ := strconv.Atoi(deviceData.DeviceID)
+
 	//The BELOW is how the data will be Inserted into the Database
 	currTime := time.Now() //Time is in UTC Format
 	currTime.Format(time.RFC3339)
 	sensor := structs.Device{
-		DeviceID:            deviceData.DeviceID,
+		DeviceID:            deviceId,
 		DateTime:            currTime,
 		Battery:             deviceData.Battery,
 		AirValue:            deviceData.AirValue,
@@ -162,7 +165,7 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 		notif := structs.Notification{
 			DateTime:       currTime,
 			NotificationID: rand.Int(),
-			DeviceID:       deviceData.DeviceID,
+			DeviceID:       deviceId,
 			Title:          "ALERT",
 			Content:        "You need to water your plants!",
 			IsRead:         false,

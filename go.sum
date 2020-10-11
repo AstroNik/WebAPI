@@ -136,6 +136,8 @@ github.com/AstroNik/WebCommon v0.0.0-20201002202946-e86349407097 h1:F+Vs2SYyIKAX
 github.com/AstroNik/WebCommon v0.0.0-20201002202946-e86349407097/go.mod h1:BUdGVaICMwgmz5iZGmexnmwu4EhPERi+t63phyRtTWk=
 github.com/AstroNik/WebCommon v0.0.0-20201004013814-800d1df45fe4 h1:SBpFiw6Knha8hname9lr+STZzSwBpiEzY1t4IapX1pU=
 github.com/AstroNik/WebCommon v0.0.0-20201004013814-800d1df45fe4/go.mod h1:BUdGVaICMwgmz5iZGmexnmwu4EhPERi+t63phyRtTWk=
+github.com/AstroNik/WebCommon v0.0.0-20201011021037-ad60c0fc2716 h1:slZHoQ9bCcybf80iGPQG/GEq71KOmaJkUYCe5ZJW/2Q=
+github.com/AstroNik/WebCommon v0.0.0-20201011021037-ad60c0fc2716/go.mod h1:BUdGVaICMwgmz5iZGmexnmwu4EhPERi+t63phyRtTWk=
 github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
