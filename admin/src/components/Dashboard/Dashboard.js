@@ -49,7 +49,7 @@ class Dashboard extends Component {
                             <div className="col-sm-6 col-md-6 col-lg-6 ml-auto mr-auto ">
                                 <DeviceList devices={devices} userDevices={user.devices}/>
                             </div>
-                            <Notification notification={notifications}/>
+                            <Notification notification={notifications} devices={user.devices}/>
                         </div>
                     </div>
                 )

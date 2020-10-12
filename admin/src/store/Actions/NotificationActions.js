@@ -25,7 +25,7 @@ export const getAllNotification = () => {
     }
 }
 
-export const updateNotification = (id) => {
+export const updateNotification = (id, index) => {
     return (dispatch, getState) => {
         let state = getState();
         return axios.post("/updateNotification", {
@@ -38,7 +38,7 @@ export const updateNotification = (id) => {
             },
             withCredentials: true
         }).then(() => {
-            dispatch({type: "UPDATE_NOTIFICATION"})
+            dispatch({type: "UPDATE_NOTIFICATION", index:index},)
         }).catch((err) => {
             dispatch({type: 'UPDATE_NOTIFICATION_ERROR', err})
         })

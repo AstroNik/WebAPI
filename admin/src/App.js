@@ -9,6 +9,8 @@ import PasswordReset from "./components/Auth/PasswordReset";
 import ViewPlants from "./components/Plant/ViewPlant";
 import Setup from "./components/Devices/Setup";
 import Setting from "./components/Setting/Setting";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 /*
 Code Written By
@@ -20,6 +22,17 @@ class App extends Component {
     render() {
         return (
             <BrowserRouter>
+                <ToastContainer
+                    position="bottom-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
                 <div id="home">
                     <section id="home">
                         <NavBar/>

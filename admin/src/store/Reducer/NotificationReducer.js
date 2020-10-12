@@ -19,6 +19,8 @@ const NotificationReducer = (state = initState, action) => {
                 error: null,
             }
         case 'UPDATE_NOTIFICATION':
+            state.notification[action.index] = null;
+            console.log(state.notification)
             return {
                 ...state
             }
