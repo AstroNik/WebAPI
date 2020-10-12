@@ -19,10 +19,12 @@ class Notifications extends Component {
     componentDidMount() {
         const {notification, devices} = this.props
         notification && notification.map((notif, index) => {
-            if(notif !== null){
+            if (notif !== null) {
                 devices && devices.map((device) => {
                     if (notif.deviceId == device.Key) {
-                        toast.success(<div><p style={{marginBottom:"0px"}}>{device.Value}  {notif.content} </p>{moment(notif.dateTime).local().format("lll").toString()}</div>, {
+                        toast.success(<div><p
+                            style={{marginBottom: "0px"}}>{device.Value} {notif.content} </p>{moment(notif.dateTime).local().format("lll").toString()}
+                        </div>, {
                             position: "bottom-right",
                             autoClose: 5000,
                             hideProgressBar: false,
@@ -31,10 +33,10 @@ class Notifications extends Component {
                             draggable: true,
                             progress: undefined,
                             onClose: () => {
-                                this.props.updateNotification(notif.notificationId,index)
+                                this.props.updateNotification(notif.deviceId, index)
                             },
                             onClick: () => {
-                                this.props.updateNotification(notif.notificationId,index)
+                                this.props.updateNotification(notif.deviceId, index)
                             },
                             toastId: index,
                         })
@@ -64,7 +66,7 @@ class Notifications extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateNotification: (id,index) => dispatch(updateNotification(id,index))
+        updateNotification: (id, index) => dispatch(updateNotification(id, index))
     }
 }
 

@@ -252,8 +252,8 @@ func getNotifications(w http.ResponseWriter, r *http.Request) {
 
 func updateNotification(w http.ResponseWriter, r *http.Request) {
 	type User struct {
-		UID            string
-		NotificationID int
+		UID      string
+		DeviceId int
 	}
 
 	var user User
@@ -264,7 +264,7 @@ func updateNotification(w http.ResponseWriter, r *http.Request) {
 		//log.Fatal(err)
 	}
 
-	db.UpdateNotification(user.UID, user.NotificationID)
+	db.UpdateNotification(user.UID, user.DeviceId)
 }
 
 func updateUserData(w http.ResponseWriter, r *http.Request) {

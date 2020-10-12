@@ -30,7 +30,7 @@ export const updateNotification = (id, index) => {
         let state = getState();
         return axios.post("/updateNotification", {
             uid: state.firebase.auth.uid,
-            notificationId: id,
+            deviceId: id,
         }, {
             headers: {
                 "Authorization": `${state.firebase.auth.stsTokenManager.accessToken}`,
