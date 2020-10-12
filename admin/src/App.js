@@ -9,8 +9,6 @@ import PasswordReset from "./components/Auth/PasswordReset";
 import ViewPlants from "./components/Plant/ViewPlant";
 import Setup from "./components/Devices/Setup";
 import Setting from "./components/Setting/Setting";
-import ReactNotification from 'react-notifications-component'
-import 'react-notifications-component/dist/theme.css'
 
 /*
 Code Written By
@@ -22,7 +20,6 @@ class App extends Component {
     render() {
         return (
             <BrowserRouter>
-                <ReactNotification />
                 <div id="home">
                     <section id="home">
                         <NavBar/>
