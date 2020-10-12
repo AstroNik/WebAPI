@@ -168,7 +168,7 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 	if sensor.SoilMoistureValue <= 60 {
 		notif := structs.Notification{
 			DateTime:       currTime,
-			NotificationID: rand.Int(),
+			NotificationID: rand.Intn(999999999),
 			DeviceID:       deviceId,
 			Title:          "ALERT",
 			Content:        "You need to water your plants!",
