@@ -165,7 +165,7 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 		SoilMoisturePercent: deviceData.SoilMoisturePercent,
 	}
 	db.InsertMoistureData(deviceData.UID, sensor)
-	if sensor.SoilMoistureValue <= 60 {
+	if sensor.SoilMoisturePercent <= 60 {
 		notif := structs.Notification{
 			DateTime:       currTime,
 			NotificationID: rand.Intn(999999999),
