@@ -125,6 +125,12 @@ class DeviceDetails extends Component {
         })
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.state.chartData !== prevState.chartData) {
+            console.log("Data Updated")
+        }
+    }
+
     handleNameChange = (event) => {
         this.setState({
             devName: event.target.value
@@ -137,9 +143,9 @@ class DeviceDetails extends Component {
 
     render() {
         const {auth, device} = this.props
+        const {chartData} = this.state
         const today = moment().format().split("T")[0]
         const localTime = moment(device.dateTime).format("DD/MM/YYYY HH:mm").toString()
-        console.log(device.deviceId)
         if (!auth.uid) {
             return <Redirect to="/signin"/>
         } else {
@@ -157,7 +163,7 @@ class DeviceDetails extends Component {
                             <div className="card-action grey lighten-4 grey-text">
                                 <input type="date" defaultValue={today} max={today}
                                        onChange={(event => this.handleChange(event.target.value))}/>
-                                <Line data={this.state.chartData} options={this.state.options} redraw={true}/>
+                                <Line data={chartData} options={this.state.options} redraw={false}/>
                             </div>
                         </div>
                     </div>
