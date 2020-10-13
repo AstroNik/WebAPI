@@ -139,7 +139,7 @@ class DeviceDetails extends Component {
         const {auth, device} = this.props
         const today = moment().format().split("T")[0]
         const localTime = moment(device.dateTime).format("DD/MM/YYYY HH:mm").toString()
-
+        console.log(device.deviceId)
         if (!auth.uid) {
             return <Redirect to="/signin"/>
         } else {
