@@ -22,10 +22,6 @@ body {
     -webkit-user-select: none; /* Chrome/Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+ */
-    /*background-image: url("assets/img/kaufmann-mercantile.jpg");*/
-    background-size: cover;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
 }
 
 code {
@@ -59,6 +55,31 @@ code {
     display: flex;
     align-items: center;
     max-width: 100%;
+    background-color: white;
+    padding: 0;
+    margin: 0;
+}
+
+.page-containers {
+    height: -webkit-calc(100vh - 64px);
+    height: -moz-calc(100vh - 64px);
+    height: calc(100vh - 64px);
+    display: flex;
+    max-width: 100%;
+    background-color: white;
+    padding: 0;
+    margin: 0;
+}
+
+.setup-container {
+    height: -webkit-calc(100vh - 64px);
+    height: -moz-calc(100vh - 64px);
+    height: calc(100vh - 64px);
+    max-width: 100%;
+    overflow: auto;
+    background-color: white;
+    padding: 0;
+    margin: 0;
 }
 
 nav ul a:hover {
@@ -73,12 +94,6 @@ nav ul a:hover {
 #signUpBox {
     padding: 25px;
     background-color: rgb(219, 219, 219);
-    border-radius: 3em;
-}
-
-#loginBox {
-    padding: 25px;
-    background-color: #f1ece2;
     border-radius: 3em;
 }
 
@@ -105,6 +120,12 @@ nav ul a:hover {
 }
 
 /* label underline focus color */
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #8c9e75 !important;
+    box-shadow: 0 1px 0 0 #8c9e75 !important
+}
+
+/* label underline focus color */
 .input-field input[type=password]:focus {
     border-bottom: 1px solid #8c9e75 !important;
     box-shadow: 0 1px 0 0 #8c9e75 !important
@@ -114,4 +135,34 @@ nav ul a:hover {
 .input-field input[type=email]:focus {
     border-bottom: 1px solid #8c9e75 !important;
     box-shadow: 0 1px 0 0 #8c9e75 !important
+}
+
+/* Small devices (landscape phones, 544px and up) */
+@media (max-width: 543.98px) {
+    .device-list-text{font-size: 12pt}
+    .device-list-title{font-size: 13pt}
+}
+
+/* Small devices (landscape phones, 544px and up) */
+@media (min-width: 544px) {
+    .device-list-text{font-size: 14pt}
+    .device-list-title{font-size: 14pt}
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+    .device-list-text{font-size: 14pt}
+    .device-list-title{font-size: 14pt}
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .device-list-text{font-size: 14pt}
+    .device-list-title{font-size: 15pt}
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .device-list-text{font-size: 14pt}
+    .device-list-title{font-size: 15pt}
 }

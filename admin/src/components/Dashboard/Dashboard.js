@@ -21,6 +21,7 @@ class Dashboard extends Component {
             this.props.getUniqueDeviceData()
             this.props.getUserData()
             this.props.getAllNotification()
+
         }
     }
 
@@ -31,22 +32,22 @@ class Dashboard extends Component {
             return <Redirect to='/signin'/>
         } else if (this.props.deviceLoaded === false) {
             return (
-                <div className="mx-auto">
-                    <p> Loading ...</p>
+                <div style={{height:"100%"}} className="mx-auto dashboard-container ">
+                    <p className="ml-auto mr-auto"> Loading ...</p>
                 </div>
             )
         } else {
             if (devices === null) {
                 return (
-                    <div>
-                        <p> No Devices </p>
+                    <div style={{height:"100%"}} className="mx-auto dashboard-container ">
+                        <h2 className="ml-auto mr-auto"> No Devices</h2>
                     </div>
                 )
             } else {
                 return (
                     <div className="dashboard-container">
                         <div className="row">
-                            <div className="col-sm-6 col-md-6 col-lg-6 ml-auto mr-auto ">
+                            <div className="col-sm-12 col-md-9 col-lg-7 ml-auto mr-auto ">
                                 <DeviceList devices={devices} userDevices={user.devices}/>
                             </div>
                             <Notification notification={notifications} devices={user.devices}/>

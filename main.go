@@ -171,7 +171,7 @@ func dataProcess(w http.ResponseWriter, r *http.Request) {
 			NotificationID: rand.Intn(999999999),
 			DeviceID:       deviceId,
 			Title:          "ALERT",
-			Content:        "You need to water your plants!",
+			Content:        "needs to be watered!",
 			IsRead:         false,
 		}
 		db.PushNotification(deviceData.UID, notif)

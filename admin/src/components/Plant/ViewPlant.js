@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {getPlantData} from "../../store/Actions/PlantAction";
-import {Card, Row} from "react-bootstrap";
+import {Card} from "react-bootstrap";
 import {Redirect} from "react-router-dom";
-import {Button, TextField} from '@material-ui/core';
 
 /*
 Code Written By
@@ -42,33 +41,70 @@ class ViewPlants extends Component {
         }
 
         return (
-            <Card className="col-lg-9 col-md-9 col-sm-10 col-10 mx-auto">
-                <div>
+            <div className="page-containers">
+                <Card className="col-lg-9 col-md-9 col-sm-10 col-10 mx-auto" style={{backgroundColor:"rgb(219, 219, 219)"}}>
+                    <div>
+                        <form noValidate autoComplete="off">
+                            <h4 className="left-align">Find a Plant</h4>
+                            <div className="row input-field">
+                                <div className="input-field col s6 w-75">
+                                    <input type="text" className="validate" id="plantName" onChange={this.handleChange}/>
+                                    <label htmlFor="text">Plant Name</label>
+                                </div>
+                                <button type="submit" style={{backgroundColor: "#8c9e75"}} onClick={this.handleSubmit} className="right w-25 btn waves-effect waves-light">Find Plant</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div>
+                        <div className="row">
+                            <div className="col-6">
+                                <span> Botanical Name - </span>
+                                <span> {plant.botanicalName} </span>
+                            </div>
+                            <div className="col-6">
+                                <span> Common Name(s) - </span>
+                                <span> {plant.commonName} </span>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-6">
+                                <span> Plant Type - </span>
+                                <span> {plant.plantType} </span>
+                            </div>
+                            <div className="col-6">
+                                <span> Mature Size - </span>
+                                <span> {plant.matureSize} </span>
+                            </div>
+                        </div>
 
-                    <form noValidate autoComplete="off">
-                        <h4 className="left-align">Find a Plant</h4>
-                        <Row className="input-field justify-content-between">
-                            <TextField fullWidth InputProps={{disableUnderline: true}} id="plantName" label="Plant Name"
-                                       onChange={this.handleChange}/>
-                            <Button variant="contained" color="primary" onClick={this.handleSubmit}>
-                                Find
-                            </Button>
-                        </Row>
-                    </form>
-                </div>
-                <div>
-                    <h5> Botanical Name - </h5> <h5> {plant.botanicalName} </h5>
-                    <h5> Common Name(s) - </h5> <h5> {plant.commonName} </h5>
-                    <h5> Plant Type - </h5> <h5> {plant.plantType} </h5>
-                    <h5> Mature Size - </h5> <h5> {plant.matureSize} </h5>
-                    <hr/>
-                    <h4> Care </h4>
-                    <h5> Light Level - </h5> <h5> {plant.care.lightLevel} </h5>
-                    <h5> Humidity - </h5> <h5> {plant.care.humidity} </h5>
-                    <h5> Duration - </h5> <h5> {plant.care.duration} </h5>
-                    <h5> Direction - </h5> <h5> {plant.care.direction} </h5>
-                </div>
-            </Card>
+                        <hr/>
+                        <h5> Care </h5>
+                        <br/>
+
+                        <div className="row">
+                            <div className="col-6">
+                                <span> Light Level - </span>
+                                <span> {plant.care.lightLevel} </span>
+                            </div>
+                            <div className="col-6">
+                                <span> Humidity - </span>
+                                <span> {plant.care.humidity} </span>
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col-6">
+                                <span> Duration - </span>
+                                <span> {plant.care.duration} </span>
+                            </div>
+                            <div className="col-6">
+                                <span> Direction - </span>
+                                <span> {plant.care.direction} </span>
+                            </div>
+                        </div>
+                    </div>
+                </Card>
+            </div>
         )
     }
 }

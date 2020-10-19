@@ -52,22 +52,22 @@ class Setting extends Component {
             return <Redirect to='/signin'/>
         }
         return (
-            <>
-                <div className="card z-depth-0 w-75 ml-auto mr-auto mt-3">
+            <div className="page-containers">
+                <div className="card z-depth-0 w-75 ml-auto mr-auto mt-3 h-auto" style={{backgroundColor:"rgb(219, 219, 219)"}}>
                     <div className="pl-3 pr-3 pb-3">
                         <h4> Settings </h4>
                         <form>
-                            <input type="email" id="email" value={this.state.email} onChange={this.handleChange}/>
-                            <label> Email</label>
-                            <input type="password" id="newPassword" onChange={this.handleChange}/>
-                            <label> Password </label>
-                            <input type="text" id="firstName" value={this.state.firstName}
+                            <input style={{borderBottom:"1px solid #8c9e75"}} type="email" id="email" value={this.state.email} onChange={this.handleChange}/>
+                            <label style={{color:"#8c9e75"}}> Email</label>
+                            <input style={{borderBottom:"1px solid #8c9e75"}} type="password" id="newPassword" onChange={this.handleChange}/>
+                            <label style={{color:"#8c9e75"}}> Password </label>
+                            <input style={{borderBottom:"1px solid #8c9e75"}} type="text" id="firstName" value={this.state.firstName}
                                    onChange={this.handleChange}/>
-                            <label> First Name</label>
-                            <input type="text" id="lastName" value={this.state.lastName} onChange={this.handleChange}/>
-                            <label> Last Name </label>
+                            <label style={{color:"#8c9e75"}}> First Name</label>
+                            <input style={{borderBottom:"1px solid #8c9e75", }} type="text" id="lastName" value={this.state.lastName} onChange={this.handleChange}/>
+                            <label style={{color:"#8c9e75"}} > Last Name </label>
 
-                            <Button className="right" variant="contained" color="primary"
+                            <Button style={{backgroundColor:"#8c9e75"}} className="right" variant="contained" color="primary"
                                     onClick={this.handleSubmit}>
                                 Save Changes
                             </Button>
@@ -123,7 +123,7 @@ class Setting extends Component {
                     </Modal.Footer>
                 </Modal>
 
-            </>
+            </div>
         )
     }
 }

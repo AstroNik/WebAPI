@@ -6,6 +6,9 @@ import moment from "moment";
 import "./DeviceDetails.css"
 import axios from "axios";
 import {updateDeviceName} from "../../store/Actions/AuthActions";
+import {IconContext} from "react-icons";
+import {GiBattery100, GiWaterDrop} from "react-icons/gi";
+import {FcCalendar} from "react-icons/fc"
 
 /*
 Code Written By
@@ -21,6 +24,7 @@ class DeviceDetails extends Component {
         this.state = {
             chartData: {},
             options: {
+                maintainAspectRatio: true,
                 scales: {
                     xAxes: [{
                         scaleLabel: {
@@ -32,7 +36,7 @@ class DeviceDetails extends Component {
                         distribution: 'linear',
                         time: {
                             unit: 'minute',
-                            unitStepSize: 30,
+                            unitStepSize: 60,
                             displayFormats: {
                                 hour: 'h:mm a',
                                 min: moment().startOf('day'),
@@ -151,24 +155,59 @@ class DeviceDetails extends Component {
             return <Redirect to="/signin"/>
         } else {
             return (
-                <form>
-                    <div className="fitting dashboard-container section">
-                        <div className="device-details z-depth-0">
-                            <div className="card-content">
-                                <input type="text" id="devName" value={this.state.devName}
-                                       onChange={this.handleNameChange} onBlur={this.updateDeviceName}/>
-                                <p> Date/Time - {localTime} </p>
-                                <p> Battery Percent - {device.battery} </p>
-                                <p> Moisture Percent - {device.soilMoisturePercent} </p>
-                            </div>
-                            <div className="card-action grey lighten-4 grey-text">
-                                <input type="date" defaultValue={today} max={today}
-                                       onChange={(event => this.handleChange(event.target.value))}/>
-                                <Line data={chartData} options={this.state.options} redraw={true}/>
+                <div className="page-containers">
+                    <form className="ml-auto mr-auto mt-3">
+                        <div className="card dashboard-container section ml-auto mr-auto"
+                             style={{backgroundColor: "rgb(219, 219, 219)"}}>
+                            <div className="device-details z-depth-0">
+                                <div className="card-content pt-3">
+                                    <div
+                                        className="row d-inline-flex justify-content-between col-12 col-sm-12 col-md-12 col-lg-12 mb-0 align-middle">
+                                        <div className="col-8 col-sm-8 col-md-10 col-lg-10">
+                                            <input style={{borderBottom: "1px solid #8c9e75", fontSize:"14pt"}}
+                                                   className="w-25" type="text" id="devName"
+                                                   value={this.state.devName}
+                                                   onChange={this.handleNameChange} onBlur={this.updateDeviceName}/>
+                                        </div>
+                                        <div
+                                            className="row col-4 col-sm-4 col-md-2 col-lg-2 inline-flex mx-auto justify-content-center">
+                                           <span className="align-middle flex">
+                                            <IconContext.Provider value={{color: "#30a8be"}}>
+                                                <span className="device-list-text"><GiWaterDrop
+                                                    style={{verticalAlign: 'baseline'}}/></span>
+                                            </IconContext.Provider>
+                                            <span className="device-list-text"
+                                                  style={{verticalAlign: 'baseline'}}> {device.soilMoisturePercent} </span>
+                                         </span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        className="row d-inline-flex justify-content-between col-12 col-sm-12 col-md-12 col-lg-12 mb-0 align-middle">
+                                        <span className="device-list-text card-text col-8 col-sm-8 col-md-10 col-lg-10"> Last Updated: {localTime} </span>
+                                        <div
+                                            className="row col-4 col-sm-4 col-md-2 col-lg-2 inline-flex mx-auto justify-content-center">
+                                            <span className="align-middle flex">
+                                                <span className="device-list-text"><GiBattery100
+                                                    style={{verticalAlign: 'baseline'}}/></span>
+                                                <span className="device-list-text"
+                                                      style={{verticalAlign: 'baseline'}}> {device.battery} </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="card-action grey lighten-4 grey-text pb-0 w-100">
+                                    <div className="row justify-content-center align-items-center">
+                                        <input style={{borderBottom: "1px solid #8c9e75", fontSize:"14pt"}} className="w-25"
+                                               type="date" defaultValue={today} max={today}
+                                               onChange={(event => this.handleChange(event.target.value))}/>
+                                               <FcCalendar size="30px"/>
+                                    </div>
+                                    <Line data={chartData} options={this.state.options} redraw={true}/>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             )
         }
     }
