@@ -26,41 +26,44 @@ class PasswordReset extends Component {
     }
 
     handleSubmit = (e) => {
-        if(this.state.email === ""){
+        if (this.state.email === "") {
             this.setState({emailError: 'Email Empty'})
-        } else if (!this.validateEmail(this.state.email)){
+        } else if (!this.validateEmail(this.state.email)) {
             this.setState({emailError: 'Bad Email Format'})
-        }
-        else {
+        } else {
             e.preventDefault();
             this.props.forgotPassword(this.state.email)
             this.setState({email: ''})
         }
     }
 
-    render(){
+    render() {
         const {emailAuth} = this.props
-        return(
-            <div>
-                <div id="landing-content" className="d-flex justify-content align-items-center">
-                    <div className="mx-auto justify-content-center col-lg-4 col-md-6 col-sm-6 col">
-                        <div id="loginBox">
-                            <form onSubmit={this.handleSubmit}>
-                                <h4 className="center-align">Forgot Password</h4>
+        return (
+            <div id="landing-content" className="d-md-flex align-items-center">
+                <div className="col-lg-6 ">
+                    <div className="text-center">
 
-                                <div className="input-field col s6">
-                                    <input type="email" className="validate" id="email" onChange={this.handleChange} value={this.state.email}/>
-                                    <label htmlFor="email">Email</label>
-                                </div>
+                    </div>
+                </div>
+                <div className="mx-auto justify-content-center col-lg-4 col-md-6 col-sm-6 col">
+                    <div class="center-align" id="signUpBox">
+                        <form onSubmit={this.handleSubmit}>
+                            <h4 className="center-align">Forgot Password</h4>
 
-                                <button type="submit" className="btn waves-effect waves-light">Send</button>
-                                <br/>
-                                <br/>
-                                <div className="red-text center">
-                                    {emailAuth ? <p>{emailAuth}</p> : null}
-                                </div>
-                            </form>
-                        </div>
+                            <div className="input-field col s6">
+                                <input type="email" className="validate" id="email" onChange={this.handleChange}
+                                       value={this.state.email}/>
+                                <label htmlFor="email">Email</label>
+                            </div>
+
+                            <button type="submit" style={{backgroundColor: "#8c9e75"}} className="btn w-50 waves-effect waves-light">Send</button>
+                            <br/>
+                            <br/>
+                            <div className="red-text center">
+                                {emailAuth ? <p>{emailAuth}</p> : null}
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

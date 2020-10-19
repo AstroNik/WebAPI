@@ -36,8 +36,8 @@ class SignUp extends Component {
         } else {
             return (
                 <div className="col-lg-7 col-md-auto col-sm-auto mx-auto" id="signUpBox">
-                    <form className="col s12" onSubmit={this.handleSubmit}>
-                        <h4 className="center-align"><b>Sign Up</b></h4>
+                    <form className="col s12 center-align" onSubmit={this.handleSubmit}>
+                        <h4 className="center-align">Sign Up</h4>
 
                         <div id="form-row-override" className="row">
                             <div className="input-field col s6">
@@ -60,7 +60,7 @@ class SignUp extends Component {
                             <label htmlFor="password">Password</label>
                         </div>
 
-                        <button type="submit" className="btn waves-effect waves-light">Sign Up</button>
+                        <button type="submit" style={{backgroundColor: "#8c9e75"}} className="w-50 btn waves-effect waves-light">Create Account</button>
 
                         <div className="red-text center">
                             {authError ? <p> {authError}</p> : null}

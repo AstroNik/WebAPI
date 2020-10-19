@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {signIn} from "../../store/Actions/AuthActions";
-import {Redirect, NavLink} from 'react-router-dom'
+import {NavLink, Redirect} from 'react-router-dom'
 
 /*
 Code Written By
@@ -29,16 +29,20 @@ class SignIn extends Component {
 
     render() {
         const {authError, auth} = this.props;
-        if(auth.uid) {
+        if (auth.uid) {
             return <Redirect to="/dashboard"/>
-        }
-        else {
+        } else {
             return (
-                <div id="landing-content" className="d-flex justify-content align-items-center">
-                    <div className="mx-auto justify-content-center col-lg-4 col-md-6 col-sm-6 col">
-                        <div id="loginBox">
+                <div id="landing-content" className="d-md-flex align-items-center">
+                    <div className="col-lg-6 ">
+                        <div className="text-center">
+
+                        </div>
+                    </div>
+                    <div className="col-lg-6 col-sm-7 mx-auto">
+                        <div className="center-align col-lg-7 col-md-auto col-sm-auto mx-auto" id="signUpBox">
                             <form onSubmit={this.handleSubmit}>
-                                <h4 className="center-align">Sign In</h4>
+                                <h4 className="center-align">Login</h4>
 
                                 <div className="input-field col s6">
                                     <input type="email" className="validate" id="email" onChange={this.handleChange}/>
@@ -46,11 +50,12 @@ class SignIn extends Component {
                                 </div>
 
                                 <div className="input-field col s6">
-                                    <input type="password" className="validate" id="password" onChange={this.handleChange}/>
+                                    <input type="password" className="validate" id="password"
+                                           onChange={this.handleChange}/>
                                     <label htmlFor="password">Password</label>
                                 </div>
 
-                                <button type="submit" className="btn waves-effect waves-light">Submit</button>
+                                <button type="submit" style={{backgroundColor: "#8c9e75"}} className="w-50 btn waves-effect waves-light">Login</button>
                                 <br/>
                                 <br/>
                                 <p className="forgot-password text-center">

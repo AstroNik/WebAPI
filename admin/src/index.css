@@ -72,7 +72,7 @@ nav ul a:hover {
 
 #signUpBox {
     padding: 25px;
-    background-color: rgba(244, 247, 230,0.9);
+    background-color: rgb(219, 219, 219);
     border-radius: 3em;
 }
 
@@ -92,4 +92,26 @@ nav ul a:hover {
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
+}
+
+/* label focus color */
+.input-field input:focus + label {
+    color: #8c9e75 !important;
+}
+/* label underline focus color */
+.row .input-field input:focus {
+    border-bottom: 1px solid #8c9e75 !important;
+    box-shadow: 0 1px 0 0 #8c9e75 !important
+}
+
+/* label underline focus color */
+.input-field input[type=password]:focus {
+    border-bottom: 1px solid #8c9e75 !important;
+    box-shadow: 0 1px 0 0 #8c9e75 !important
+}
+
+/* label underline focus color */
+.input-field input[type=email]:focus {
+    border-bottom: 1px solid #8c9e75 !important;
+    box-shadow: 0 1px 0 0 #8c9e75 !important
 }
