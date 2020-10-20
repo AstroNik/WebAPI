@@ -200,7 +200,7 @@ class DeviceDetails extends Component {
                                         <input style={{borderBottom: "1px solid #8c9e75", fontSize:"14pt"}} className="w-25"
                                                type="date" defaultValue={today} max={today}
                                                onChange={(event => this.handleChange(event.target.value))}/>
-                                               <FcCalendar size="30px"/>
+                                               {/*<FcCalendar size="30px"/>*/}
                                     </div>
                                     <Line data={chartData} options={this.state.options} redraw={true}/>
                                 </div>
