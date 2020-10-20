@@ -11,6 +11,7 @@ import Setup from "./components/Devices/Setup";
 import Setting from "./components/Setting/Setting";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {connect} from "react-redux"
 
 /*
 Code Written By
@@ -20,6 +21,11 @@ Nikhil Kapadia
 
 class App extends Component {
     render() {
+        const {auth} = this.props;
+        let bg = "home"
+        if(auth.uid) {
+            bg = "homeNoBg"
+        }
         return (
             <BrowserRouter>
                 <ToastContainer
@@ -33,8 +39,8 @@ class App extends Component {
                     draggable
                     pauseOnHover
                 />
-                <div id="home">
-                    <section id="home">
+                <div id={bg}>
+                    <section id={bg}>
                         <NavBar/>
                         <Switch>
                             <Route exact path='/' component={LandingPage}/>
@@ -53,4 +59,10 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth,
+    }
+}
+
+export default connect(mapStateToProps, null)(App);

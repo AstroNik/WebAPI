@@ -25,7 +25,7 @@ class Setup extends Component {
 
         return (
             <div className="setup-container">
-                <Card className="w-75 ml-auto mr-auto mt-5 p-4 h-auto mb-5" style={{backgroundColor: "rgb(219, 219, 219)"}}>
+                <Card className="w-75 ml-auto mr-auto mt-1 p-4 h-auto mb-5" style={{backgroundColor: "rgb(219, 219, 219)"}}>
                     <h4> Device Setup </h4>
                     <p> Place the battery inside the device </p>
                     <ol type="a">

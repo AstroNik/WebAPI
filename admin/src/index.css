@@ -109,6 +109,15 @@ nav ul a:hover {
     background-repeat: no-repeat;
 }
 
+#homeNoBg {
+    height:100vh;
+    background-color: white;
+    /*background-image: url("assets/img/peter-zagar.png") ;*/
+    /*background-size: cover;*/
+    /*background-attachment: fixed;*/
+    /*background-repeat: no-repeat;*/
+}
+
 /* label focus color */
 .input-field input:focus + label {
     color: #8c9e75 !important;
