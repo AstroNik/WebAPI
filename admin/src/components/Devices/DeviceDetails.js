@@ -165,7 +165,7 @@ class DeviceDetails extends Component {
                                         className="row d-inline-flex justify-content-between col-12 col-sm-12 col-md-12 col-lg-12 mb-0 align-middle">
                                         <div className="col-8 col-sm-8 col-md-10 col-lg-10">
                                             <input style={{borderBottom: "1px solid #8c9e75", fontSize:"14pt"}}
-                                                   className="w-25" type="text" id="devName"
+                                                   className="w-50" type="text" id="devName"
                                                    value={this.state.devName}
                                                    onChange={this.handleNameChange} onBlur={this.updateDeviceName}/>
                                         </div>

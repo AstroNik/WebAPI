@@ -16,12 +16,15 @@ Nikhil Kapadia
 
 class Dashboard extends Component {
     componentDidMount() {
+        //Required since persist state saves the below values as true and wont execute on refresh
+
+        this.props.deviceLoaded = false
+        this.props.user.userLoaded = false
         if (this.props.deviceLoaded === false || this.props.user.userLoaded === false) {
             this.props.getDevices()
             this.props.getUniqueDeviceData()
             this.props.getUserData()
             this.props.getAllNotification()
-
         }
     }
 
