@@ -8,7 +8,6 @@ import axios from "axios";
 import {updateDeviceName} from "../../store/Actions/AuthActions";
 import {IconContext} from "react-icons";
 import {GiBattery100, GiWaterDrop} from "react-icons/gi";
-import {FcCalendar} from "react-icons/fc"
 
 /*
 Code Written By
@@ -164,7 +163,7 @@ class DeviceDetails extends Component {
                                     <div
                                         className="row d-inline-flex justify-content-between col-12 col-sm-12 col-md-12 col-lg-12 mb-0 align-middle">
                                         <div className="col-8 col-sm-8 col-md-10 col-lg-10">
-                                            <input style={{borderBottom: "1px solid #8c9e75", fontSize:"14pt"}}
+                                            <input style={{borderBottom: "1px solid #8c9e75", fontSize: "14pt"}}
                                                    className="w-50" type="text" id="devName"
                                                    value={this.state.devName}
                                                    onChange={this.handleNameChange} onBlur={this.updateDeviceName}/>
@@ -197,10 +196,11 @@ class DeviceDetails extends Component {
                                 </div>
                                 <div className="card-action grey lighten-4 grey-text pb-0 w-100">
                                     <div className="row justify-content-center align-items-center">
-                                        <input style={{borderBottom: "1px solid #8c9e75", fontSize:"14pt"}} className="w-25"
+                                        <input style={{borderBottom: "1px solid #8c9e75", fontSize: "14pt"}}
+                                               className="w-25"
                                                type="date" defaultValue={today} max={today}
                                                onChange={(event => this.handleChange(event.target.value))}/>
-                                               {/*<FcCalendar size="30px"/>*/}
+                                        {/*<FcCalendar size="30px"/>*/}
                                     </div>
                                     <Line data={chartData} options={this.state.options} redraw={true}/>
                                 </div>
