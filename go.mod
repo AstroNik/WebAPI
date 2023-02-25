@@ -8,6 +8,6 @@ require (
 	github.com/AstroNik/WebCommon v0.0.0-20201030014855-92f2b6a2c395
 	github.com/gorilla/mux v1.7.4
 	github.com/hashicorp/golang-lru v0.5.3 // indirect
-	golang.org/x/net v0.0.0-20201010224723-4f7140c49acb
+	golang.org/x/net v0.7.0
 	google.golang.org/api v0.17.0
 )
